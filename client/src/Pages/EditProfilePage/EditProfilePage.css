@@ -1,39 +1,74 @@
-/* ProfileUpdate.css */
+.container {
+    border: 1px solid rgba(128, 128, 128, 0.374);
+    border-radius: 5px;
+    padding: 1em 2em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 
-.profile-update-container {
-    width: 100%;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  .profile-update-heading {
-    text-align: center;
-  }
-  
-  .input-container {
-    margin-bottom: 15px;
+.container h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1em;
+    position: relative;
+    padding-left: 1em;
+}
+
+.container h4::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: blue;
+    width: 5px;
+    height: 100%;
+}
+
+.container .row {
     display: flex;
-    align-items: center;
-    width: 100%;
     gap: 2em;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .input-field {
+    align-items: start;
     width: 100%;
-    padding: 8px;
-  }
-  
-  .button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+}
+
+.container .row .input {
+    padding: 1em 1em;
+    margin-bottom: 1.5em;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid rgba(128, 128, 128, 0.324);
+    transition: all .2s ease-in;
+    width: 100%;
+}
+
+.container .row .input:focus {
+    border: 1px solid rgb(1, 1, 180);
+}
+
+.input-group {
+    width: 100%;
+}
+
+.update-btn button {
+    padding: .8em 2em;
+    font-weight: 600;
+    font-size: .9rem;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
     cursor: pointer;
-  }
-  
+    border: none;
+    transition: all .2s ease-in;
+}
+
+.container .form{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.update-btn button:hover {
+    background-color: rgb(0, 0, 186);
+}
+
+.input-tags-wrapper{
+    margin-top: .5em;
+}

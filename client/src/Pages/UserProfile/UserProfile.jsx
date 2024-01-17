@@ -75,43 +75,40 @@ const UserProfile = () => {
                 </div>
               </div>
             </div>
-
-            <div className="profileContainer">
-              <Link to="on-going-session">
-                <div className="session-card">
-                  <div className="profileContentLogo"></div>
-                  <div className="profileContentConatainer">
-                    <h3>Ongoing Session</h3>
-                    <p>5+ sessions are active.</p>
-                  </div>
+          </div>
+          <div className="profileContainer">
+            <Link to="on-going-session">
+              <div className="session-card">
+                <div className="profileContentLogo"></div>
+                <div className="profileContentConatainer">
+                  <h3>Ongoing Session</h3>
+                  <p>5+ sessions are active.</p>
                 </div>
-              </Link>
+              </div>
+            </Link>
 
-              <Link to="requested-session">
-                <div className="session-card">
-                  <div className="profileContentLogo"></div>
-                  <div className="profileContentConatainer">
-                    <h3>Requested Session</h3>
-                    <p>10 requests is yet to approved.</p>
-                  </div>
+            <Link to="requested-session">
+              <div className="session-card">
+                <div className="profileContentLogo"></div>
+                <div className="profileContentConatainer">
+                  <h3>Requested Session</h3>
+                  <p>10 requests is yet to approved.</p>
                 </div>
-              </Link>
+              </div>
+            </Link>
 
-              <Link to="past-session">
-                <div className="session-card">
-                  <div className="profileContentLogo"></div>
-                  <div className="profileContentConatainer">
-                    <h3>Past Session</h3>
-                    <p>20+ sessions attended</p>
-                  </div>
+            <Link to="past-session">
+              <div className="session-card">
+                <div className="profileContentLogo"></div>
+                <div className="profileContentConatainer">
+                  <h3>Past Session</h3>
+                  <p>20+ sessions attended</p>
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
-
-      {/* <Footer /> */}
     </div>
   );
 };
