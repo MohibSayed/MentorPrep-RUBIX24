@@ -6,6 +6,7 @@ import {
 } from "@clerk/clerk-react";
 import { UserButton } from "@clerk/clerk-react";
 import { useUser } from "@clerk/clerk-react";
+import RegisterPage from '../RegisterPage/RegisterPage'
 
 const HomePage = () => {
   // const { user } = useUser();
@@ -21,6 +22,7 @@ const HomePage = () => {
       </SignedOut>) : (<SignedIn>
         <h1>Welcome to Dashbaord {user.fullName}</h1>
         <SignOutButton afterSignOutUrl="/" />
+        <RegisterPage user={user}/>
         {/* <UserButton /> */}
       </SignedIn>)} 
       
