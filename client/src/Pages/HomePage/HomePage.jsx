@@ -15,13 +15,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import './HomePage.css'
-import NavBar from '../../Components/NavBar/NavBar'
+import "./HomePage.css";
+import NavBar from "../../Components/NavBar/NavBar";
 
 const HomePage = () => {
   const { isSignedIn, user, isLoaded } = useUser();
   console.log(user);
- const[isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   // const [isRegistrationDone, setIsRegistrationDone] = useState(false);
 
   // useEffect(() => {
@@ -42,27 +42,26 @@ const HomePage = () => {
   //     checkRegistrationStatus();
   //   }
   // }, [user, isSignedIn]);
-  
+
   const handleVisibility = async (email) => {
     try {
-    
-      const response = await axios.post("http://localhost:8800/api/auth/menteeLogin", {email});
+      const response = await axios.post(
+        "http://localhost:8800/api/auth/menteeLogin",
+        { email }
+      );
       console.log(response.data);
-      if(response.status == 200){
+      if (response.status == 200) {
         setIsVisible(false);
       }
     } catch (error) {
-
       console.error("Registration failed:", error.message);
     }
   };
   useEffect(() => {
-    const email = localStorage.getItem('email');
+    const email = localStorage.getItem("email");
     console.log(email);
     handleVisibility(email);
-
-  }, []); 
-
+  }, []);
 
   return (
     <div>
@@ -73,15 +72,15 @@ const HomePage = () => {
         </SignedOut>
       ) : (
         <SignedIn>
-        <NavBar/>
-        <div className="signOutBtn">
-          <SignOutButton afterSignOutUrl="/" className="SignOut" />
-        </div>
+          <NavBar />
+          <div className="signOutBtn">
+            <SignOutButton afterSignOutUrl="/" className="SignOut" />
+          </div>
           <h1>Welcome to Dashbaord {user.fullName}</h1>
-          
+
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
           {isVisible && <RegisterPage user={user} />}
-          <div className="carousel">
+          {/* <div className="carousel">
             <Swiper
               spaceBetween={50}
               slidesPerView={4}
@@ -106,11 +105,11 @@ const HomePage = () => {
                 },
                 1280: {
                   spaceBetween: 70,
-                  slidesPerView: 7,
+                  slidesPerView: 4,
                 },
                 1536: {
                   spaceBetween: 80,
-                  slidesPerView: 7,
+                  slidesPerView: 5,
                 },
                 1600: {
                   spaceBetween: 98,
@@ -207,8 +206,120 @@ const HomePage = () => {
                   </div>
                 </div></SwiperSlide>
             </Swiper>
+            </div> */}
+          <div className="searchBarDiv">
+            <div class="wrapper">
+              <div class="label">Submit your search</div>
+              <div class="searchBar">
+                <input
+                  id="searchQueryInput"
+                  type="text"
+                  name="searchQueryInput"
+                  placeholder="Search"
+                  value=""
+                />
+                <button
+                  id="searchQuerySubmit"
+                  type="submit"
+                  name="searchQuerySubmit"
+                >
+                  <svg style={{"width":"24px", "height":"24px"}} viewBox="0 0 24 24">
+                    <path
+                      fill="#666666"
+                      d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
-          
+          <div className="gridItems">
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-image"></div>
+              <div className="category"> Illustration </div>
+              <div className="heading">
+                {" "}
+                A heading that must span over two lines
+                <div className="author">
+                  {" "}
+                  By <span className="name">Abi</span> 4 days ago
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* <UserButton /> */}
         </SignedIn>
       )}
