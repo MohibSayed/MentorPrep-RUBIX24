@@ -33,6 +33,9 @@ const menteeSchema = new mongoose.Schema(
         Profession: {
             type: String,//student, working professional, entrepreneur, freelancer, other
         },
+        interests: {
+            type: [String],
+        },
     },
     { timestamps: true }
 );

@@ -2,8 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv"
 import authRoute from "./routes/auth.js"
-import usersRoute from "./routes/users.js"
-import professionsRoute from "./routes/profession.js"
+import menteesRoute from "./routes/Mentee.js"
+import mentorsRoute from "./routes/Mentor.js"
 import bookingRoute from "./routes/booking.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -31,8 +31,8 @@ app.use(cors())
 app.use(cookieParser())
 app.use(express.json())
 app.use("/api/auth", authRoute)
-app.use("/api/users", usersRoute)
-app.use("/api/professions", professionsRoute)
+app.use("/api/mentee", menteesRoute)
+app.use("/api/mentor", mentorsRoute)
 app.use("/api/bookings", bookingRoute)
 
 app.use((err, req, res, next) => {
