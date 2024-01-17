@@ -6,23 +6,22 @@ import {
     getMentees,
     updateMentee,
 } from "../controllers/Mentee.js";
-import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
 //UPDATE
-router.put("/:id", verifyUser, updateMentee);
+router.put("/:id", updateMentee);
 
 //DELETE
-router.delete("/:id", verifyUser, deleteMentee);
+router.delete("/:id", deleteMentee);
 
 //GET
-router.get("/:id", verifyUser, getMentee);
+router.get("/:id", getMentee);
 
 //GET ALL
-router.get("/", verifyAdmin, getMentees);
+router.get("/", getMentees);
 
 //GET BOOKING OF A Mentee
-router.get("/bookingsmade/:username/:status", verifyUser, getMenteeBookings);
+router.get("/bookingsmade/:username/:status", getMenteeBookings);
 
 export default router;

@@ -1,14 +1,13 @@
 import express from "express"; updateBooking
 import { createBooking, deleteBooking, getBooking, getBookings, updateBooking } from "../controllers/Booking.js";
 const router = express.Router()
-import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 
 //create
-router.post("/:ReqById", verifyUser, createBooking)
+router.post("/:ReqById", createBooking)
 //update
-router.put("/:id", verifyAdmin, updateBooking)
+router.put("/:id", updateBooking)
 //delete
-router.delete("/:id/:professionId", verifyAdmin, deleteBooking)
+router.delete("/:id/:professionId", deleteBooking)
 //get
 router.get("/:id", getBooking)
 //get all
