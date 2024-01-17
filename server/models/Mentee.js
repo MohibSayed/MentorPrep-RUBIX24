@@ -26,10 +26,14 @@ const menteeSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        password: {
+        language:{
             type: String,
             required: true,
         },
+        // password: {
+        //     type: String,
+        //     required: true,
+        // },
         Profession: {
             type: String,//student, working professional, entrepreneur, freelancer, other
         },
