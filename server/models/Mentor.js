@@ -64,26 +64,6 @@ const mentorSchema = new mongoose.Schema(
                 },
             ],
         },
-        booked: {
-            type: [
-                {
-                    mentee: String,
-                    status: {
-                        type: String,
-                        enum: ["pending", "approved", "rejected", "cancelled", "completed"],
-                        default: "pending",
-                    },
-                    time: {
-                        type: String,
-                        required: true,
-                    },
-                    date: {
-                        type: String,
-                        required: true,
-                    },
-                },
-            ],
-        },
         Price: {
             type: Number,
             required: true,

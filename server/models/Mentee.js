@@ -33,29 +33,6 @@ const menteeSchema = new mongoose.Schema(
         Profession: {
             type: String,//student, working professional, entrepreneur, freelancer, other
         },
-        enrolled: {
-            type: [
-                {
-                    mentor: {
-                        type: String,
-                        required: true,
-                    },
-                    status: {
-                        type: String,
-                        enum: ["pending", "approved", "rejected", "cancelled", "completed"],
-                        default: "pending",
-                    },
-                    time: {
-                        type: String,
-                        required: true,
-                    },
-                    date: {
-                        type: String,
-                        required: true,
-                    },
-                }
-            ]
-        }
     },
     { timestamps: true }
 );
