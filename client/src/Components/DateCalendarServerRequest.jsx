@@ -48,7 +48,7 @@ function ServerDay(props) {
       <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
       {slotCount > 0 && (
         <div style={{ textAlign: 'center', color: 'blue', fontSize:'10px' }}>
-          {slotCount} {slotCount !== 1 ? 's' : ''}
+          {slotCount}{slotCount !== 1 ? 's' : ''}
         </div>
       )}
     </div>
