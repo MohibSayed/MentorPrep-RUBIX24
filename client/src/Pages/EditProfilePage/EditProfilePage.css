@@ -1,0 +1,39 @@
+/* ProfileUpdate.css */
+
+.profile-update-container {
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .profile-update-heading {
+    text-align: center;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 2em;
+  }
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 8px;
+  }
+  
+  .button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  

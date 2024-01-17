@@ -1,0 +1,32 @@
+.mentee-profile-page {
+    display: flex;
+    align-items: start;
+    padding-top: 1em;
+    height: 100vh;
+}
+
+.sidebar {
+    padding: 1em;
+    border-right: 1px solid rgba(128, 128, 128, .2);
+    height: 100%;
+    min-width: 15vw;
+}
+
+.tab {
+    padding: .6em 2em;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all .1s ease-in;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: 1rem;
+}
+
+.tab:hover {
+    background-color: rgba(128, 128, 128, .1);
+}
+
+.tab-content {
+    padding: 1em 2em;
+}

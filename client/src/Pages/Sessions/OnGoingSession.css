@@ -1,0 +1,24 @@
+.heading h2 {
+    margin-bottom: 2px;
+    font-size: 2em;
+    padding-left: .6em;
+    position: relative;
+  }
+  
+  .heading h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: blue;
+    width: 5px;
+    height: 100%;
+  }
+  
+.wrapper{
+    margin: 2em;
+}
+
+.session-card-container{
+    margin-top: 3em;
+}
