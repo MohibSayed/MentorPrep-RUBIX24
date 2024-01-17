@@ -17,10 +17,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import './HomePage.css'
 import NavBar from '../../Components/NavBar/NavBar'
+
 const HomePage = () => {
   const { isSignedIn, user, isLoaded } = useUser();
   console.log(user);
-
+ const[isVisible, setIsVisible] = useState(true);
   // const [isRegistrationDone, setIsRegistrationDone] = useState(false);
 
   // useEffect(() => {
@@ -41,6 +42,27 @@ const HomePage = () => {
   //     checkRegistrationStatus();
   //   }
   // }, [user, isSignedIn]);
+  
+  const handleVisibility = async (email) => {
+    try {
+    
+      const response = await axios.post("http://localhost:8800/api/auth/menteeLogin", {email});
+      console.log(response.data);
+      if(response.status == 200){
+        setIsVisible(false);
+      }
+    } catch (error) {
+
+      console.error("Registration failed:", error.message);
+    }
+  };
+  useEffect(() => {
+    const email = localStorage.getItem('email');
+    console.log(email);
+    handleVisibility(email);
+
+  }, []); 
+
 
   return (
     <div>
@@ -58,7 +80,7 @@ const HomePage = () => {
           <h1>Welcome to Dashbaord {user.fullName}</h1>
           
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
-          <RegisterPage user={user} />
+          {isVisible && <RegisterPage user={user} />}
           <div className="carousel">
             <Swiper
               spaceBetween={50}

@@ -5,7 +5,7 @@ import "./RegisterPage.css";
 const RegisterPage = (props) => {
   const [user, setUser] = useState({
     username: "",
-    email: "",
+    email: props.user.emailAddresses[0].emailAddress,
     country: "",
     city: "",
     phone: "",
@@ -32,10 +32,11 @@ const RegisterPage = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
+    localStorage.setItem("email", props.user.emailAddresses[0].emailAddress)
 
     try {
       // Assuming your server endpoint for mentee registration is "/api/mentee/register"
-      const response = await axios.post("https://localhost:8800/api/mentee/register", user);
+      const response = await axios.post("http://localhost:8800/api/auth/menteeRegister", user);
 
       // Handle success, you can log the response or redirect the user
       console.log(response.data);
