@@ -1,18 +1,25 @@
 import React from "react";
-import "SearchInput.css";
+import "./SearchInput.css";
+import IconGrid from "./IconGrid";
 
 export default function SearchInput() {
   return (
-    <div class="input-group">
-      <input
-        type="text"
-        class="input"
-        id="Email"
-        name="Email"
-        placeholder="Ask your Doubts"
-        autocomplete="off"
-      />
-      <input class="button--submit" value="Subscribe" type="submit" />
+    <div className="searchAIDiv">
+      <div className="input-group">
+        <input
+          type="text"
+          className="inputAI"
+          id="Email"
+          name="Email"
+          placeholder="How to learn JS"
+          autocomplete="off"
+        />
+        <input className="button--submit" value="Ask AI" type="submit" />
+      </div>
+      <div className="searchCategories">
+        <IconGrid />
+        <IconGrid /><IconGrid /><IconGrid /><IconGrid />
+      </div>
     </div>
   );
 }

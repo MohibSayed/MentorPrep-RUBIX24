@@ -5,6 +5,7 @@ import {
     getMenteeBookings,
     getMentees,
     updateMentee,
+    findTopMentorsForInterests
 } from "../controllers/Mentee.js";
 
 const router = express.Router();
@@ -23,5 +24,8 @@ router.get("/", getMentees);
 
 //GET BOOKING OF A Mentee
 router.get("/bookingsmade/:username/:status", getMenteeBookings);
+
+//GET TOP MENTORS FOR INTERESTS
+router.get("/topmentors/:username", findTopMentorsForInterests);
 
 export default router;

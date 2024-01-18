@@ -37,6 +37,12 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/room/:roomId" element={<Video />} />
+      </Routes>
+
     </div>
   );
 }
