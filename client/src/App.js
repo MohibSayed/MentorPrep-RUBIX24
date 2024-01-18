@@ -2,9 +2,7 @@ import * as React from "react";
 import HomePage from './Pages/HomePage/HomePage'
 import SearchAIPage from './Pages/SearchAIPage/SearchAIPage'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from './Pages/HomePage/HomePage'
 import Video from './Pages/Video/Video'
-
 import MenteeDashboardPage from "./Pages/MenteeDashboardPage/MenteeDashboardPage";
 import OnGoingSession from "./Pages/Sessions/OnGoingSession";
 import RequestedSession from "./Pages/Sessions/RequestedSession";
