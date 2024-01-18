@@ -61,16 +61,18 @@ const NavBar = () => {
               <img src={Logo} alt="" width={20} />
             </div>
             <ul className="navList">
+            <Link to="/">
               <li>
                 <a>Home</a>
               </li>
+              </Link>
               <li>
                 <a>Live Events</a>
               </li>
               <li>
                 <a>Stories</a>
               </li>
-              <Link to="/SearchAI">
+              <Link to="/matchMentor">
                 <li>Match Mentors</li>
               </Link>
               <li>

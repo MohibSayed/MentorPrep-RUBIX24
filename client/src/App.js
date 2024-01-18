@@ -3,6 +3,7 @@ import * as React from "react";
 import HomePage from "./Pages/HomePage/HomePage";
 import SingleMentorPage from "./Pages/SingleMentorPage/SingleMentorPage";
 import SearchAIPage from "./Pages/SearchAIPage/SearchAIPage"
+import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 // import {  SignedOut, SignedIn, SignInButton } from "@clerk/clerk-react";
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import {
@@ -12,7 +13,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import Video from './Pages/Video/Video'
-import SideBar from "./Components/SideBar/SideBar";
+// import SideBar from "./Components/SideBar/SideBar";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
           </>
         }
       />
+      <Route path="/matchMentor" element={<FindMentorPage />} />
       <Route path="/SearchAI" element={<SearchAIPage />}/>
       {/* <Route path="/room/:roomId" element={<Video />} /> */}
       <Route
@@ -53,9 +55,9 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-              <SideBar>
+              {/* <SideBar> */}
                 {/* <SingleMentorPage/> */}
-              </SideBar>
+              {/* </SideBar> */}
               
             </SignedIn>
 
@@ -70,9 +72,9 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBar>
+            {/* <SideBar> */}
             <MentorProfile/>
-              </SideBar>
+              {/* </SideBar> */}
               
               
             </SignedIn>
