@@ -1,4 +1,4 @@
-import * as React from 'react';
+import react, {useState, useEffect, useRef} from 'react';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -7,11 +7,12 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 import slotData from './slotsData'; // Import your slot data
-
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 function getRandomNumber(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
-
+// const slotData = [];
 /**
  * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
  * ⚠️ No IE11 support
@@ -35,6 +36,8 @@ function fakeFetch(date, { signal }) {
 const initialValue = dayjs('2022-04-17');
 
 function ServerDay(props) {
+const {email} = useParams();
+const emailid = email;
   const { day, outsideCurrentMonth, ...other } = props;
 
   // Find slots for the given date from the slotData
@@ -57,14 +60,21 @@ function ServerDay(props) {
 
 
 
-export default function DateCalendarServerRequest() {
-  const requestAbortController = React.useRef(null);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [highlightedDays, setHighlightedDays] = React.useState([1, 2, 15]);
+export default function DateCalendarServerRequest(props) {
+  const {onHandleClick} = props;
+  
+  const requestAbortController = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 15]);
 
   const fetchHighlightedDays = (date) => {
     const controller = new AbortController();
-    
+
+    const slotData = [
+      { date: "2022-04-03", slots: [1, 2, 3] },
+      { date: "2022-04-02", slots: [4, 5] },
+      // Add more date-slot mappings as needed
+    ];
     // Find slots for the given date from the slotData
     const slotsForDate = slotData.find((slot) => dayjs(slot.date).isSame(date, 'day'));
 
@@ -81,7 +91,7 @@ export default function DateCalendarServerRequest() {
     requestAbortController.current = controller;
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchHighlightedDays(initialValue);
     // abort request on unmount
     return () => requestAbortController.current?.abort();
@@ -99,6 +109,10 @@ export default function DateCalendarServerRequest() {
     fetchHighlightedDays(date);
   };
 
+  const handleDateChange = () =>{
+    onHandleClick("Hi");
+  }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
@@ -109,6 +123,7 @@ export default function DateCalendarServerRequest() {
         slots={{
           day: ServerDay,
         }}
+        onDatechange={handleDateChange}
         slotProps={{
           day: {
             highlightedDays,

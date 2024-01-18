@@ -3,6 +3,20 @@
     padding: 0;
     box-sizing: border-box;
 }
+.gridSlots{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.2rem;
+  row-gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+}
+.gridDivSlot{
+  border: 1px solid #fbfbfb;
+  background-color:#e3e3e3;
+  padding: 10px;
+  border-radius: 7px;
+}
 
 .singleMentorContainer {
     position: relative;

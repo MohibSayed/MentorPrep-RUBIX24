@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import "./SingleMentorPage.css";
 import ProfileHeader from "../../Assets/ProfileHeader.gif";
 import { FaStar } from "react-icons/fa";
@@ -9,19 +9,49 @@ import { GrGroup } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
 import { ImLinkedin } from "react-icons/im";
 import DateCalendarServerRequest from "../../Components/DateCalendarServerRequest";
-import NavBar from '../../Components/NavBar/NavBar';
+import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
 const SingleMentorPage = () => {
   const { email } = useParams();
-  const [mentorData, setMentorData] =useState("");
+  const [mentorData, setMentorData] = useState({});
+  const [bookSlot, setBookSlot] = useState({});
+  const [availabilityParam, setaAvailabilityParam] = useState([]);
   const emailid = email;
+  const userEmail = localStorage.getItem("email");
+  const handleBookSlot = (date, time) =>{
+    
+    console.log(date);
+    console.log(time);
+    setBookSlot({reqBy: userEmail, reqFor:emailid, date: date, time: time});
+    
+  }
   useEffect(() => {
+    console.log(bookSlot);
+  }, [bookSlot]);
 
+
+  const handleSubmit = async () => {
+    console.log("Hi");
+    try {
+        const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+  }
+
+
+  useEffect(() => {
     const fetchMentorData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/mentor/find/${emailid}`); // Replace with your actual backend API endpoint
+        const response = await axios.get(
+          `http://localhost:8800/api/mentor/find/${emailid}`
+        ); // Replace with your actual backend API endpoint
         setMentorData(response.data);
-        console.log(mentorData);
+        console.log(response.data.availability);
+        // availabilityParam = response.data.availability;
+        setaAvailabilityParam(response.data.availability);
+        console.log(availabilityParam);
       } catch (error) {
         console.error("Error fetching mentors:", error);
       }
@@ -29,10 +59,13 @@ const SingleMentorPage = () => {
 
     fetchMentorData();
   }, []);
+  const handleClick = (date) => {
+    console.log(date);
+  };
   return (
     <div>
-    <NavBar/>
-       <p>Email: {email}</p>
+      <NavBar />
+      <p>Email: {email}</p>
       <div className="singleMentorContainer">
         <div className="leftSingleMentor">
           <div className="heroProfile">
@@ -49,9 +82,7 @@ const SingleMentorPage = () => {
                   <p>Senior Analyst at Microsoft</p>
                 </div>
                 <div className="descProfile">
-                  <p>
-                    {mentorData.bio}
-                  </p>
+                  <p>{mentorData.bio}</p>
                 </div>
                 <div className="statsProfile">
                   <div className="reviewCount">
@@ -149,11 +180,24 @@ const SingleMentorPage = () => {
             <h2>BOOK YOUR TRIAL 1:1 NOW</h2>
           </div>
           <div className="dateChart">
-            <h3 style={{ textAlign: "left" }}>
-              Available
-              Dates
-            </h3>
-            <DateCalendarServerRequest />
+            <h3 style={{ textAlign: "left" }}>Available Dates</h3>
+
+            {/* <DateCalendarServerRequest onHandleClick={handleClick}  /> */}
+
+            <div className="gridSlots">
+            
+              {availabilityParam.map((slot) => (
+                
+                  slot.slots.map((bot) => (
+                    <div className="gridDivSlot" onClick={ () => handleBookSlot(slot.date, bot.time)}>
+                    <p>{slot.day}</p>
+                  <h4>{slot.date}</h4>
+                  <p>{bot.time}</p>
+                    </div>
+                  ))
+                
+              ))}
+            </div>
           </div>
           <div className="slotChart">
             <h3 style={{ textAlign: "left" }}>Time Slots</h3>
@@ -173,9 +217,9 @@ const SingleMentorPage = () => {
             </ul>
           </div>
           <div className="buttonBook">
-            <button class="btn-17">
+            <button class="btn-17" onClick={handleSubmit}>
               <span class="text-container">
-                <span class="text">Book Your Slot Now! </span>
+                <span class="text" >Book Your Slot Now! </span>
               </span>
             </button>
           </div>
