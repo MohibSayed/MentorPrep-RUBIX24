@@ -25,26 +25,7 @@ const HomePage = () => {
   const [mentors, setMentors] = useState([]);
   console.log(user);
   const [isVisible, setIsVisible] = useState(true);
-  // const [isRegistrationDone, setIsRegistrationDone] = useState(false);
 
-  // useEffect(() => {
-  //   const checkRegistrationStatus = async () => {
-  //     try {
-
-  //       const response = await axios.get(`/api/mentee/${user.emailAddresses[0].emailAddress}`, {
-  //         params: { userEmail: user.emailAddresses[0].emailAddress },
-  //       });
-
-  //       setIsRegistrationDone(response.data.isRegistrationDone);
-  //     } catch (error) {
-  //       console.error("Error checking registration status:", error);
-  //     }
-  //   };
-
-  //   if (user && isSignedIn) {
-  //     checkRegistrationStatus();
-  //   }
-  // }, [user, isSignedIn]);
 
   const handleVisibility = async (email) => {
     try {
