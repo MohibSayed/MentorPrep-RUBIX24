@@ -7,7 +7,7 @@ router.put("/:id", updateMentor)
 //delete
 router.delete("/:id", deleteMentor)
 //get
-router.get("/find/:MentorId", getMentor)
+router.get("/find/:email", getMentor)
 //get all
 router.get("/", getMentors)
 //GET ALL BOOKING OF A Mentor

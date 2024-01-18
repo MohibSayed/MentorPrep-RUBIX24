@@ -16,7 +16,7 @@ const router = createBrowserRouter(
     <>
       <Route index element={<HomePage />} />
       <Route
-        path="/SingleMentor"
+        path="/SingleMentor/:email"
         element={
           <>
             <SignedIn>

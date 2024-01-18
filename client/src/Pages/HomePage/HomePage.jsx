@@ -5,6 +5,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-react";
+import { Link, useParams } from "react-router-dom";
 import { UserButton } from "@clerk/clerk-react";
 import { useUser } from "@clerk/clerk-react";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -17,8 +18,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "./HomePage.css";
 import NavBar from "../../Components/NavBar/NavBar";
-import {FaStar} from "react-icons/fa"
-
+import { FaStar } from "react-icons/fa";
+// import SearchInput from "../../Components/SearchInput";
 const HomePage = () => {
   const { isSignedIn, user, isLoaded } = useUser();
   const [mentors, setMentors] = useState([]);
@@ -66,23 +67,48 @@ const HomePage = () => {
 
     const fetchMentors = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api/mentor/'); // Replace with your actual backend API endpoint
+        const response = await axios.get("http://localhost:8800/api/mentor/"); // Replace with your actual backend API endpoint
         setMentors(response.data);
       } catch (error) {
-        console.error('Error fetching mentors:', error);
+        console.error("Error fetching mentors:", error);
       }
     };
 
     fetchMentors();
-
   }, []);
 
   return (
     <div>
       {!user ? (
         <SignedOut>
-          <h1>Sign in with this button</h1>
-          <SignInButton mode="modal" redirectUrl="/" />
+          <section class="login">
+            <div class="login_box">
+              {/* <div class="left">
+                <div class="top_link">
+                </div>
+                <div class="contact">
+                  <div >
+                    <SignInButton mode="modal" redirectUrl="/" class="submit" />
+                  </div>
+                </div>
+              </div> */}
+              <div class="right">
+                <div class="right-text">
+                  <h2>MENTOR PREP</h2>
+                  <h5>GET YOUR FUNDAMENTALS CLEARED!</h5>
+                  <SignInButton mode="modal" redirectUrl="/" class="submit" />
+                </div>
+                <div class="right-inductor">
+                  <img
+                    src="https://lh3.googleusercontent.com/fife/ABSRlIoGiXn2r0SBm7bjFHea6iCUOyY0N2SrvhNUT-orJfyGNRSMO2vfqar3R-xs5Z4xbeqYwrEMq2FXKGXm-l_H6QAlwCBk9uceKBfG-FjacfftM0WM_aoUC_oxRSXXYspQE3tCMHGvMBlb2K1NAdU6qWv3VAQAPdCo8VwTgdnyWv08CmeZ8hX_6Ty8FzetXYKnfXb0CTEFQOVF4p3R58LksVUd73FU6564OsrJt918LPEwqIPAPQ4dMgiH73sgLXnDndUDCdLSDHMSirr4uUaqbiWQq-X1SNdkh-3jzjhW4keeNt1TgQHSrzW3maYO3ryueQzYoMEhts8MP8HH5gs2NkCar9cr_guunglU7Zqaede4cLFhsCZWBLVHY4cKHgk8SzfH_0Rn3St2AQen9MaiT38L5QXsaq6zFMuGiT8M2Md50eS0JdRTdlWLJApbgAUqI3zltUXce-MaCrDtp_UiI6x3IR4fEZiCo0XDyoAesFjXZg9cIuSsLTiKkSAGzzledJU3crgSHjAIycQN2PH2_dBIa3ibAJLphqq6zLh0qiQn_dHh83ru2y7MgxRU85ithgjdIk3PgplREbW9_PLv5j9juYc1WXFNW9ML80UlTaC9D2rP3i80zESJJY56faKsA5GVCIFiUtc3EewSM_C0bkJSMiobIWiXFz7pMcadgZlweUdjBcjvaepHBe8wou0ZtDM9TKom0hs_nx_AKy0dnXGNWI1qftTjAg=w1920-h979-ft"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          
         </SignedOut>
       ) : (
         <SignedIn>
@@ -94,133 +120,6 @@ const HomePage = () => {
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
           {isVisible && <RegisterPage user={user} />}
-          {/* <div className="carousel">
-            <Swiper
-              spaceBetween={50}
-              slidesPerView={4}
-              onSlideChange={() => console.log("slide change")}
-              onSwiper={(swiper) => console.log(swiper)}
-              modules={[Pagination, Navigation]}
-              pagination={{
-                type: "progressbar",
-              }}
-              breakpoints={{
-                0: {
-                  spaceBetween: 0,
-                  slidesPerView: 1,
-                },
-                768: {
-                  spaceBetween: 60,
-                  slidesPerView: 2,
-                },
-                992: {
-                  spaceBetween: 50,
-                  slidesPerView: 3,
-                },
-                1280: {
-                  spaceBetween: 70,
-                  slidesPerView: 4,
-                },
-                1536: {
-                  spaceBetween: 80,
-                  slidesPerView: 5,
-                },
-                1600: {
-                  spaceBetween: 98,
-                  slidesPerView: 3,
-                },
-                1920: {
-                  spaceBetween: 99,
-                  slidesPerView: 3,
-                },
-                2250: {
-                  spaceBetween: 120,
-                  slidesPerView: 3,
-                },
-              }}
-            >
-              <SwiperSlide>
-                <div className="card">
-                  <div className="card-image"></div>
-                  <div className="category"> Illustration </div>
-                  <div className="heading">
-                    {" "}
-                    A heading that must span over two lines
-                    <div className="author">
-                      {" "}
-                      By <span className="name">Abi</span> 4 days ago
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card">
-                  <div className="card-image"></div>
-                  <div className="category"> Illustration </div>
-                  <div className="heading">
-                    {" "}
-                    A heading that must span over two lines
-                    <div className="author">
-                      {" "}
-                      By <span className="name">Abi</span> 4 days ago
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card">
-                  <div className="card-image"></div>
-                  <div className="category"> Illustration </div>
-                  <div className="heading">
-                    {" "}
-                    A heading that must span over two lines
-                    <div className="author">
-                      {" "}
-                      By <span className="name">Abi</span> 4 days ago
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card">
-                  <div className="card-image"></div>
-                  <div className="category"> Illustration </div>
-                  <div className="heading">
-                    {" "}
-                    A heading that must span over two lines
-                    <div className="author">
-                      {" "}
-                      By <span className="name">Abi</span> 4 days ago
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide><div className="card">
-                  <div className="card-image"></div>
-                  <div className="category"> Illustration </div>
-                  <div className="heading">
-                    {" "}
-                    A heading that must span over two lines
-                    <div className="author">
-                      {" "}
-                      By <span className="name">Abi</span> 4 days ago
-                    </div>
-                  </div>
-                </div></SwiperSlide>
-              <SwiperSlide><div className="card">
-                  <div className="card-image"></div>
-                  <div className="category"> Illustration </div>
-                  <div className="heading">
-                    {" "}
-                    A heading that must span over two lines
-                    <div className="author">
-                      {" "}
-                      By <span className="name">Abi</span> 4 days ago
-                    </div>
-                  </div>
-                </div></SwiperSlide>
-            </Swiper>
-            </div> */}
           <div className="searchBarDiv">
             <div class="wrapper">
               <div class="label">Submit your search</div>
@@ -248,71 +147,71 @@ const HomePage = () => {
                   </svg>
                 </button>
               </div>
+              {/* <SearchInput /> */}
             </div>
           </div>
           <div className="gridItems">
-          {mentors.map((mentor) => (
-          <div key={mentor._id} className="mentorCard">
-          <div className="mentorInnerCard">
-                <div className="profileContainer">
-                  <div className="profileImage">
-                    <img
-                      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
-                      alt=""
-                    />
+            {mentors.map((mentor) => (
+              <div key={mentor._id} className="mentorCard">
+                <div className="mentorInnerCard">
+                  <div className="profileContainer">
+                    <div className="profileImage">
+                      <img
+                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
+                        alt=""
+                      />
+                    </div>
+                    <div className="mentorDetails">
+                      <h3>{mentor.Name}</h3>
+                      <p>Senior Software Engineering Manager</p>
+                      <h6>Walmart Global Team India</h6>
+                    </div>
                   </div>
-                  <div className="mentorDetails">
-                    <h3>{mentor.Name}</h3>
-                    <p>Senior Software Engineering Manager</p>
-                    <h6>Walmart Global Team India</h6>
+
+                  <div className="MoreDetails">
+                    <span>
+                      15 yrs of Exp. at Walmart Global Team India | Cardinal
+                      Health{" "}
+                    </span>
+                    <p>{mentor.bio}</p>
+                    <div className="MentorSkills">
+                      <span>{mentor.ProfessionTitle}</span>
+                      <span>DSA</span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="MoreDetails">
-                  <span>
-                    15 yrs of Exp. at Walmart Global Team India | Cardinal
-                    Health{" "}
-                  </span>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, animi inventore ab vel molestiae nostrum expedita
-                    dolor. Animi, adipisci odio.
-                  </p>
-                  <div className="MentorSkills">
-                    <span>System Design</span>
-                    <span>DSA</span>
+                <div className="bookSection">
+                  <div className="priceReview">
+                    <div className="priceCont">
+                      <h4>Rs. {mentor.Price}/month</h4>
+                    </div>
+                    <div className="reviewCont">
+                      <h4>
+                        4.9 <FaStar /> | 50+ mentees
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div className="BtnsDivs">
+                    <Link to={`/SingleMentor/${mentor.email}`}>
+                      <button className="profileBtn">View Profile</button>
+                    </Link>
+
+                    <button className="trialBtn">Book Free Trial</button>
+                  </div>
+
+                  <div className="MoreExp">
+                    <p>
+                      For: <b>Experienced Profession</b>
+                    </p>
+                    <p>
+                      Targeting: <b>Engineering Manager</b>
+                    </p>
                   </div>
                 </div>
               </div>
-
-              <div className="bookSection">
-                <div className="priceReview">
-                  <div className="priceCont">
-                    <h4>Rs. 10,000/month</h4>
-                  </div>
-                  <div className="reviewCont">
-                    <h4>
-                      4.9 <FaStar /> | 50+ mentees
-                    </h4>
-                  </div>
-                </div>
-
-                <div className="BtnsDivs">
-                  <button className="profileBtn">View Profile</button>
-                  <button className="trialBtn">Book Free Trial</button>
-                </div>
-
-                <div className="MoreExp">
-                  <p>
-                    For: <b>Experienced Profession</b>
-                  </p>
-                  <p>
-                    Targeting: <b>Engineering Manager</b>
-                  </p>
-                </div>
-              </div>
-          </div>
-        ))}
+            ))}
             {/* <div className="mentorCard">
               <div className="mentorInnerCard">
                 <div className="profileContainer">
