@@ -1,10 +1,11 @@
 import * as React from "react";
-import HomePage from './Pages/HomePage/HomePage'
-import SearchAIPage from './Pages/SearchAIPage/SearchAIPage'
-import { BrowserRouter, Routes, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+
+import HomePage from "./Pages/HomePage/HomePage";
 import SingleMentorPage from "./Pages/SingleMentorPage/SingleMentorPage";
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import Video from './Pages/Video/Video'
+import SideBar from "./Components/SideBar/SideBar";
+import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 import MenteeDashboardPage from "./Pages/MenteeDashboardPage/MenteeDashboardPage";
 import OnGoingSession from "./Pages/Sessions/OnGoingSession";
 import RequestedSession from "./Pages/Sessions/RequestedSession";
@@ -41,13 +42,41 @@ const router = createBrowserRouter(
           </>
         }
       />
+      <Route
+        path="/dashboard"
+        element={
+          <>
+            <SignedIn>
+              <SideBar>
+                <MentorProfile/>
+              </SideBar>
+              
+            </SignedIn>
 
-      <Route path="/mentee-dashboard" element={<MenteeDashboardPage />} />
-      <Route path="/mentee-dashboard/on-going-session" element={<OnGoingSession />} />
-      <Route path="/mentee-dashboard/requested-session" element={<RequestedSession />} />
-      <Route path="/mentee-dashboard/past-session" element={<PastSessions />} />
-      <Route path="/mentee-dashboard/edit-profile" element={<EditProfilePage />} />
-      <Route path="/SearchAi" element={<SearchAIPage />} />
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/mentorProfile"
+        element={
+          <>
+            <SignedIn>
+            <SideBar>
+            <MentorProfile/>
+              </SideBar>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
     </>
   )
 );

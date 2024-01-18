@@ -34,7 +34,7 @@ export const getMentors = async (req, res, next) => {
     try {
         const allMentors = await Mentor.find({
             ...others,
-            Price: { $gt: min | 1, $lt: max || 999 },
+            Price: { $gt: min | 1, $lt: max || 1000000 },
         }).limit(req.query.limit)
         res.status(200).json(allMentors)
     } catch (err) {

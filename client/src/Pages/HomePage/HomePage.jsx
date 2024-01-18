@@ -34,7 +34,7 @@ const HomePage = () => {
         { email }
       );
       console.log(response.data);
-      if (response.status == 200) {
+      if (response.status === 200) {
         setIsVisible(false);
       }
     } catch (error) {
@@ -48,7 +48,8 @@ const HomePage = () => {
 
     const fetchMentors = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/api/mentor/"); // Replace with your actual backend API endpoint
+        const response = await axios.get("http://localhost:8800/api/mentor/");
+        console.log(response)
         setMentors(response.data);
       } catch (error) {
         console.error("Error fetching mentors:", error);
@@ -89,7 +90,7 @@ const HomePage = () => {
             </div>
           </section>
 
-          
+
         </SignedOut>
       ) : (
         <SignedIn>
@@ -100,7 +101,7 @@ const HomePage = () => {
           <h1>Welcome to Dashbaord {user.fullName}</h1>
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
-          {isVisible && <RegisterPage user={user} />}
+          {!isVisible && <RegisterPage user={user} />}
           <div className="searchBarDiv">
             <div class="wrapper">
               <div class="label">Submit your search</div>
@@ -143,7 +144,7 @@ const HomePage = () => {
                       />
                     </div>
                     <div className="mentorDetails">
-                      <h3>{mentor.Name}</h3>
+                      <h3>{mentor.name}</h3>
                       <p>Senior Software Engineering Manager</p>
                       <h6>Walmart Global Team India</h6>
                     </div>

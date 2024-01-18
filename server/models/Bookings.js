@@ -25,6 +25,7 @@ const BookingsSchema = new mongoose.Schema({
     },
     meetingLink: {
         type: String,
+        required: true,
     },
 },
     { timestamps: true }
