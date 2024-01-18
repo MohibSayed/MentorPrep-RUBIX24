@@ -193,7 +193,7 @@ const RegisterPage = (props) => {
               <span>City</span>
             </label>
           </div>
-          <label>
+          {/* <label>
             I am a Mentee
             <input
               type="checkbox"
@@ -202,7 +202,7 @@ const RegisterPage = (props) => {
               contentEditable={false}
               // onChange={handleMentorChange}
             />
-          </label>
+          </label> */}
 
           <label>
             <input
@@ -345,7 +345,7 @@ const RegisterPage = (props) => {
               <span>City</span>
             </label>
           </div>
-          <label>
+          {/* <label>
             I am a Mentee
             <input
               type="checkbox"
@@ -354,7 +354,7 @@ const RegisterPage = (props) => {
               contentEditable={false}
               // onChange={handleMentorChange}
             />
-          </label>
+          </label> */}
 
           <label>
             <input
