@@ -34,7 +34,7 @@ const HomePage = () => {
         { email }
       );
       console.log(response.data);
-      if (response.status === 201) {
+      if (response.status === 200) {
         setIsVisible(false);
       }
     } catch (error) {
@@ -144,7 +144,7 @@ const HomePage = () => {
                       />
                     </div>
                     <div className="mentorDetails">
-                      <h3>{mentor.Name}</h3>
+                      <h3>{mentor.name}</h3>
                       <p>Senior Software Engineering Manager</p>
                       <h6>Walmart Global Team India</h6>
                     </div>

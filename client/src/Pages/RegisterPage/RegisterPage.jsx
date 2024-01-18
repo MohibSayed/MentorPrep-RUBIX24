@@ -77,6 +77,7 @@ const RegisterPage = (props) => {
     e.preventDefault();
     console.log(user);
     localStorage.setItem("email", props.user.emailAddresses[0].emailAddress);
+    localStorage.setItem("userType","Mentee");
 
     try {
       const response = await axios.post(
@@ -97,6 +98,7 @@ const RegisterPage = (props) => {
   const handleMentorSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem("email", props.user.emailAddresses[0].emailAddress);
+    localStorage.setItem("userType","Mentor");
 
     try {
       const response = await axios.post(

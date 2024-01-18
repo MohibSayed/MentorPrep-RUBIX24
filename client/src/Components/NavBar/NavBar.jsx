@@ -1,72 +1,97 @@
-import React from 'react'
-import Logo from '../../Assets/logo.png'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import Logo from "../../Assets/logo.png";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 const NavBar = () => {
+  let [isMentor, setIsMentor] = useState(false);
+  async function userType() {
+    const email = localStorage.getItem("email");
+    const resp = await fetch("http://localhost:8800/api/auth/userType", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
+    const data = await resp.json();
+
+    if (data.Type === "Mentor") {
+      setIsMentor(true);
+    }
+    // console.log(resp);
+  }
+  useEffect(() => {
+    userType();
+  }, []);
+  useEffect(() => {
+    console.log(isMentor);
+  }, [isMentor]);
   return (
     <div>
-        <header>
-            <nav className="menu--left" role="navigation">
-                <div className="menuToggle">
-                    <input type="checkbox"/>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <ul className="menuItem">
-                    <li>
-                            <a>Home</a>
-                        </li>
-                        <li>
-                            <a>Live Events</a>
-                        </li>
-                        <li>
-                            <a>Stories</a>
-                        </li>
-                        <li>
-                            <a>Match Mentors</a>
-                        </li>
-                        <li>
-                            <a>Dashboard</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <nav>
-            <div className="navFull glass">
+      <header>
+        <nav className="menu--left" role="navigation">
+          <div className="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul className="menuItem">
+              <li>
+                <a>Home</a>
+              </li>
+              <li>
+                <a>Live Events</a>
+              </li>
+              <li>
+                <a>Stories</a>
+              </li>
+              <li>
+                <a>Match Mentors</a>
+              </li>
+              <li>
+                <a>Dashboard</a>
+              </li>
+              {isMentor && <li><a>Profile</a></li>}
+            </ul>
+          </div>
+        </nav>
+        <nav>
+          <div className="navFull glass">
             <div className="logoDiv">
-                <img src={Logo} alt="" width={20}/>
+              <img src={Logo} alt="" width={20} />
             </div>
-                    <ul className='navList'>
-                        <li>
-                            <a>Home</a>
-                        </li>
-                        <li>
-                            <a>Live Events</a>
-                        </li>
-                        <li>
-                            <a>Stories</a>
-                        </li>
-                        <Link to="/SearchAI">
-                        <li>
-                            Match Mentors
-                        </li>
-                        </Link>
-                        <li>
-                            <a>Dashboard</a>
-                        </li>
-                        {/* <li>
+            <ul className="navList">
+              <li>
+                <a>Home</a>
+              </li>
+              <li>
+                <a>Live Events</a>
+              </li>
+              <li>
+                <a>Stories</a>
+              </li>
+              <Link to="/SearchAI">
+                <li>Match Mentors</li>
+              </Link>
+              <li>
+                <a>Dashboard</a>
+              </li>
+              {/* <li>
                             <a>FAQs</a>
                         </li> */}
-                        <li>
-                            <a className='blueBtn'><b>Find Your Mentor?</b></a>
-                        </li>
-                        {/* <li>
+                        {isMentor && <li><a>Profile</a></li>}
+              <li>
+                <a className="blueBtn">
+                  <b>Find Your Mentor?</b>
+                </a>
+              </li>
+              {/* <li>
                             <a className='greenBtn'><b>CONTACT</b></a>
                         </li> */}
-                    </ul>
-                </div>
-            </nav>
-            {/* <nav className="menu--right" role="navigation">
+            </ul>
+          </div>
+        </nav>
+        {/* <nav className="menu--right" role="navigation">
                 <div className="menuToggle">
                 <input type="checkbox"/>
                 <span></span>
@@ -81,14 +106,9 @@ const NavBar = () => {
                 </ul>
                 </div>
             </nav> */}
-        </header>
-    
-
-        
-
-        
+      </header>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
