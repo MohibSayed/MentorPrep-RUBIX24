@@ -1,5 +1,5 @@
 import * as React from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import HomePage from "./Pages/HomePage/HomePage";
 import SingleMentorPage from "./Pages/SingleMentorPage/SingleMentorPage";
 import SearchAIPage from "./Pages/SearchAIPage/SearchAIPage"
@@ -12,6 +12,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import Video from './Pages/Video/Video'
+import SideBar from "./Components/SideBar/SideBar";
+import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -46,6 +48,41 @@ const router = createBrowserRouter(
           </>
         }
       />
+      <Route
+        path="/dashboard"
+        element={
+          <>
+            <SignedIn>
+              <SideBar>
+                {/* <SingleMentorPage/> */}
+              </SideBar>
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/mentorProfile"
+        element={
+          <>
+            <SignedIn>
+            <SideBar>
+            <MentorProfile/>
+              </SideBar>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
     </>
   )
 );
@@ -55,12 +92,6 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
-
-      {/* <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/room/:roomId" element={<Video />} />
-      </Routes> */}
-
     </div>
   );
 }
