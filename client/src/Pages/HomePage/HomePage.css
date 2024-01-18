@@ -1,106 +1,109 @@
-img{
-	width: 100%;
+img {
+  width: 100%;
 }
 .login {
-    height: 750px;
-    width: 100%;
-    overflow: hidden;
-/* overflow-y: hidden; */
-    background: radial-gradient(#3d4a84, #282042);
-    position: relative;
+  height: 750px;
+  width: 100%;
+  overflow: hidden;
+  /* overflow-y: hidden; */
+  background: radial-gradient(#3d4a84, #282042);
+  position: relative;
 }
 .login_box {
-    width: 1000px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 1px 4px 22px -8px #0004;
-    display: flex;
-    overflow: hidden;
+  width: 1000px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 4px 22px -8px #0004;
+  display: flex;
+  overflow: hidden;
 }
 
-.login_box .right{
+.login_box .right {
   width: 100%;
-  height: 100%  
+  height: 100%;
 }
 .left .top_link a {
-    color: #452A5A;
-    font-weight: 400;
+  color: #452a5a;
+  font-weight: 400;
 }
-.left .top_link{
-  height: 20px
+.left .top_link {
+  height: 20px;
 }
-.left .contact{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    height: 100%;
-    width: 73%;
-    margin: auto;
+.left .contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 73%;
+  margin: auto;
 }
-.left h3{
+.left h3 {
   text-align: center;
   margin-bottom: 40px;
 }
 .left input {
-    border: none;
-    width: 80%;
-    margin: 15px 0px;
-    border-bottom: 1px solid #4f30677d;
-    padding: 7px 9px;
-    width: 100%;
-    overflow: hidden;
-    background: transparent;
-    font-weight: 600;
-    font-size: 14px;
+  border: none;
+  width: 80%;
+  margin: 15px 0px;
+  border-bottom: 1px solid #4f30677d;
+  padding: 7px 9px;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
 }
-.left{
-	background: linear-gradient(-45deg, #dcd7e0, #fff);
+.left {
+  background: linear-gradient(-45deg, #dcd7e0, #fff);
 }
 .submit {
   width: 50%;
-    border: none;
-    padding: 15px 70px;
-    border-radius: 8px;
-    display: block;
-    margin: auto;
-    margin-top: 120px;
-    background: #363672;
-    color: #fff;
-    font-weight: bold;
-    -webkit-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
-    -moz-box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
-    box-shadow: 0px 9px 15px -11px rgba(88,54,114,1);
+  border: none;
+  padding: 15px 70px;
+  border-radius: 8px;
+  display: block;
+  margin: auto;
+  margin-top: 120px;
+  background: #363672;
+  color: #fff;
+  font-weight: bold;
+  -webkit-box-shadow: 0px 9px 15px -11px rgba(88, 54, 114, 1);
+  -moz-box-shadow: 0px 9px 15px -11px rgba(88, 54, 114, 1);
+  box-shadow: 0px 9px 15px -11px rgba(88, 54, 114, 1);
 }
 
-
-
 .right {
-	background: linear-gradient(212.38deg, rgba(255, 255, 255, 0.7) 0%, rgb(70 93 189 / 71%) 100%),url(https://static.seattletimes.com/wp-content/uploads/2019/01/web-typing-ergonomics-1020x680.jpg);
-	color: #fff;
-	position: relative;
+  background: linear-gradient(
+      212.38deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgb(70 93 189 / 71%) 100%
+    ),
+    url(https://static.seattletimes.com/wp-content/uploads/2019/01/web-typing-ergonomics-1020x680.jpg);
+  color: #fff;
+  position: relative;
   width: 100%;
 }
 
-.right .right-text{
+.right .right-text {
   width: 100%;
   height: 100%;
   position: relative;
   transform: translate(0%, 45%);
 }
-.right-text h2{
+.right-text h2 {
   display: block;
   width: 100%;
   text-align: center;
   font-size: 50px;
   font-weight: 500;
 }
-.right-text h5{
+.right-text h5 {
   display: block;
   width: 100%;
   text-align: center;
@@ -108,7 +111,7 @@ img{
   font-weight: 400;
 }
 
-.right .right-inductor{
+.right .right-inductor {
   position: absolute;
   width: 70px;
   height: 7px;
@@ -118,42 +121,40 @@ img{
   transform: translate(-50%, 0%);
 }
 .top_link img {
-    width: 28px;
-    padding-right: 7px;
-    margin-top: -3px;
+  width: 28px;
+  padding-right: 7px;
+  margin-top: -3px;
 }
 
-
-
-
-.carousel{
+.carousel {
   margin: 40px 40px;
   padding: 15px;
 }
-.gridItems{
-  display: flex;
+.gridItems {
+  grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
   flex-wrap: wrap;
-  justify-content:center
+  justify-content: center;
 }
 .card {
-    width: 250px;
-    background: rgb(230, 230, 230);
-    padding: .4em;
-    border-radius: 6px;
-    margin: 10px;
-  }
-  
-  .card-image {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    height: 170px;
-    border-radius: 6px 6px 0 0;
-  }
-  
-  .card-image:hover {
-    transform: scale(0.98);
-  }
-  
+  width: 250px;
+  background: rgb(230, 230, 230);
+  padding: 0.4em;
+  border-radius: 6px;
+  margin: 10px;
+}
+
+.card-image {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 170px;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
 .wrapper {
   width: 100%;
   max-width: 31.25rem;
@@ -161,7 +162,7 @@ img{
 }
 
 .label {
-  font-size: .625rem;
+  font-size: 0.625rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: +1.3px;
@@ -198,157 +199,155 @@ img{
 #searchQuerySubmit:hover {
   cursor: pointer;
 }
-  
-  .category {
-    text-transform: uppercase;
-    font-size: 0.7em;
-    font-weight: 600;
-    color: #3f79e6;
-    padding: 10px 7px 0;
-  }
-  
-  .category:hover {
-    cursor: pointer;
-  }
-  
-  .heading {
-    font-weight: 600;
-    color: rgb(88, 87, 87);
-    padding: 7px;
-  }
-  
-  .heading:hover {
-    cursor: pointer;
-  }
-  
-  .author {
-    color: gray;
-    font-weight: 400;
-    font-size: 11px;
-    padding-top: 20px;
-  }
-  
-  .name {
-    font-weight: 600;
-  }
-  
-  .name:hover {
-    cursor: pointer;
-  }
 
+.category {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: #3f79e6;
+  padding: 10px 7px 0;
+}
 
-  .signOutBtn{
-    position: fixed;
-    z-index: 99999999999;
-    right: 15px;
-    top: 15px;
-  }
+.category:hover {
+  cursor: pointer;
+}
 
-  .SignOut{
-    padding: 10px 15px;
-    background-color: rgb(143, 0, 0);
-    font-size: 1.2rem;
-    color: #fefefe;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-  }
+.heading {
+  font-weight: 600;
+  color: rgb(88, 87, 87);
+  padding: 7px;
+}
 
+.heading:hover {
+  cursor: pointer;
+}
 
-  /* CARD  */
-  .mentorCard {
-    margin: 20px 80px;
-    width: 23em;
-    height: auto;
-    border: 1px solid #c6c6c8;
-    border-radius: 0.5em;
-  }
-  .mentorInnerCard {
-    padding: 20px;
-  }
-  .profileContainer {
-    display: flex;
-    align-items: center;
-    column-gap: 1em;
-  }
-  .profileImage img {
-    border-radius: 50%;
-    width: 5em;
-  }
-  .mentorDetails h3 {
-    font-weight: bold;
-    padding-bottom: 0.2em;
-  }
-  .mentorDetails p {
-    color: #808084;
-    font-size: 0.8em;
-    padding-bottom: 0.2em;
-  }
-  .mentorDetails h6 {
-    font-size: 1em;
-    font-weight: 400;
-  }
-  .MoreDetails {
-    padding-top: 1em;
-  }
-  .MoreDetails span {
-    font-size: 1em;
-    color: #000;
-  }
-  .MoreDetails p {
-    margin-top: 0.5em;
-    color: #808084;
-    padding-bottom: 1em;
-  }
-  .MentorSkills {
-    display: flex;
-    align-items: center;
-    column-gap: 1em;
-  }
-  .MentorSkills span {
-    font-size: 1em;
-    font-weight: 300;
-    border-bottom: 1px dotted #000;
-  }
-  .bookSection {
-    background-color: #f9f9f9;
-    padding: 15px 20px;
-  }
-  .priceReview {
-    display: flex;
-    justify-content: space-between;
-  }
-  .BtnsDivs{
-    margin-top: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: 1em;
-  }
-  .profileBtn{
-    padding: 10px 20px;
-    border: 1px solid #c6c6c8;
-    border-radius: 0.5em;
-    background-color: #fff;
-    width: 12em;
-    cursor: pointer;
-  }
-  .trialBtn{
-    padding: 10px 20px;
-    border: 1px solid #c6c6c8;
-    border-radius: 0.5em;
-    background-color: #007aff;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    width: 18em;
-    cursor: pointer;
-  }
-  .MoreExp{
-    margin-top: 1em;
-  }
-  .MoreExp p{
-    padding-bottom: 0.5em;
-    font-size: 0.8em;
-  }
+.author {
+  color: gray;
+  font-weight: 400;
+  font-size: 11px;
+  padding-top: 20px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+.signOutBtn {
+  position: fixed;
+  z-index: 99999999999;
+  right: 15px;
+  top: 15px;
+}
+
+.SignOut {
+  padding: 10px 15px;
+  background-color: rgb(143, 0, 0);
+  font-size: 1.2rem;
+  color: #fefefe;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* CARD  */
+.mentorCard {
+  margin: 20px 80px;
+  width: 23em;
+  height: auto;
+  border: 1px solid #c6c6c8;
+  border-radius: 0.5em;
+}
+.mentorInnerCard {
+  padding: 20px;
+}
+.profileContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
+.profileImage img {
+  border-radius: 50%;
+  width: 5em;
+}
+.mentorDetails h3 {
+  font-weight: bold;
+  padding-bottom: 0.2em;
+}
+.mentorDetails p {
+  color: #808084;
+  font-size: 0.8em;
+  padding-bottom: 0.2em;
+}
+.mentorDetails h6 {
+  font-size: 1em;
+  font-weight: 400;
+}
+.MoreDetails {
+  padding-top: 1em;
+}
+.MoreDetails span {
+  font-size: 1em;
+  color: #000;
+}
+.MoreDetails p {
+  margin-top: 0.5em;
+  color: #808084;
+  padding-bottom: 1em;
+}
+.MentorSkills {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+}
+.MentorSkills span {
+  font-size: 1em;
+  font-weight: 300;
+  border-bottom: 1px dotted #000;
+}
+.bookSection {
+  background-color: #f9f9f9;
+  padding: 15px 20px;
+}
+.priceReview {
+  display: flex;
+  justify-content: space-between;
+}
+.BtnsDivs {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 1em;
+}
+.profileBtn {
+  padding: 10px 20px;
+  border: 1px solid #c6c6c8;
+  border-radius: 0.5em;
+  background-color: #fff;
+  width: 12em;
+  cursor: pointer;
+}
+.trialBtn {
+  padding: 10px 20px;
+  border: 1px solid #c6c6c8;
+  border-radius: 0.5em;
+  background-color: #007aff;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  width: 18em;
+  cursor: pointer;
+}
+.MoreExp {
+  margin-top: 1em;
+}
+.MoreExp p {
+  padding-bottom: 0.5em;
+  font-size: 0.8em;
+}
