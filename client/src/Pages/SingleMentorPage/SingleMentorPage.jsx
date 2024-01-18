@@ -26,7 +26,7 @@ const SingleMentorPage = () => {
     setBookSlot({ reqBy: userEmail, reqFor: emailid, date: date, time: time, plan: "Once" });
   }
   const planUpdate = (plan) => {
-    setBookSlot({ plan: plan });
+    setBookSlot({ ...bookSlot, plan: plan });
   }
   useEffect(() => {
     console.log(bookSlot);
