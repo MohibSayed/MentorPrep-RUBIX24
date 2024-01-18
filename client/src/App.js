@@ -10,6 +10,7 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import Video from './Pages/Video/Video'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -28,6 +29,21 @@ const router = createBrowserRouter(
           </>
         }
       />
+      {/* <Route path="/room/:roomId" element={<Video />} /> */}
+      <Route
+        path="/room/:roomId"
+        element={
+          <>
+            <SignedIn>
+              <Video />
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
     </>
   )
 );
@@ -38,10 +54,10 @@ function App() {
     <div className="App">
       <RouterProvider router={router} />
 
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/room/:roomId" element={<Video />} />
-      </Routes>
+      </Routes> */}
 
     </div>
   );
