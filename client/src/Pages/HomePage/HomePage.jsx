@@ -34,7 +34,7 @@ const HomePage = () => {
         { email }
       );
       console.log(response.data);
-      if (response.status == 200) {
+      if (response.status === 201) {
         setIsVisible(false);
       }
     } catch (error) {
@@ -48,7 +48,8 @@ const HomePage = () => {
 
     const fetchMentors = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/api/mentor/"); // Replace with your actual backend API endpoint
+        const response = await axios.get("http://localhost:8800/api/mentor/");
+        console.log(response)
         setMentors(response.data);
       } catch (error) {
         console.error("Error fetching mentors:", error);
@@ -89,7 +90,7 @@ const HomePage = () => {
             </div>
           </section>
 
-          
+
         </SignedOut>
       ) : (
         <SignedIn>

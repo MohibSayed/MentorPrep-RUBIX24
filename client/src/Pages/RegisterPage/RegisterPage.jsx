@@ -7,6 +7,7 @@ const RegisterPage = (props) => {
 
   const [user, setUser] = useState({
     username: "",
+    name: "",
     email: props.user.emailAddresses[0].emailAddress,
     mentor: false,
     country: "",
@@ -32,6 +33,7 @@ const RegisterPage = (props) => {
     availability: [
       {
         day: "", // Day of the week, e.g., "Monday"
+        date: "", // Day of the week, e.g., "Monday"
         slots: [
           {
             time: "", // Time slot, e.g., "9:00 AM - 11:00 AM"
@@ -59,10 +61,11 @@ const RegisterPage = (props) => {
     console.log(mentor);
   };
 
-  const handleAvailabilityChange = (dayIndex, slotIndex, value1, value2) => {
+  const handleAvailabilityChange = (dayIndex, slotIndex, value1, value2, value3) => {
     const updatedMentor = { ...mentor };
     updatedMentor.availability[dayIndex].day = value1;
-    updatedMentor.availability[dayIndex].slots[slotIndex].time = value2;
+    updatedMentor.availability[dayIndex].date = value2;
+    updatedMentor.availability[dayIndex].slots[slotIndex].time = value3;
     setMentor(updatedMentor);
   };
 
@@ -91,7 +94,6 @@ const RegisterPage = (props) => {
 
   const handleMentorSubmit = async (e) => {
     e.preventDefault();
-    console.log(mentor);
     localStorage.setItem("email", props.user.emailAddresses[0].emailAddress);
 
     try {
@@ -146,6 +148,17 @@ const RegisterPage = (props) => {
               onChange={handleMenteeChange}
             />
             <span>Email</span>
+          </label>
+          <label>
+            <input
+              name="name"
+              required
+              placeholder=""
+              type="text"
+              className="input"
+              onChange={handleMenteeChange}
+            />
+            <span>Name</span>
           </label>
           <label>
             <input
@@ -301,6 +314,17 @@ const RegisterPage = (props) => {
           </label>
           <label>
             <input
+              name="name"
+              required
+              placeholder=""
+              type="text"
+              className="input"
+              onChange={handleMentorChange}
+            />
+            <span>Name</span>
+          </label>
+          <label>
+            <input
               name="username"
               required
               placeholder=""
@@ -407,17 +431,25 @@ const RegisterPage = (props) => {
               type="text"
               name="availabilityDay"
               value={mentor.availability[0].day}
-              onChange={(e) => handleAvailabilityChange(0, 0, e.target.value, "")}
+              onChange={(e) => handleAvailabilityChange(0, 0, e.target.value, "", "")}
             />
           </label>
-          <br />
+          <label>
+            Date:
+            <input
+              type="text"
+              name="availabilityDate"
+              value={mentor.availability[0].date}
+              onChange={(e) => handleAvailabilityChange(0, 0, mentor.availability[0].day, e.target.value, "")}
+            />
+          </label>
           <label>
             Time Slot:
             <input
               type="text"
               name="availabilityTime"
               value={mentor.availability[0].slots[0].time}
-              onChange={(e) => handleAvailabilityChange(0, 0, mentor.availability[0].day, e.target.value)}
+              onChange={(e) => handleAvailabilityChange(0, 0, mentor.availability[0].day, mentor.availability[0].date, e.target.value)}
             />
           </label>
 
