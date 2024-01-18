@@ -1,0 +1,9 @@
+.comments{
+    width: 60vw;
+}
+.discussion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5vw 10vw;
+}

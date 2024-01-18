@@ -1,14 +1,17 @@
-import React from 'react'
-import './SearchAIPage.css'
-import SearchInput from '../../Components/SearchInput'
-import Comment from '../../Components/Comment'
+import React from "react";
+import "./SearchAIPage.css";
+import SearchInput from "../../Components/SearchInput";
+import Comment from "../../Components/Comment";
 const SearchAIPage = () => {
   return (
-    <div>
-    <SearchInput />
-    <Comment />
+    <div className="discussion">
+      <SearchInput />
+      <div className="comments">
+        <Comment />
+        <Comment /><Comment /><Comment /><Comment /><Comment />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchAIPage
+export default SearchAIPage;
