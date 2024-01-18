@@ -6,12 +6,16 @@ const menteeSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        name: {
+            type: String,
+            required: true,
+        },
         email: {
             type: String,
             required: true,
             unique: true,
         },
-        mentor:{
+        mentor: {
             type: Boolean,
             required: true,
             default: false,
@@ -31,7 +35,7 @@ const menteeSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        language:{
+        language: {
             type: String,
             required: true,
         },

@@ -6,7 +6,10 @@ const mentorSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        
+        name: {
+            type: String,
+            required: true,
+        },
         email: {
             type: String,
             required: true,
@@ -45,6 +48,7 @@ const mentorSchema = new mongoose.Schema(
                 {
                     date:String,
                     day: String, // Day of the week, e.g., "Monday"
+                    date: String, // Day of the week, e.g., "Monday"
                     slots: [
                         {
                             time: String, // Time slot, e.g., "9:00 AM - 11:00 AM"
