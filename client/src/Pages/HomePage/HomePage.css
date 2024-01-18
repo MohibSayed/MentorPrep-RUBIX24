@@ -126,3 +126,101 @@
     border: none;
     font-family: 'Montserrat', sans-serif;
   }
+
+
+  /* CARD  */
+  .mentorCard {
+    margin: 20px 80px;
+    width: 23em;
+    height: auto;
+    border: 1px solid #c6c6c8;
+    border-radius: 0.5em;
+  }
+  .mentorInnerCard {
+    padding: 20px;
+  }
+  .profileContainer {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+  }
+  .profileImage img {
+    border-radius: 50%;
+    width: 5em;
+  }
+  .mentorDetails h3 {
+    font-weight: bold;
+    padding-bottom: 0.2em;
+  }
+  .mentorDetails p {
+    color: #808084;
+    font-size: 0.8em;
+    padding-bottom: 0.2em;
+  }
+  .mentorDetails h6 {
+    font-size: 1em;
+    font-weight: 400;
+  }
+  .MoreDetails {
+    padding-top: 1em;
+  }
+  .MoreDetails span {
+    font-size: 1em;
+    color: #000;
+  }
+  .MoreDetails p {
+    margin-top: 0.5em;
+    color: #808084;
+    padding-bottom: 1em;
+  }
+  .MentorSkills {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+  }
+  .MentorSkills span {
+    font-size: 1em;
+    font-weight: 300;
+    border-bottom: 1px dotted #000;
+  }
+  .bookSection {
+    background-color: #f9f9f9;
+    padding: 15px 20px;
+  }
+  .priceReview {
+    display: flex;
+    justify-content: space-between;
+  }
+  .BtnsDivs{
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1em;
+  }
+  .profileBtn{
+    padding: 10px 20px;
+    border: 1px solid #c6c6c8;
+    border-radius: 0.5em;
+    background-color: #fff;
+    width: 12em;
+    cursor: pointer;
+  }
+  .trialBtn{
+    padding: 10px 20px;
+    border: 1px solid #c6c6c8;
+    border-radius: 0.5em;
+    background-color: #007aff;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    width: 18em;
+    cursor: pointer;
+  }
+  .MoreExp{
+    margin-top: 1em;
+  }
+  .MoreExp p{
+    padding-bottom: 0.5em;
+    font-size: 0.8em;
+  }
