@@ -1,8 +1,14 @@
+
 import Booking from "../models/Bookings.js"
+import { v4 as uuidv4 } from 'uuid';
+import createError from "http-errors"
 
 export const createBooking = async (req, res, next) => {
-    const reqby = req.params.ReqById
-    const newBooking = new Booking(req.body)
+    const reqby = req.params.ReqByEmail;
+    const newBooking = new Booking({
+        ...req.body,
+        meetingLink: uuidv4(),
+    });
     try {
         if (reqby == req.body.reqBy) {
             const savedBooking = await newBooking.save()
