@@ -54,11 +54,6 @@ const mentorSchema = new mongoose.Schema(
                     slots: [
                         {
                             time: String, // Time slot, e.g., "9:00 AM - 11:00 AM"
-                            status: {
-                                type: String,
-                                enum: ["available", "booked"],
-                                default: "available",
-                            },
                         },
                     ],
                 },
