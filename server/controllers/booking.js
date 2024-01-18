@@ -50,8 +50,9 @@ export const getBooking = async (req, res, next) => {
     }
 };
 export const getBookings = async (req, res, next) => {
+    const  reqForEmail  = req.params.emailid;
     try {
-        const allBookings = await Booking.find()
+        const allBookings = await Booking.find({ reqFor: reqForEmail })
         res.status(200).json(allBookings)
     } catch (err) {
         next(err);

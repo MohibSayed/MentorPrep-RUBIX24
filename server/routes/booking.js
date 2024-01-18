@@ -11,6 +11,6 @@ router.delete("/:id/:professionId", deleteBooking)
 //get
 router.get("/:id", getBooking)
 //get all
-router.get("/", getBookings)
+router.get("/bringBookings/:emailid", getBookings)
 
 export default router

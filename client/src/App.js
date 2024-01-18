@@ -45,7 +45,7 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="/dashboard"
+        path="/dashboard/:email"
         element={
           <>
             <SignedIn>

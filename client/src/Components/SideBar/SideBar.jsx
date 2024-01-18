@@ -9,15 +9,17 @@ import { useState } from "react";
 // import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import './SideBar.css';
+import { useParams } from "react-router-dom";
+const mentorEmail = localStorage.getItem("email");
 const routes = [
   {
-    path: "/",
-    name: "Dashboard",
+    path: `/`,
+    name: "Return to Home",
     icon: <FaHome />,
   },
   {
-    path: "/mentorProfile",
-    name: "Users",
+    path: `/dashboard/${mentorEmail}`,
+    name: "Meetings",
     icon: <FaUser />,
   },
   {
@@ -37,26 +39,22 @@ const routes = [
     subRoutes: [
       {
         path: "/settings/profile",
-        name: "Profile ",
+        name: "Edit Profile ",
         icon: <FaUser />,
       },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
+      // {
+      //   path: "/settings/2fa",
+      //   name: "2FA",
+      //   icon: <FaLock />,
+      // },
       {
         path: "/settings/billing",
-        name: "Billing",
+        name: "Past Transactions",
         icon: <FaMoneyBill />,
       },
     ],
   },
-  {
-    path: "/order",
-    name: "Order",
-    icon: <BsCartCheck />,
-  },
+ 
   {
     path: "/settings",
     name: "Settings",
@@ -65,26 +63,18 @@ const routes = [
     subRoutes: [
       {
         path: "/settings/profile",
-        name: "Profile ",
+        name: "Dark Mode ",
         icon: <FaUser />,
       },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
+      
       {
         path: "/settings/billing",
-        name: "Billing",
+        name: "Change Password",
         icon: <FaMoneyBill />,
       },
     ],
   },
-  {
-    path: "/saved",
-    name: "Saved",
-    icon: <AiFillHeart />,
-  },
+ 
 ];
 
 const SideBar = ({ children }) => {
@@ -149,7 +139,7 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  Sidebar
+                  MentorPrep
                 </h1>
               )}
             {/* </AnimatePresence> */}

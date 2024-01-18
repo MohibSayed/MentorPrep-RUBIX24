@@ -11,6 +11,7 @@ import { ImLinkedin } from "react-icons/im";
 import DateCalendarServerRequest from "../../Components/DateCalendarServerRequest";
 import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
+import emailjs from "@emailjs/browser";
 const SingleMentorPage = () => {
   const { email } = useParams();
   const [mentorData, setMentorData] = useState({});
@@ -18,28 +19,55 @@ const SingleMentorPage = () => {
   const [availabilityParam, setaAvailabilityParam] = useState([]);
   const emailid = email;
   const userEmail = localStorage.getItem("email");
-  const handleBookSlot = (date, time) =>{
-    
+  const handleBookSlot = (date, time) => {
     console.log(date);
     console.log(time);
-    setBookSlot({reqBy: userEmail, reqFor:emailid, date: date, time: time});
-    
-  }
+    setBookSlot({ reqBy: userEmail, reqFor: emailid, date: date, time: time });
+  };
   useEffect(() => {
     console.log(bookSlot);
   }, [bookSlot]);
 
+  // const form = useRef();
 
+  const sendEmail = (templateParams) => {
+    // e.preventDefault();
+
+    emailjs
+      .send("service_a9vgfe6", "template_znzloru", templateParams, "X5L6imP8swjdhI45L")
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
+  const [booking, setBooking] = useState({});
   const handleSubmit = async () => {
-    console.log("Hi");
     try {
-        const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching mentors:", error);
-      }
-  }
-
+      const response = await axios.post(
+        `http://localhost:8800/api/bookings/${userEmail}`,
+        bookSlot
+      ); // Replace with your actual backend API endpoint
+      console.log(response.data);
+  
+      const templateParams = {
+        // from_email: response.data.reqBy,
+        user_email: response.data.reqBy,
+        to_name: response.data.reqBy,
+        message: `Your Slot has been booked for ${response.data.date} at ${response.data.time}. Your Meeting ID is ${response.data.meetingLink}`
+      };
+      setBooking(response.data);
+      console.log(booking);
+  
+      sendEmail(templateParams);
+    } catch (error) {
+      console.error("Error fetching mentors:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchMentorData = async () => {
@@ -62,6 +90,7 @@ const SingleMentorPage = () => {
   const handleClick = (date) => {
     console.log(date);
   };
+
   return (
     <div>
       <NavBar />
@@ -185,18 +214,18 @@ const SingleMentorPage = () => {
             {/* <DateCalendarServerRequest onHandleClick={handleClick}  /> */}
 
             <div className="gridSlots">
-            
-              {availabilityParam.map((slot) => (
-                
-                  slot.slots.map((bot) => (
-                    <div className="gridDivSlot" onClick={ () => handleBookSlot(slot.date, bot.time)}>
+              {availabilityParam.map((slot) =>
+                slot.slots.map((bot) => (
+                  <div
+                    className="gridDivSlot"
+                    onClick={() => handleBookSlot(slot.date, bot.time)}
+                  >
                     <p>{slot.day}</p>
-                  <h4>{slot.date}</h4>
-                  <p>{bot.time}</p>
-                    </div>
-                  ))
-                
-              ))}
+                    <h4>{slot.date}</h4>
+                    <p>{bot.time}</p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
           <div className="slotChart">
@@ -219,7 +248,7 @@ const SingleMentorPage = () => {
           <div className="buttonBook">
             <button class="btn-17" onClick={handleSubmit}>
               <span class="text-container">
-                <span class="text" >Book Your Slot Now! </span>
+                <span class="text">Book Your Slot Now! </span>
               </span>
             </button>
           </div>
