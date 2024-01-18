@@ -1,4 +1,4 @@
-import express from "express"; updateBooking
+import express from "express";
 import { createBooking, deleteBooking, getBooking, getBookings, updateBooking } from "../controllers/Booking.js";
 const router = express.Router()
 

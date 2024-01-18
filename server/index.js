@@ -9,15 +9,20 @@ import menteesRoute from "./routes/Mentee.js";
 import mentorsRoute from "./routes/Mentor.js";
 import bookingRoute from "./routes/booking.js";
 
-const userRoute = require("./routes/users");
-const postRoute = require("./routes/posts");
-const conversationRoute = require("./routes/conversations.js");
-const messageRoute = require("./routes/messages");
+// import userRoute from "./routes/users";
+import postRoute from "./routes/posts.js";
+import conversationRoute from "./routes/conversations.js";
+import messageRoute from "./routes/messages.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-const path = require("path");
+import { fileURLToPath } from 'url';
+// import path from "path";
+import path from 'path'; 
+import { dirname } from 'path';
 const Port = 8800;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const app = express();
 dotenv.config();
 
@@ -64,7 +69,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/mentee", menteesRoute);
 app.use("/api/mentor", mentorsRoute);
 app.use("/api/bookings", bookingRoute);
-app.use("/api/users", userRoute);
+// app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/conversations", conversationRoute);
 app.use("/api/messages", messageRoute);

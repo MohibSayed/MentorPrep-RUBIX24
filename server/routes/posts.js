@@ -1,6 +1,7 @@
-const User = require("../models/Mentor");
-const router = require("express").Router();
-const bcrypt = require("bcrypt");
+import express from "express";
+import User from "../models/Mentor.js";
+const router = express.Router();
+import bcrypt from "bcrypt";
 
 //update user
 router.put("/:id", async (req, res) => {
@@ -119,4 +120,4 @@ router.put("/:id/unfollow", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
