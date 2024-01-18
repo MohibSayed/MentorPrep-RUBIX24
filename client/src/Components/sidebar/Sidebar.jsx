@@ -1,68 +1,224 @@
-import React from "react";
-import "./sidebar.css";
-import {
-  RssFeed,
-  Chat,
-  PlayCircleFilledOutlined,
-  Group,
-  Bookmark,
-  HelpOutline,
-  WorkOutline,
-  Event,
-  School,
-} from "@material-ui/icons";
-import { Users } from "../../dummyData";
+import { NavLink } from "react-router-dom";
+import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
+import { MdMessage } from "react-icons/md";
+import { BiAnalyse, BiSearch } from "react-icons/bi";
+import { BiCog } from "react-icons/bi";
+import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
+import { BsCartCheck } from "react-icons/bs";
+import { useState } from "react";
+// import { AnimatePresence, motion } from "framer-motion";
+import SidebarMenu from "./SidebarMenu";
+import './SideBar.css';
+const routes = [
+  {
+    path: "/",
+    name: "Dashboard",
+    icon: <FaHome />,
+  },
+  {
+    path: "/mentorProfile",
+    name: "Users",
+    icon: <FaUser />,
+  },
+  {
+    path: "/messages",
+    name: "Messages",
+    icon: <MdMessage />,
+  },
+  {
+    path: "/analytics",
+    name: "Analytics",
+    icon: <BiAnalyse />,
+  },
+  {
+    path: "/file-manager",
+    name: "File Manager",
+    icon: <AiTwotoneFileExclamation />,
+    subRoutes: [
+      {
+        path: "/settings/profile",
+        name: "Profile ",
+        icon: <FaUser />,
+      },
+      {
+        path: "/settings/2fa",
+        name: "2FA",
+        icon: <FaLock />,
+      },
+      {
+        path: "/settings/billing",
+        name: "Billing",
+        icon: <FaMoneyBill />,
+      },
+    ],
+  },
+  {
+    path: "/order",
+    name: "Order",
+    icon: <BsCartCheck />,
+  },
+  {
+    path: "/settings",
+    name: "Settings",
+    icon: <BiCog />,
+    exact: true,
+    subRoutes: [
+      {
+        path: "/settings/profile",
+        name: "Profile ",
+        icon: <FaUser />,
+      },
+      {
+        path: "/settings/2fa",
+        name: "2FA",
+        icon: <FaLock />,
+      },
+      {
+        path: "/settings/billing",
+        name: "Billing",
+        icon: <FaMoneyBill />,
+      },
+    ],
+  },
+  {
+    path: "/saved",
+    name: "Saved",
+    icon: <AiFillHeart />,
+  },
+];
 
-export default function Sidebar() {
+const SideBar = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
+  const inputAnimation = {
+    hidden: {
+      width: 0,
+      padding: 0,
+      transition: {
+        duration: 0.2,
+      },
+    },
+    show: {
+      width: "140px",
+      padding: "5px 15px",
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
+  const showAnimation = {
+    hidden: {
+      width: 0,
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+    show: {
+      opacity: 1,
+      width: "auto",
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className="sidebar">
-      <div className="sidebarWrapper">
-        <ul className="sidebarList">
-          <li className="sidebarListItem">
-            <RssFeed className="sidebarIcon" />
-            <span className="sidebarListItemText">Feed</span>
-          </li>
-          <li className="sidebarListItem">
-            <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">Chats</span>
-          </li>
-          <li className="sidebarListItem">
-            <PlayCircleFilledOutlined className="sidebarIcon" />
-            <span className="sidebarListItemText">Videos</span>
-          </li>
-          <li className="sidebarListItem">
-            <Group className="sidebarIcon" />
-            <span className="sidebarListItemText">Groups</span>
-          </li>
-          <li className="sidebarListItem">
-            <Bookmark className="sidebarIcon" />
-            <span className="sidebarListItemText">Bookmarks</span>
-          </li>
-          <li className="sidebarListItem">
-            <HelpOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Questions</span>
-          </li>
-          <li className="sidebarListItem">
-            <WorkOutline className="sidebarIcon" />
-            <span className="sidebarListItemText">Jobs</span>
-          </li>
-          <li className="sidebarListItem">
-            <Event className="sidebarIcon" />
-            <span className="sidebarListItemText">Events</span>
-          </li>
-          <li className="sidebarListItem">
-            <School className="sidebarIcon" />
-            <span className="sidebarListItemText">Courses</span>
-          </li>
-        </ul>
-        <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
-        {/* <ul className="sidebarFriendList">
-          {Users.map((u) => (
-            <CloseFriend key={u.id} user={u} />
-          ))}
-        </ul> */}
+    <>
+      <div className="main-container">
+        <div
+          animate={{
+            width: isOpen ? "200px" : "45px",
+
+            transition: {
+              duration: 0.5,
+              type: "spring",
+              damping: 10,
+            },
+          }}
+          className={`sidebar `}
+        >
+          <div className="top_section">
+            {/* <AnimatePresence> */}
+              {isOpen && (
+                <h1
+                  // variants={showAnimation}
+                  initial="hidden"
+                  animate="show"
+                  exit="hidden"
+                  className="logo"
+                >
+                  Sidebar
+                </h1>
+              )}
+            {/* </AnimatePresence> */}
+
+            <div className="bars">
+              <FaBars onClick={toggle} />
+            </div>
+          </div>
+          <div className="search">
+            <div className="search_icon">
+              <BiSearch />
+            </div>
+            {/* <AnimatePresence> */}
+              {isOpen && (
+                <input
+                  initial="hidden"
+                  animate="show"
+                  exit="hidden"
+                  // variants={inputAnimation}
+                  type="text"
+                  placeholder="Search"
+                />
+              )}
+            {/* </AnimatePresence> */}
+          </div>
+          <section className="routes">
+            {routes.map((route, index) => {
+              if (route.subRoutes) {
+                return (
+                  <SidebarMenu
+                    setIsOpen={setIsOpen}
+                    route={route}
+                    showAnimation={showAnimation}
+                    isOpen={isOpen}
+                  />
+                );
+              }
+
+              return (
+                <NavLink
+                  to={route.path}
+                  key={index}
+                  className="link"
+                  activeClassName="active"
+                >
+                  <div className="icon">{route.icon}</div>
+                  {/* <AnimatePresence> */}
+                    {isOpen && (
+                      <div
+                        // variants={showAnimation}
+                        initial="hidden"
+                        animate="show"
+                        exit="hidden"
+                        className="link_text"
+                      >
+                        {route.name}
+                      </div>
+                    )}
+                  {/* </AnimatePresence> */}
+                </NavLink>
+              );
+            })}
+          </section>
+        </div>
+
+        <main>{children}</main>
       </div>
-    </div>
+    </>
   );
-}
+};
+
+export default SideBar;
