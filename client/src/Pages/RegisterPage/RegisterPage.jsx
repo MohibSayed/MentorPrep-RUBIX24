@@ -83,6 +83,8 @@ const RegisterPage = (props) => {
 
       // Handle success, you can log the response or redirect the user
       console.log(response.data);
+      // window.location.href = '/';  // Replace '/' with the actual path of your home page
+      window.location.reload();
     } catch (error) {
       // Handle error, you can log the error or display an error message to the user
       console.error("Registration failed:", error.message);

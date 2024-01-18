@@ -131,7 +131,8 @@ img{
   padding: 15px;
 }
 .gridItems{
-  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  display: grid;
   flex-wrap: wrap;
   justify-content:center
 }

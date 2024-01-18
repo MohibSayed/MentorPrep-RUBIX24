@@ -43,6 +43,7 @@ const mentorSchema = new mongoose.Schema(
         availability: {
             type: [
                 {
+                    date:String,
                     day: String, // Day of the week, e.g., "Monday"
                     slots: [
                         {
