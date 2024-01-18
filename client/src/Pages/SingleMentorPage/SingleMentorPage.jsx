@@ -78,11 +78,11 @@ const SingleMentorPage = () => {
             <div className="infoProfile">
               <div className="leftInfo">
                 <div className="headingName">
-                  <h1>{mentorData.Name}</h1>
+                  <h1>{mentorData?.Name}</h1>
                   <p>Senior Analyst at Microsoft</p>
                 </div>
                 <div className="descProfile">
-                  <p>{mentorData.bio}</p>
+                  <p>{mentorData?.bio}</p>
                 </div>
                 <div className="statsProfile">
                   <div className="reviewCount">
