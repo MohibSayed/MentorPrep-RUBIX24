@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-
+import './Video.css';
 const Video = () => {
     const { roomId } = useParams();
     const containerRef = useRef(null);

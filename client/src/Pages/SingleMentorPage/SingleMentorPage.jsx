@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { Link, useParams } from 'react-router-dom';
 import "./SingleMentorPage.css";
 import ProfileHeader from "../../Assets/ProfileHeader.gif";
 import { FaStar } from "react-icons/fa";
@@ -8,10 +9,30 @@ import { GrGroup } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
 import { ImLinkedin } from "react-icons/im";
 import DateCalendarServerRequest from "../../Components/DateCalendarServerRequest";
-
+import NavBar from '../../Components/NavBar/NavBar';
+import axios from "axios";
 const SingleMentorPage = () => {
+  const { email } = useParams();
+  const [mentorData, setMentorData] =useState("");
+  const emailid = email;
+  useEffect(() => {
+
+    const fetchMentorData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8800/api/mentor/find/${emailid}`); // Replace with your actual backend API endpoint
+        setMentorData(response.data);
+        console.log(mentorData);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+    };
+
+    fetchMentorData();
+  }, []);
   return (
     <div>
+    <NavBar/>
+       <p>Email: {email}</p>
       <div className="singleMentorContainer">
         <div className="leftSingleMentor">
           <div className="heroProfile">
@@ -24,16 +45,12 @@ const SingleMentorPage = () => {
             <div className="infoProfile">
               <div className="leftInfo">
                 <div className="headingName">
-                  <h1>Amar Kumar</h1>
+                  <h1>{mentorData.Name}</h1>
                   <p>Senior Analyst at Microsoft</p>
                 </div>
                 <div className="descProfile">
                   <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatum sit suscipit ut, nesciunt repellendus ullam nobis
-                    odio dolore vel! Corrupti ea officiis, harum quibusdam
-                    ducimus quisquam praesentium quia veniam sunt quasi mollitia
-                    explicabo repudiandae reiciendis?
+                    {mentorData.bio}
                   </p>
                 </div>
                 <div className="statsProfile">
