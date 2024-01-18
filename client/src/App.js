@@ -50,7 +50,7 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <SideBar>
-                {/* <SingleMentorPage/> */}
+                <MentorProfile/>
               </SideBar>
               
             </SignedIn>
