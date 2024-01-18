@@ -7,10 +7,10 @@ import { FaClock } from "react-icons/fa6";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { GrGroup } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
-import { ImLinkedin } from "react-icons/im";
-import DateCalendarServerRequest from "../../Components/DateCalendarServerRequest";
 import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
+import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+
 const SingleMentorPage = () => {
   const { email } = useParams();
   const [mentorData, setMentorData] = useState({});
@@ -18,12 +18,15 @@ const SingleMentorPage = () => {
   const [availabilityParam, setaAvailabilityParam] = useState([]);
   const emailid = email;
   const userEmail = localStorage.getItem("email");
-  const handleBookSlot = (date, time) =>{
-    
-    console.log(date);
-    console.log(time);
-    setBookSlot({reqBy: userEmail, reqFor:emailid, date: date, time: time});
-    
+  const [open, setOpen] = useState(false);
+  const [currency, setCurrency] = useState("USD");
+  const [amount, setAmount] = useState(100);
+
+  const handleBookSlot = (date, time) => {
+    setBookSlot({ reqBy: userEmail, reqFor: emailid, date: date, time: time, plan: "Once" });
+  }
+  const planUpdate = (plan) => {
+    setBookSlot({ plan: plan });
   }
   useEffect(() => {
     console.log(bookSlot);
@@ -33,11 +36,11 @@ const SingleMentorPage = () => {
   const handleSubmit = async () => {
     console.log("Hi");
     try {
-        const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching mentors:", error);
-      }
+      const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching mentors:", error);
+    }
   }
 
 
@@ -59,9 +62,50 @@ const SingleMentorPage = () => {
 
     fetchMentorData();
   }, []);
-  const handleClick = (date) => {
-    console.log(date);
+
+  const ButtonWrapper = ({ currency, showSpinner }) => {
+    const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+
+    useEffect(() => {
+      dispatch({
+        type: "resetOptions",
+        value: {
+          ...options,
+          currency: currency,
+        },
+      });
+    }, [currency, showSpinner]);
+
+    return (
+      <>
+        {showSpinner && isPending && <div className="spinner" />}
+        <PayPalButtons
+          // style={style}
+          disabled={false}
+          forceReRender={[amount, currency]}
+          fundingSource={undefined}
+          createOrder={(data, actions) => {
+            return actions.order
+              .create({
+                purchase_units: [
+                  {
+                    amount: {
+                      currency_code: currency,
+                      value: amount,
+                    },
+                  },
+                ],
+              })
+              .then((orderId) => {
+                return orderId;
+              });
+          }}
+          onApprove={handleSubmit}
+        />
+      </>
+    );
   };
+
   return (
     <div>
       <NavBar />
@@ -78,7 +122,7 @@ const SingleMentorPage = () => {
             <div className="infoProfile">
               <div className="leftInfo">
                 <div className="headingName">
-                  <h1>{mentorData.Name}</h1>
+                  <h1>{mentorData.name}</h1>
                   <p>Senior Analyst at Microsoft</p>
                 </div>
                 <div className="descProfile">
@@ -138,6 +182,105 @@ const SingleMentorPage = () => {
               </div>
             </div>
           </div>
+          <div className="cards">
+            <div className="card-basic">
+              <div className="card-header header-basic">
+                <h1>Basic</h1>
+              </div>
+              <div className="card-body">
+                <p><h2>$5 / Week</h2></p>
+                <div className="card-element-hidden-basic">
+                  <ul className="card-element-container">
+                    <li className="card-element">1-1 session</li>
+                    <li className="card-element">Daily for one week</li>
+                    <li className="card-element">Video Call</li>
+                  </ul>
+                  {open ? (
+                    <div className="paymentMethods">
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id":
+                            "ARO3D3zCsbgeI2urwYR-1mxCgcRv4x3fHvHxNT4EUPcUzx-Qa982KwwM9BareElDWaM2p-1iJXHVfRVX",
+                          components: "buttons",
+                          currency: "USD",
+                          "disable-funding": "credit,card,p24",
+                        }}
+                      >
+                        <ButtonWrapper currency={currency} showSpinner={false} />
+                      </PayPalScriptProvider>
+                    </div>
+                  ) : (
+                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(5); planUpdate('Weekly') }}>Order now</button>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="card-standard">
+              <div className="card-header header-standard">
+                <h1>Standard</h1>
+              </div>
+              <div className="card-body">
+                <p><h2>$10 / Mo</h2></p>
+                <div className="card-element-hidden-standard">
+                  <ul className="card-element-container">
+                    <li className="card-element">1-1 session</li>
+                    <li className="card-element">Daily for one month</li>
+                    <li className="card-element">Video Call</li>
+                  </ul>
+                  {open ? (
+                    <div className="paymentMethods">
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id":
+                            "ARO3D3zCsbgeI2urwYR-1mxCgcRv4x3fHvHxNT4EUPcUzx-Qa982KwwM9BareElDWaM2p-1iJXHVfRVX",
+                          components: "buttons",
+                          currency: "USD",
+                          "disable-funding": "credit,card,p24",
+                        }}
+                      >
+                        <ButtonWrapper currency={currency} showSpinner={false} />
+                      </PayPalScriptProvider>
+                    </div>
+                  ) : (
+                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(10); planUpdate('Monthly') }}>Order now</button>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="card-premium">
+              <div className="card-header header-premium">
+                <h1>Premium</h1>
+              </div>
+              <div className="card-body">
+                <p><h2>$20 / Q</h2></p>
+                <div className="card-element-hidden-premium">
+                  <ul className="card-element-container">
+                    <li className="card-element">1-1 session</li>
+                    <li className="card-element">Daily for three months</li>
+                    <li className="card-element">Video Call</li>
+                  </ul>
+                  {open ? (
+                    <div className="paymentMethods">
+                      <PayPalScriptProvider
+                        options={{
+                          "client-id":
+                            "ARO3D3zCsbgeI2urwYR-1mxCgcRv4x3fHvHxNT4EUPcUzx-Qa982KwwM9BareElDWaM2p-1iJXHVfRVX",
+                          components: "buttons",
+                          currency: "USD",
+                          "disable-funding": "credit,card,p24",
+                        }}
+                      >
+                        <ButtonWrapper currency={currency} showSpinner={false} />
+                      </PayPalScriptProvider>
+                    </div>
+                  ) : (
+                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(20); planUpdate('Quarterly') }}>Order now</button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="aboutProfile">
             <h2>About</h2>
             <div className="contentAbout">
@@ -185,44 +328,44 @@ const SingleMentorPage = () => {
             {/* <DateCalendarServerRequest onHandleClick={handleClick}  /> */}
 
             <div className="gridSlots">
-            
+
               {availabilityParam.map((slot) => (
-                
-                  slot.slots.map((bot) => (
-                    <div className="gridDivSlot" onClick={ () => handleBookSlot(slot.date, bot.time)}>
+
+                slot.slots.map((bot) => (
+                  <div className="gridDivSlot" onClick={() => handleBookSlot(slot.date, bot.time)}>
                     <p>{slot.day}</p>
-                  <h4>{slot.date}</h4>
-                  <p>{bot.time}</p>
-                    </div>
-                  ))
-                
+                    <h4>{slot.date}</h4>
+                    <p>{bot.time}</p>
+                  </div>
+                ))
+
               ))}
             </div>
           </div>
-          <div className="slotChart">
-            <h3 style={{ textAlign: "left" }}>Time Slots</h3>
-            <ul className="slotTimes">
-              <li>9.30</li>
-              <li>10.30</li>
-              <li>11.30</li>
-              <li>9.30</li>
-              <li>10.30</li>
-              <li>11.30</li>
-              <li>9.30</li>
-              <li>10.30</li>
-              <li>11.30</li>
-              {/* <li>9.30</li>
-            <li>10.30</li>
-            <li>11.30</li> */}
-            </ul>
-          </div>
-          <div className="buttonBook">
-            <button class="btn-17" onClick={handleSubmit}>
-              <span class="text-container">
-                <span class="text" >Book Your Slot Now! </span>
-              </span>
-            </button>
-          </div>
+
+          {open ? (
+            <div className="paymentMethods">
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "ARO3D3zCsbgeI2urwYR-1mxCgcRv4x3fHvHxNT4EUPcUzx-Qa982KwwM9BareElDWaM2p-1iJXHVfRVX",
+                  components: "buttons",
+                  currency: "USD",
+                  "disable-funding": "credit,card,p24",
+                }}
+              >
+                <ButtonWrapper currency={currency} showSpinner={false} />
+              </PayPalScriptProvider>
+            </div>
+          ) : (
+            <div className="buttonBook">
+              <button className="btn-17" onClick={() => { setOpen(true); setAmount(mentorData.Price) }}>
+                <span className="text-container">
+                  <span className="text" >Book Your Slot Now! </span>
+                </span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
