@@ -1,6 +1,5 @@
 import React from "react";
 import "./SearchInput.css";
-import IconGrid from "./IconGrid";
 
 export default function SearchInput() {
   return (
@@ -11,15 +10,12 @@ export default function SearchInput() {
           className="inputAI"
           id="Email"
           name="Email"
-          placeholder="How to learn JS"
+          placeholder="Ask with AI"
           autocomplete="off"
         />
-        <input className="button--submit" value="Ask AI" type="submit" />
+        <input className="button--submit" value="AI" type="submit" />
       </div>
-      <div className="searchCategories">
-        <IconGrid />
-        <IconGrid /><IconGrid /><IconGrid /><IconGrid />
-      </div>
+      
     </div>
   );
 }

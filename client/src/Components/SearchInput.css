@@ -1,55 +1,62 @@
-.input-group {
-    display: flex;
-    align-items: center;
-    width: 50vw;
-    padding: 2vw;
-    background-color: #101828;
-    /* margin: 5vw; */
-    height: 16vh;
-    border-radius: 30px;
-  }
-  
-  .inputAI {
-    width: 35vw;
-    background-color: whitesmoke !important;
-    min-height: 50px;
-    /* max-width: 150px; */
-    padding: 0 1rem;
-    color: #fff;
-    font-size: 15px;
-    border: 1px solid #5e4dcd;
-    border-radius: 6px 0 0 6px;
-    background-color: transparent;
-  }
-  
-  .button--submit {
-    min-height: 50px;
-    padding: .5em 1em;
-    border: none;
-    border-radius: 0 6px 6px 0;
-    background-color: #5e4dcd;
-    color: #fff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: background-color .3s ease-in-out;
-  }
-  
-  .button--submit:hover {
-    background-color: #5e5dcd;
-  }
-  
-  .input:focus, .input:focus-visible {
-    border-color: #3898EC;
-    outline: none;
-  }
-  
-  .searchAIDiv{
-    display: flex;
-    column-gap: 10vw;
-  }
-  .searchCategories{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 30px;
-    column-gap: 50px;
-  }
+.searchAIDiv .input-group {
+  background: rgb(109, 0, 158);
+  background: linear-gradient(142deg, rgba(109, 0, 158, 1) 33%, rgba(0, 115, 175, 1) 100%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 1em;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.inputAI {
+  width: 100%;
+  background-color: white;
+  border: none;
+  padding: .8em 1em;
+  font-size: 1rem;
+  color: #101828;
+  outline: none;
+  border-radius: 50px;
+}
+
+.inputAI::placeholder {
+  font-size: .9rem;
+  color: gray;
+}
+
+.button--submit {
+  padding: .5em .6em;
+  border: none;
+  border-radius: 70px;
+  background: rgb(109, 0, 158);
+  background: linear-gradient(142deg, rgba(109, 0, 158, 1) 33%, rgba(0, 115, 175, 1) 100%);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 1.3%;
+  transform: translate(-50%, -50%);
+  transition: all .5s ease-in;
+
+}
+
+.button--submit:hover {
+  background: rgb(109, 0, 158);
+  background: linear-gradient(320deg, rgba(109, 0, 158, 1) 33%, rgba(0, 115, 175, 1) 100%);
+}
+
+
+.searchAIDiv {
+  display: flex;
+  column-gap: 10vw;
+}
+
+.searchCategories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 30px;
+  column-gap: 50px;
+}
