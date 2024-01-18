@@ -31,12 +31,12 @@ export default function Share() {
       console.log(newPost);
       try {
         await axios.post("/upload", data);
-      } catch (err) {}
+      } catch (err) { }
     }
     try {
       await axios.post("/posts", newPost);
       window.location.reload();
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
@@ -47,8 +47,6 @@ export default function Share() {
             className="shareProfileImg"
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
             }
             alt=""
           />
