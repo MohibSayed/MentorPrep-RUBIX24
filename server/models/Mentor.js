@@ -6,10 +6,7 @@ const mentorSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        Name: {
-            type: String,
-            required: true,
-        },
+        
         email: {
             type: String,
             required: true,
@@ -39,10 +36,6 @@ const mentorSchema = new mongoose.Schema(
             default: function () {
                 return this.phone;
             }
-        },
-        password: {
-            type: String,
-            required: true,
         },
         ProfessionTitle: {
             type: String,

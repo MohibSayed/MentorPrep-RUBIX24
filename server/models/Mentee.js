@@ -11,6 +11,11 @@ const menteeSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        mentor:{
+            type: Boolean,
+            required: true,
+            default: false,
+        },
         country: {
             type: String,
             required: true,

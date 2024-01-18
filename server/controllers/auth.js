@@ -6,13 +6,12 @@ import jwt from "jsonwebtoken";
 
 export const mentorRegister = async (req, res, next) => {
     try {
-        const salt = bcrypt.genSaltSync(10)
-        const hash = bcrypt.hashSync(req.body.password, salt)
+        
 
-        const newUser = new Mentor({
-            ...req.body,
-            password: hash,
-        })
+        const newUser = new Mentor(
+            req.body,
+            
+        )
         await newUser.save()
         res.status(201).send("Mentor has been registered successfully!")
     } catch (err) {
