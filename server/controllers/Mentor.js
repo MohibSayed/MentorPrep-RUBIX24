@@ -23,8 +23,9 @@ export const deleteMentor = async (req, res, next) => {
 };
 export const getMentor = async (req, res, next) => {
     try {
-        const Mentor = await Mentor.find({ username: req.params.username });
-        res.status(200).json(Mentor);
+        const ourMentor = await Mentor.find({ email: req.params.email});
+        console.log(ourMentor)
+        return res.status(200).json(ourMentor);
     } catch (err) {
         next(err);
     }
