@@ -28,19 +28,12 @@ const HomePage = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleVisibility = async (email) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8800/api/auth/menteeLogin",
-        { email }
-      );
-      console.log(response.data);
-      if (response.status === 200) {
+    
+      if (email) {
         setIsVisible(false);
       }
-    } catch (error) {
-      console.error("Registration failed:", error.message);
-    }
-  };
+    } 
+  
   useEffect(() => {
     const email = localStorage.getItem("email");
     console.log(email);
@@ -97,16 +90,14 @@ const HomePage = () => {
       ) : (
         <SignedIn>
           <NavBar />
-          <div className="signOutBtn">
-            <SignOutButton afterSignOutUrl="/" className="SignOut" />
-          </div>
+          
           <h1>Welcome to Dashbaord {user.fullName}</h1>
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
           {isVisible && <RegisterPage user={user} />}
           <div className="searchBarDiv">
             <div class="wrapper">
-              <div class="label">Submit your search</div>
+              <div class="label">Find your best mentors and get upskilled</div>
               <div class="input-container">
                 <input
                   placeholder="Search for Mentors"

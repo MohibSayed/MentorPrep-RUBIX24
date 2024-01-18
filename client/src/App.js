@@ -12,6 +12,7 @@ import {
 import Video from './Pages/Video/Video'
 import SideBar from "./Components/SideBar/SideBar";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
+import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -52,6 +53,23 @@ const router = createBrowserRouter(
             <SignedIn>
               <SideBar>
                 <MentorProfile/>
+              </SideBar>
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/menteeProfile/:email"
+        element={
+          <>
+            <SignedIn>
+              <SideBar>
+                <MenteeProfile/>
               </SideBar>
               
             </SignedIn>

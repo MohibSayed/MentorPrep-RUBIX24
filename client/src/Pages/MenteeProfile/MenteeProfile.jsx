@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./MentorProfile.css";
+import "./MenteeProfile.css";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -76,7 +76,7 @@ const MentorProfile = () => {
     const fetchMentors = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8800/api/bookings/bringBookings/${emailid}`
+          `http://localhost:8800/api/bookings/bringMenteeBookings/${emailid}`
         );
         console.log(response);
         setBookingsData(response.data);
@@ -87,14 +87,6 @@ const MentorProfile = () => {
 
     fetchMentors();
   }, []);
-  const [ slot, setSlot] = useState({});
-  const handleInput = (name, value) => {
-    setSlot((prevSlot) => ({
-      ...prevSlot,
-      [name]: value,
-    }));
-  };
-  console.log(slot);
 
   return (
     <div>
@@ -143,39 +135,6 @@ const MentorProfile = () => {
           ))}
         </tbody>
       </table>
-      <div className="addSlot">
-      <form className="form">
-      <div className="flex">
-      <label>
-        Day:
-        <input
-          className="input"
-          type="text"
-          name="availabilityDay"
-          onChange={(e) => handleInput(e.target.name, e.target.value)}
-        />
-      </label>
-      <label>
-        Date:
-        <input
-          className="input"
-          type="text"
-          name="availabilityDate"
-          onChange={(e) => handleInput(e.target.name, e.target.value)}
-        />
-      </label>
-      <label>
-        <span>Time Slot:</span>
-        <input
-          type="text"
-          className="input"
-          name="availabilityTime"
-          onChange={(e) => handleInput(e.target.name, e.target.value)}
-        />
-      </label>
-          </div>
-      </form>
-      </div>
     </div>
   );
 };

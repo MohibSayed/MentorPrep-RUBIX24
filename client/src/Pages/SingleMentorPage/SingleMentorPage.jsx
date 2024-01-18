@@ -10,8 +10,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
 import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-
-import emailjs from "@emailjs/browser";
+import Popup from "../../Components/Popup/Popup";
 const SingleMentorPage = () => {
   const { email } = useParams();
   const [mentorData, setMentorData] = useState({});
@@ -33,46 +32,17 @@ const SingleMentorPage = () => {
     console.log(bookSlot);
   }, [bookSlot]);
 
-  // const form = useRef();
 
-  const sendEmail = (templateParams) => {
-    // e.preventDefault();
-
-    emailjs
-      .send("service_a9vgfe6", "template_znzloru", templateParams, "X5L6imP8swjdhI45L")
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-
-  const [booking, setBooking] = useState({});
   const handleSubmit = async () => {
+    console.log("Hi");
     try {
-      const response = await axios.post(
-        `http://localhost:8800/api/bookings/${userEmail}`,
-        bookSlot
-      ); // Replace with your actual backend API endpoint
+      const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
       console.log(response.data);
-  
-      const templateParams = {
-        // from_email: response.data.reqBy,
-        user_email: response.data.reqBy,
-        to_name: response.data.reqBy,
-        message: `Your Slot has been booked for ${response.data.date} at ${response.data.time}. Your Meeting ID is ${response.data.meetingLink}`
-      };
-      setBooking(response.data);
-      console.log(booking);
-  
-      sendEmail(templateParams);
     } catch (error) {
       console.error("Error fetching mentors:", error);
     }
-  };
+  }
+
 
   useEffect(() => {
     const fetchMentorData = async () => {
@@ -135,6 +105,16 @@ const SingleMentorPage = () => {
       </>
     );
   };
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const handleOpenPopup = () => {
+    setPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
 
   return (
     <div>
@@ -148,9 +128,16 @@ const SingleMentorPage = () => {
             </div>
             <div className="askQuestionDiv">
               <button className="askaQsBtn">Ask a Question?</button>
+              {/* <button onClick={handleOpenPopup}>Open Popup</button> */}
+{/* 
+      {isPopupOpen && (
+        <Popup text="Hello, this is your popup!" onClose={handleClosePopup} />
+      )} */}
+
             </div>
             <div className="infoProfile">
               <div className="leftInfo">
+              <img className="mentorPhoto" src="https://imgs.search.brave.com/EB4dBcW7zNuoPP_2pPKEZz9ZDJp7OqE_lCfEzOy-5Sw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzg4LzUzLzg5/LzM2MF9GXzg4NTM4/OTg2XzVCaTRlSjY2/N3BvY3NPM0JJbGJO/NGZIS3o4eVVGU3VB/LmpwZw" alt="" />
                 <div className="headingName">
                   <h1>{mentorData.name}</h1>
                   <p>Senior Analyst at Microsoft</p>
@@ -353,23 +340,23 @@ const SingleMentorPage = () => {
             <h2>BOOK YOUR TRIAL 1:1 NOW</h2>
           </div>
           <div className="dateChart">
-            <h3 style={{ textAlign: "left" }}>Available Dates</h3>
+            <h3 style={{ textAlign: "left" }}>Available Slots</h3>
 
             {/* <DateCalendarServerRequest onHandleClick={handleClick}  /> */}
 
             <div className="gridSlots">
-              {availabilityParam.map((slot) =>
+
+              {availabilityParam.map((slot) => (
+
                 slot.slots.map((bot) => (
-                  <div
-                    className="gridDivSlot"
-                    onClick={() => handleBookSlot(slot.date, bot.time)}
-                  >
+                  <div className="gridDivSlot" onClick={() => handleBookSlot(slot.date, bot.time)}>
                     <p>{slot.day}</p>
                     <h4>{slot.date}</h4>
                     <p>{bot.time}</p>
                   </div>
                 ))
-              )}
+
+              ))}
             </div>
           </div>
 

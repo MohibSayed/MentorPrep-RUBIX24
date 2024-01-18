@@ -58,3 +58,12 @@ export const getBookings = async (req, res, next) => {
         next(err);
     }
 };
+export const getMenteeBookings = async (req, res, next) => {
+    const  reqByEmail  = req.params.emailid;
+    try {
+        const allBookings = await Booking.find({ reqBy: reqByEmail })
+        res.status(200).json(allBookings)
+    } catch (err) {
+        next(err);
+    }
+};
