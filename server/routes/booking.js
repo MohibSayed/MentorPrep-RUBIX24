@@ -3,7 +3,7 @@ import { createBooking, deleteBooking, getBooking, getBookings, updateBooking } 
 const router = express.Router()
 
 //create
-router.post("/:ReqById", createBooking)
+router.post("/:ReqByEmail", createBooking)
 //update
 router.put("/:id", updateBooking)
 //delete

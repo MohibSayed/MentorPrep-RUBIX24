@@ -3,12 +3,12 @@ const BookingsSchema = new mongoose.Schema({
     reqBy: {
         type: String,
         required: true,
-        ref: "Mentees"
+        // ref: "Mentees"
     },
     reqFor: {
         type: String,
         required: true,
-        ref: "Mentors"
+        // ref: "Mentors"
     },
     status: {
         type: String,
@@ -22,6 +22,9 @@ const BookingsSchema = new mongoose.Schema({
     date: {
         type: String,
         required: true,
+    },
+    meetingLink: {
+        type: String,
     },
 },
     { timestamps: true }
