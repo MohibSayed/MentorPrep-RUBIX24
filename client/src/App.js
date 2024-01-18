@@ -1,8 +1,7 @@
 import * as React from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import HomePage from "./Pages/HomePage/HomePage";
 import SingleMentorPage from "./Pages/SingleMentorPage/SingleMentorPage";
-// import {  SignedOut, SignedIn, SignInButton } from "@clerk/clerk-react";
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import {
   createBrowserRouter,
@@ -11,6 +10,8 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import Video from './Pages/Video/Video'
+import SideBar from "./Components/SideBar/SideBar";
+import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -29,13 +30,47 @@ const router = createBrowserRouter(
           </>
         }
       />
-      {/* <Route path="/room/:roomId" element={<Video />} /> */}
       <Route
         path="/room/:roomId"
         element={
           <>
             <SignedIn>
               <Video />
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <>
+            <SignedIn>
+              <SideBar>
+                {/* <SingleMentorPage/> */}
+              </SideBar>
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/mentorProfile"
+        element={
+          <>
+            <SignedIn>
+            <SideBar>
+            <MentorProfile/>
+              </SideBar>
+              
+              
             </SignedIn>
 
             <SignedOut>
@@ -53,12 +88,6 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
-
-      {/* <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/room/:roomId" element={<Video />} />
-      </Routes> */}
-
     </div>
   );
 }
