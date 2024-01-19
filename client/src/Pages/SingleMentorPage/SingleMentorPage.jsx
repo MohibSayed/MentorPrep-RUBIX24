@@ -18,7 +18,10 @@ const SingleMentorPage = () => {
   const [availabilityParam, setaAvailabilityParam] = useState([]);
   const emailid = email;
   const userEmail = localStorage.getItem("email");
-  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
   const [currency, setCurrency] = useState("USD");
   const [amount, setAmount] = useState(100);
 
@@ -195,7 +198,7 @@ const SingleMentorPage = () => {
                     <li className="card-element">Daily for one week</li>
                     <li className="card-element">Video Call</li>
                   </ul>
-                  {open ? (
+                  {open1 ? (
                     <div className="paymentMethods">
                       <PayPalScriptProvider
                         options={{
@@ -210,7 +213,7 @@ const SingleMentorPage = () => {
                       </PayPalScriptProvider>
                     </div>
                   ) : (
-                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(5); planUpdate('Weekly') }}>Order now</button>
+                    <button className="btn btn-basic" onClick={() => { setOpen1(true); setAmount(5); planUpdate('Weekly') }}>Order now</button>
                   )}
                 </div>
               </div>
@@ -228,7 +231,7 @@ const SingleMentorPage = () => {
                     <li className="card-element">Daily for one month</li>
                     <li className="card-element">Video Call</li>
                   </ul>
-                  {open ? (
+                  {open2 ? (
                     <div className="paymentMethods">
                       <PayPalScriptProvider
                         options={{
@@ -243,7 +246,7 @@ const SingleMentorPage = () => {
                       </PayPalScriptProvider>
                     </div>
                   ) : (
-                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(10); planUpdate('Monthly') }}>Order now</button>
+                    <button className="btn btn-basic" onClick={() => { setOpen2(true); setAmount(10); planUpdate('Monthly') }}>Order now</button>
                   )}
                 </div>
               </div>
@@ -260,7 +263,7 @@ const SingleMentorPage = () => {
                     <li className="card-element">Daily for three months</li>
                     <li className="card-element">Video Call</li>
                   </ul>
-                  {open ? (
+                  {open3 ? (
                     <div className="paymentMethods">
                       <PayPalScriptProvider
                         options={{
@@ -275,7 +278,7 @@ const SingleMentorPage = () => {
                       </PayPalScriptProvider>
                     </div>
                   ) : (
-                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(20); planUpdate('Quarterly') }}>Order now</button>
+                    <button className="btn btn-basic" onClick={() => { setOpen3(true); setAmount(20); planUpdate('Quarterly') }}>Order now</button>
                   )}
                 </div>
               </div>
@@ -343,7 +346,7 @@ const SingleMentorPage = () => {
             </div>
           </div>
 
-          {open ? (
+          {open4 ? (
             <div className="paymentMethods">
               <PayPalScriptProvider
                 options={{
@@ -359,7 +362,7 @@ const SingleMentorPage = () => {
             </div>
           ) : (
             <div className="buttonBook">
-              <button className="btn-17" onClick={() => { setOpen(true); setAmount(mentorData.Price) }}>
+              <button className="btn-17" onClick={() => { setOpen4(true); setAmount(mentorData.Price) }}>
                 <span className="text-container">
                   <span className="text" >Book Your Slot Now! </span>
                 </span>
