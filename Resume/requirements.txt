@@ -1,0 +1,7 @@
+pdfminer3
+pyresparser
+plotly
+streamlit-tags
+Pillow
+nltk
+spacy==2.3.5
