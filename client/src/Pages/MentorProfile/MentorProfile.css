@@ -1,5 +1,18 @@
 .headerTableHeader{
     margin: 25px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.headerTableHeader p {
+  /* background-color: #16764f; */
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
+  color: #fff;padding: 10px 13px;
+  border-radius: 5px;
+  
+}
+.goBtnDiv .goLiveButton:hover{
+  cursor: pointer;
 }
 .headerTableHeader h2{
     font-size:2.5rem;

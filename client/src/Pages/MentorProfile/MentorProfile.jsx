@@ -69,6 +69,7 @@ const CountdownTimer = ({ date }) => {
 
 const MentorProfile = () => {
   const [bookingsData, setBookingsData] = useState([]);
+  const [mentorProfile, setMentorProfile] = useState({});
   const { email } = useParams();
   const emailid = email;
   console.log(emailid);
@@ -85,7 +86,20 @@ const MentorProfile = () => {
       }
     };
 
+
+    const fetchMentorProfile = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8800/api/mentor/find/${emailid}`
+        );
+        console.log(response.data);
+        setMentorProfile(response.data);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+    };
     fetchMentors();
+    fetchMentorProfile();
   }, []);
   const [slot, setSlot] = useState({});
 
@@ -124,6 +138,7 @@ const MentorProfile = () => {
     <div>
       <div className="headerTableHeader">
         <h2>Your Upcoming Sessions</h2>
+        <p>Total revenue: $ {mentorProfile.totalEarning}</p>
       </div>
       <table className="tableSessions">
         <thead className="headerrow">
