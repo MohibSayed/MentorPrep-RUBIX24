@@ -28,7 +28,8 @@ const SingleMentorPage = () => {
   const [open4, setOpen4] = useState(false);
   const [currency, setCurrency] = useState("USD");
   const [amount, setAmount] = useState(100);
-  const [click, setClick] = useState(false);
+  // const [click, setClick] = useState(false);
+  const [clickedSlots, setClickedSlots] = useState([]);
 
   useEffect(() => {
     const fetchMentorData = async () => {
@@ -53,8 +54,23 @@ const SingleMentorPage = () => {
     fetchMentorData();
   }, []);
 
-  const handleBookSlot = (date, time) => {
+  // const handleBookSlot = (date, time) => {
 
+  //   setBookSlot({
+  //     ...bookSlot,
+  //     reqBy: userEmail,
+  //     reqFor: emailid,
+  //     date: date,
+  //     time: time,
+  //     plan: "Once",
+  //     // price: "",
+  //   });
+  // };
+  const handleBookSlot = (date, time) => {
+    if (clickedSlots[0]?.date === date && clickedSlots[0]?.time) {
+      setClickedSlots([]);
+    }
+    setClickedSlots([{ date, time }]);
     setBookSlot({
       ...bookSlot,
       reqBy: userEmail,
@@ -397,7 +413,7 @@ const SingleMentorPage = () => {
                 ))
 
               ))} */}
-              {availabilityParam.map((slot) =>
+              {/* {availabilityParam.map((slot) =>
                 slot.slots
                   .filter((bot) => bot.filled < bot.capacity)
                   .map((bot) => (
@@ -426,6 +442,59 @@ const SingleMentorPage = () => {
                     // onClick={() => handleBookSlot(slot.date, bot.time)}
                     >
                       <p>Booked</p>
+                      <p>{slot.day}</p>
+                      <h4>{slot.date}</h4>
+                      <p>{bot.time}</p>
+                    </div>
+                  ))
+              )} */}
+              {availabilityParam.map((slot) =>
+                slot.slots
+                  .filter((bot) => bot.filled < bot.capacity)
+                  .map((bot) => (
+
+                    <div
+                      key={`${slot.date}-${bot.time}`}
+                      className="gridDivSlot"
+                      style={{
+                        backgroundColor: clickedSlots.some(
+                          (clickedSlot) =>
+                            clickedSlot.date === slot.date &&
+                            clickedSlot.time === bot.time
+                        )
+                          ? "#51c3fc"
+                          : "",
+                        color: clickedSlots.some(
+                          (clickedSlot) =>
+                            clickedSlot.date === slot.date &&
+                            clickedSlot.time === bot.time
+                        )
+                          ? "white"
+                          : "",
+                      }}
+                      onClick={() => handleBookSlot(slot.date, bot.time)}
+                    >
+                      <p>{slot.day}</p>
+                      <h4>{slot.date}</h4>
+                      <p>{bot.time}</p>
+                    </div>
+                  ))
+              )}
+              {availabilityParam.map((slot) =>
+                slot.slots
+                  .filter((bot) => bot.filled >= bot.capacity)
+                  .map((bot) => (
+                    <div
+                      key={`${slot.date}-${bot.time}`}
+                      className="gridDivSlot"
+                      style={{
+                        cursor:  "not-allowed",
+                        borderColor: "rgba(255, 0, 0, 0.29)",
+                        pointerEvents: "none",
+                      }}
+                      onClick={() => handleBookSlot(slot.date, bot.time)}
+                    >
+                      <p style={{color: "rgba(255, 0, 0, 0.8)", fontWeight: "600"}}>Booked</p>
                       <p>{slot.day}</p>
                       <h4>{slot.date}</h4>
                       <p>{bot.time}</p>
