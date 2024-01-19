@@ -3,6 +3,7 @@ import "./SearchAIPage.css";
 import SearchInput from "../../Components/SearchInput";
 import Comment from "../../Components/Comment";
 const SearchAIPage = () => {
+ 
   return (
     <div className="discussion">
       <SearchInput />
@@ -10,6 +11,7 @@ const SearchAIPage = () => {
         <Comment />
         <Comment /><Comment /><Comment /><Comment /><Comment />
       </div>
+      
     </div>
   );
 };

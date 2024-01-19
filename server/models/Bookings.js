@@ -3,17 +3,12 @@ const BookingsSchema = new mongoose.Schema({
     reqBy: {
         type: String,
         required: true,
-        ref: "Mentees"
+        // ref: "Mentees"
     },
     reqFor: {
         type: String,
         required: true,
-        ref: "Mentors"
-    },
-    status: {
-        type: String,
-        enum: ["pending", "approved", "rejected", "cancelled", "completed"],
-        default: "pending",
+        // ref: "Mentors"
     },
     time: {
         type: String,
@@ -22,6 +17,15 @@ const BookingsSchema = new mongoose.Schema({
     date: {
         type: String,
         required: true,
+    },
+    meetingLink: {
+        type: String,
+        required: true,
+    },
+    plan: {
+        type: String,
+        enum: ["Once", "Weekly", "Monthly", "Quarterly"],
+        default: "Once",
     },
 },
     { timestamps: true }

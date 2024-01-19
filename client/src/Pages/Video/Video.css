@@ -1,0 +1,146 @@
+.QajuHzlZleFtiTUp_E8u .D9WLyEQaARfWqCTyVrpU {
+  width: 840px !important;
+  height: 328px;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: none !important;
+}
+.D9WLyEQaARfWqCTyVrpU {
+  display: flex;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 960px;
+  height: 530px;
+  padding: 10px 0 10px 10px;
+  background: #ffffff;
+  border: 1px solid #e8eaef;
+  border-radius: 20px;
+  /* box-shadow: none !important; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important;
+}
+.JtRS8dNV0vDLnpBoA6kZ {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 74px;
+  margin-right: 80px !important;
+}
+.room-page{
+   /* overflow-y: hidden; */
+   background: radial-gradient(#3d4a84, #282042);
+}
+.video-container{
+  height: 100vh;
+  box-shadow: none !important;
+}
+.room-page h1{
+  color: #fff;
+  text-align: center;
+  padding:40px 40px 0 40px;
+  font-family: 'Poppins', sans-serif;
+}
+.TYiiRFB3EhYJGVPE4k4q {
+  box-sizing: border-box;
+  width: 350px;
+  padding: 10px 18px;
+  color: #2a2a2a;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  border: 1px solid #9f9f9f;
+  outline: none !important;
+  border-radius: 5px !important;
+  /* outline: #0055ff; */
+}
+
+/* .VsTVUAD89KWleD0YRVsD {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 46px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 46px;
+  text-align: center;
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+} */
+
+.VsTVUAD89KWleD0YRVsD {
+  padding: .8em 1.2em;
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
+  color: white !important;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: .9rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* .VsTVUAD89KWleD0YRVsD span{
+  position: relative;
+  z-index: 2;
+} */
+
+
+
+
+.VsTVUAD89KWleD0YRVsD:hover::before {
+  opacity: 1;
+}
+
+.pOvRwHj19chJGkgemUH3 ._M8cCug8H18ALQ05cNMt{
+  position: relative;
+}
+.pOvRwHj19chJGkgemUH3 ._M8cCug8H18ALQ05cNMt::before {
+  content: 'Mentor Prep';
+  position: absolute;
+  top: -120px;
+  font-size: 2.5rem;
+  font-family: "Poppins", sans-serif;
+  
+}
+.pOvRwHj19chJGkgemUH3 ._M8cCug8H18ALQ05cNMt::after {
+  content: '-> Start your Session';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  
+}
+
+.tkC3S6XQehKbTEIfFYVM {
+
+ position: relative;
+
+}
+
+.tkC3S6XQehKbTEIfFYVM .lflaXazrPGAK9SbOcNoC::before {
+  position: absolute;
+  top: 150px;
+  left: 25%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.1rem;
+  content: 'We hope you enjoyed this session, Best of Luck!';
+}
+.tkC3S6XQehKbTEIfFYVM .IughcowXVrJ5wcOf6vH9{
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
+}
+.tkC3S6XQehKbTEIfFYVM .IughcowXVrJ5wcOf6vH9, .tkC3S6XQehKbTEIfFYVM .mCx2N1NwuMWObjjTeG0q {
+  font-family: 'Poppins', sans-serif;
+}
+.tkC3S6XQehKbTEIfFYVM .mCx2N1NwuMWObjjTeG0q{
+  color: #fff ;
+  background: transparent;
+  border: 1px solid #01a0fb;
+}

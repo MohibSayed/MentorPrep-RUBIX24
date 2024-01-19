@@ -6,10 +6,19 @@ const menteeSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
+        name: {
+            type: String,
+            required: true,
+        },
         email: {
             type: String,
             required: true,
             unique: true,
+        },
+        mentor: {
+            type: Boolean,
+            required: true,
+            default: false,
         },
         country: {
             type: String,
@@ -26,10 +35,14 @@ const menteeSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        password: {
+        language: {
             type: String,
             required: true,
         },
+        // password: {
+        //     type: String,
+        //     required: true,
+        // },
         Profession: {
             type: String,//student, working professional, entrepreneur, freelancer, other
         },

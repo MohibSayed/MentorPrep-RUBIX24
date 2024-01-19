@@ -6,13 +6,12 @@ import jwt from "jsonwebtoken";
 
 export const mentorRegister = async (req, res, next) => {
     try {
-        const salt = bcrypt.genSaltSync(10)
-        const hash = bcrypt.hashSync(req.body.password, salt)
+        
 
-        const newUser = new Mentor({
-            ...req.body,
-            password: hash,
-        })
+        const newUser = new Mentor(
+            req.body,
+            
+        )
         await newUser.save()
         res.status(201).send("Mentor has been registered successfully!")
     } catch (err) {
@@ -43,13 +42,10 @@ export const mentorLogin = async (req, res, next) => {
 
 export const menteeRegister = async (req, res, next) => {
     try {
-        const salt = bcrypt.genSaltSync(10)
-        const hash = bcrypt.hashSync(req.body.password, salt)
-
-        const newUser = new Mentee({
-            ...req.body,
-            password: hash,
-        })
+      
+        const newUser = new Mentee(
+            req.body,
+        )
         await newUser.save()
         res.status(201).send("Mentee has been registered successfully!")
     } catch (err) {
@@ -58,22 +54,22 @@ export const menteeRegister = async (req, res, next) => {
 }
 export const menteeLogin = async (req, res, next) => {
     try {
-        const user = await Mentee.findOne({ username: req.body.username });
+        const user = await Mentee.findOne({ email: req.body.email });
         if (!user) return next(createError(404, "Mentee not found!"));
 
-        const isPasswordCorrect = await bcrypt.compare(
-            req.body.password,
-            user.password
-        );
-        if (!isPasswordCorrect) return next(createError(400, "Wrong password or username!"));
-
-        const token = jwt.sign({ id: user._id, Profession: user.Profession }, process.env.JWT)
-
-        const { password, ...otherDetails } = user._doc;
-        res.cookie("access_token", token, {
-            httpOnly: true
-        }).status(200).json({ ...otherDetails })
+        res.status(200).json(user);
     } catch (err) {
         next(err)
     }
+}
+
+
+export const userType = async (req,res,next) => {
+    const {email} = req.body;
+    const user = await Mentee.findOne({email:email});
+    if(!user){
+        return res.status(200).json({Type:"Mentor"})
+    }
+    return res.status(200).json({Type:"Mentee"});
+
 }

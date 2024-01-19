@@ -6,7 +6,7 @@ const mentorSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        Name: {
+        name: {
             type: String,
             required: true,
         },
@@ -40,25 +40,38 @@ const mentorSchema = new mongoose.Schema(
                 return this.phone;
             }
         },
-        password: {
-            type: String,
-            required: true,
-        },
         ProfessionTitle: {
             type: String,
         },
+        // availability: {
+        //     type: [
+        //         {
+        //             day: String, // Day of the week, e.g., "Monday"
+        //             date: String, // Day of the week, e.g., "Monday"
+        //             slots: [
+        //                 {
+        //                     time: String, // Time slot, e.g., "9:00 AM - 11:00 AM"
+        //                 },
+        //             ],
+        //         },
+        //     ],
+        // },
         availability: {
             type: [
                 {
                     day: String, // Day of the week, e.g., "Monday"
+                    date: String, // Day of the week, e.g., "Monday"
                     slots: [
                         {
                             time: String, // Time slot, e.g., "9:00 AM - 11:00 AM"
-                            status: {
-                                type: String,
-                                enum: ["available", "booked"],
-                                default: "available",
+                            capacity:{
+                                type:Number,
+                                default:1
                             },
+                            filled:{
+                                type:Number,
+                                default:0
+                            }
                         },
                     ],
                 },
@@ -82,6 +95,10 @@ const mentorSchema = new mongoose.Schema(
                     rating: Number,
                 },
             ],
+        },
+        totalEarning:{
+            type:Number,
+            default:0
         },
     },
     { timestamps: true }
