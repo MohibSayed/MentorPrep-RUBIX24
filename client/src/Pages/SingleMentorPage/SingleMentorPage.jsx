@@ -166,7 +166,7 @@ const SingleMentorPage = () => {
               <img src={ProfileHeader} alt="" />
             </div>
             <div className="askQuestionDiv">
-              <button className="askaQsBtn">Ask a Question?</button>
+              <button className="askaQsBtn">${mentorData.Price} / session</button>
               {/* <button onClick={handleOpenPopup}>Open Popup</button> */}
               {/* 
       {isPopupOpen && (

@@ -139,7 +139,7 @@
 
 .askQuestionDiv {
   width: 100%;
-  padding: 10px 15px;
+  padding: 25px 15px;
   text-align: right;
 }
 
@@ -147,7 +147,12 @@
   padding: 10px 20px;
   border: none;
   margin: 0 15px;
-  border-radius: 4px;
+  background: rgb(192, 192, 13);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 ul {

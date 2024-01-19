@@ -3,6 +3,19 @@
     
   background: transparent;
 }
+.domainInterest {
+  position: relative;
+  background: transparent !important;
+}
+.delBtn{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 10px;
+  background: transparent;
+  outline: none;
+  border: none;
+}
 .flickity-button:hover {
     
   background: transparent;
@@ -14,8 +27,19 @@
   height: 100px;
 }
 .flickity-button-icon {
-  fill: white;
+  fill: #fff;
 }
+.flexMe{
+  display: flex;
+  column-gap: 1.1rem;
+  margin: 10px 0;
+}
+.InterestDivss{
+  width: 100%;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.265);
+  padding-bottom: 1em;
+}
+
 .flickity-button:disabled {
   display: none;
 }
