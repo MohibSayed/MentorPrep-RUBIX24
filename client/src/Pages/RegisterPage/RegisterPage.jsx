@@ -142,7 +142,7 @@ const RegisterPage = (props) => {
           <p className="title">
             &nbsp;&nbsp;Register yourself to match your fundamentals!{" "}
           </p>
-          <p className="message">Signup now and get full access to our app. </p>
+          <p className="message">Signup now and get full access to our web app. </p>
 
           <label>
             <input
@@ -303,9 +303,9 @@ const RegisterPage = (props) => {
         <form className="form" onSubmit={handleMentorSubmit}>
           {/* ... Other form elements ... */}
           <p className="title">
-          &nbsp;&nbsp;Register yourself to match your fundamentals!{" "}
+          &nbsp;&nbsp;Register yourself to share your fundamentals!{" "}
           </p>
-          <p className="message">Signup now and get full access to our app. </p>
+          <p className="message">Signup now and get full access to our webapp. </p>
 
           <label>
             <input

@@ -97,7 +97,7 @@ const MentorProfile = () => {
         <thead className="headerrow">
           <tr>
             <th>Meeting Code</th>
-            <th>Mentee Email</th>
+            <th>Mentor Email</th>
             <th>Date</th>
             <th>Time</th>
             <th>Days Left</th>
@@ -108,7 +108,7 @@ const MentorProfile = () => {
           {bookingsData.map((meeting, index) => (
             <tr key={index}>
               <td>{meeting.meetingLink}</td>
-              <td>{meeting.reqBy}</td>
+              <td>{meeting.reqFor}</td>
               <td>{meeting.date}</td>
               <td>{meeting.time}</td>
               <td>
@@ -120,7 +120,7 @@ const MentorProfile = () => {
                   target="_blank"
                 >
                   <button class="goLiveButton">
-                    Go LIVE!
+                    Join
                     <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
                       <path
                         clip-rule="evenodd"

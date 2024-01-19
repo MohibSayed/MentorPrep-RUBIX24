@@ -86,28 +86,34 @@ const NavBar = () => {
                   href="http://localhost:3001/"
                   style={{ textDecoration: "none" }}
                 >
-                  Stories
+                  Community
                 </a>
                 
               </li>
             
-              <li>
+              {/* <li>
               <Link to="/"><a>Ask Mentors</a></Link>
-              </li>
+              </li> */}
               
-              <li>
+              {/* <li>
               <Link to="/"><a>Dashboard</a></Link>
-              </li>
-              {isMentor && <Link to={`/dashboard/${emailid}`}><li><a>Profile</a></li></Link>}
-              {!isMentor && <Link to={`/menteeProfile/${emailid}`}><li><a>Profile</a></li></Link>}
+              </li> */}
+              {isMentor && <Link to={`/dashboard/${emailid}`}><li><a>Mentor Dashboard</a></li></Link>}
+              {!isMentor && <Link to={`/menteeProfile/${emailid}`}><li><a>Mentee Dashboard</a></li></Link>}
             </ul>
             <div className="btn-container">
               
-              <Link to="/matchMentor">
+            {!isMentor && <Link to="/matchMentor">
               <button className="blueBtn">
                 <span>Match Mentor</span>
               </button>
-              </Link>
+              </Link>}
+
+              {/* <Link to="/matchMentor">
+              <button className="blueBtn">
+                <span>Match Mentor</span>
+              </button>
+              </Link> */}
               <div className="signOutBtn">
                 <SignOutButton afterSignOutUrl="/" className="SignOut" />
               </div>

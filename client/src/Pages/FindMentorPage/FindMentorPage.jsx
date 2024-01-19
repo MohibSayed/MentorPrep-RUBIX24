@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -83,7 +84,8 @@ const FindMentorPage = () => {
       {
         mentors.map((mentor,index) => (
           <SwiperSlide>
-          <Card name={mentor.name} ProfessionTitle={mentor.ProfessionTitle} Bio={mentor.Bio} city={mentor.city} country={mentor.country} number={index}/>
+          <Link to={`/SingleMentor/${mentor.email}`}>
+          <Card name={mentor.name} ProfessionTitle={mentor.ProfessionTitle} Bio={mentor.Bio} city={mentor.city} country={mentor.country} number={index}/></Link>
         </SwiperSlide>
         )
         )

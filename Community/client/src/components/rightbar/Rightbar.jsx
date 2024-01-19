@@ -110,7 +110,7 @@ console.log(user);
                 <img
                   src={
                     friend.profilePicture
-                      ? PF + friend.profilePicture
+                      ? friend.profilePicture
                       : PF + "person/noAvatar.png"
                   }
                   alt=""
