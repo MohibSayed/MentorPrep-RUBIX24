@@ -189,7 +189,7 @@ const HomePage = () => {
                   <div className="bookSection">
                     <div className="priceReview">
                       <div className="priceCont">
-                        <h4>$ {mentor.Price}/month</h4>
+                        <h4>$ {mentor.Price}/session</h4>
                       </div>
                       <div className="reviewCont">
                         <h4>
@@ -203,7 +203,7 @@ const HomePage = () => {
                         <button className="profileBtn">View Profile</button>
                       </Link>
 
-                      <button className="trialBtn">Book Free Trial</button>
+                      <button className="trialBtn"><span>Book Free Trial</span></button>
                     </div>
 
                     <div className="MoreExp">

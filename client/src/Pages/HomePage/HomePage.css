@@ -111,6 +111,10 @@ img {
   font-weight: 400;
 }
 
+.contentMenu h3{
+  color: #4c4c4c;
+  font-weight: 600;
+}
 .right .right-inductor {
   position: absolute;
   width: 70px;
@@ -126,7 +130,7 @@ img {
   margin-top: -3px;
 }
 .topBarHome{
-  margin-top: 8vh;
+  margin-top: 4vh;
   display: flex;
   justify-content:center;
   align-items: center;
@@ -332,25 +336,7 @@ img {
     justify-content: center;
     column-gap: 1em;
   }
-  .profileBtn{
-    padding: 10px 20px;
-    border: 1px solid #c6c6c8;
-    border-radius: 0.5em;
-    background-color: #fff;
-    width: 12em;
-    cursor: pointer;
-  }
-  .trialBtn{
-    padding: 10px 20px;
-    border: 1px solid #c6c6c8;
-    border-radius: 0.5em;
-    background-color: #007aff;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    width: 18em;
-    cursor: pointer;
-  }
+
   .MoreExp{
     margin-top: 1em;
   }
@@ -474,21 +460,52 @@ img {
 .profileBtn {
   padding: 10px 20px;
   border: 1px solid #c6c6c8;
-  border-radius: 0.5em;
+  border-radius: 5px;
   background-color: #fff;
   width: 12em;
   cursor: pointer;
+  transition: all .2s ease-in;
 }
+
+.profileBtn:hover{
+  background-color: #0066a117;
+}
+
 .trialBtn {
   padding: 10px 20px;
   border: 1px solid #c6c6c8;
-  border-radius: 0.5em;
-  background-color: #007aff;
+  border-radius: 5px;
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
   font-weight: bold;
   color: #fff;
   border: none;
   width: 18em;
   cursor: pointer;
+  position: relative;
+}
+
+.trialBtn span {
+  position: relative;
+  z-index: 2;
+}
+
+
+.trialBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-radius: 5px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(140deg, rgba(42, 127, 177, 0.881) 0%, rgba(1, 160, 251, 1) 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+  z-index: 1;
+}
+
+.trialBtn:hover::before {
+  opacity: 1;
 }
 .MoreExp {
   margin-top: 1em;
@@ -558,7 +575,7 @@ img {
 .input {
   display: block;
   width: 100%;
-  padding: 8px 16px;
+  padding: 0.6em 16px;
   line-height: 25px;
   font-size: 14px;
   font-weight: 500;

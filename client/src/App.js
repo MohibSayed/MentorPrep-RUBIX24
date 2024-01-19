@@ -14,6 +14,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
+import EditMenteeProfile from "./Pages/EditMenteeProfile/EditMenteeProfile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -81,7 +82,25 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="/mentorProfile"
+        path="/menteeProfile/edit/:email"
+        element={
+          <>
+            <SignedIn>
+            <SideBar>
+            <EditMenteeProfile/>
+              </SideBar>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/mentorProfile/:email"
         element={
           <>
             <SignedIn>

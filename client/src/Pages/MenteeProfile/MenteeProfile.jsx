@@ -3,6 +3,8 @@ import "./MenteeProfile.css";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { SiGooglemeet } from "react-icons/si";
+
 const meetingsData = [
   {
     meetingLink: "https://example.com/meeting1",
@@ -89,11 +91,11 @@ const MentorProfile = () => {
   }, []);
 
   return (
-    <div>
+    <div >
       <div className="headerTableHeader">
         <h2>Your Upcoming Sessions</h2>
       </div>
-      <table className="tableSessions">
+      <table className="tableSessions" >
         <thead className="headerrow">
           <tr>
             <th>Meeting Code</th>
@@ -119,7 +121,12 @@ const MentorProfile = () => {
                   to={`http://localhost:3000/room/${meeting.meetingLink}`}
                   target="_blank"
                 >
-                  <button class="goLiveButton">
+                <button className="btn-17 join"  >
+              
+                  <span className="text flex">Join <SiGooglemeet color="white"/></span>
+      
+              </button>
+                  {/* <button class="goLiveButton">
                     Join
                     <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
                       <path
@@ -128,7 +135,7 @@ const MentorProfile = () => {
                         fill-rule="evenodd"
                       ></path>
                     </svg>
-                  </button>
+                  </button> */}
                 </Link>
               </td>
             </tr>

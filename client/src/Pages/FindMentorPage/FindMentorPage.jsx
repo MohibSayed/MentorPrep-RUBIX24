@@ -7,36 +7,99 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Card from "../../Components/Card";
 import NavBar from "../../Components/NavBar/NavBar";
-import './FindMentorPage.css';
+import "./FindMentorPage.css";
+import { MdDelete } from "react-icons/md";
 
 const FindMentorPage = () => {
   const [mentors, setMentors] = useState([]);
+
+
+  const [interests, setInterests] = useState(['']);
+
+  const handleInterestChange = (index, value) => {
+    const newInterests = [...interests];
+    newInterests[index] = value;
+    setInterests(newInterests);
+  };
+
+  const addInterest = () => {
+    setInterests([...interests, '']);
+  };
+
+  const deleteInterest = (index) => {
+    const newInterests = [...interests];
+    newInterests.splice(index, 1);
+    setInterests(newInterests);
+  };
+
+
+
   async function getTopMentors() {
     const email = localStorage.getItem("email");
-    const resp = await fetch(`http://localhost:8800/api/mentee/topmentors/${email}`, {
-      mwthod: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-    })
+    const resp = await fetch(
+      `http://localhost:8800/api/mentee/topmentors/${email}`,
+      {
+        mwthod: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await resp.json();
     setMentors(data);
-    console.log(data)
+    console.log(data);
   }
 
   useEffect(() => {
     getTopMentors();
-  }, [])
+  }, []);
   useEffect(() => {
-    console.log(mentors)
-  }, [mentors])
+    console.log(mentors);
+  }, [mentors]);
   return (
     <>
       <NavBar />
       <h1>Based on your preferances, these most recommended mentors</h1>
+      <div
+        className="flexInterest"
+        style={{ marginTop: "3em", padding: "20px 80px" }}
+      >
+        <div className="InterestDivss">
+          <h2>Domain Preference</h2>
+          <div className="flexMe">
+          {interests.map((interest, index) => (
+            <div key={index} className="interestDiv">
+              <label className="domainInterest">
+                <input
+                  name="interest"
+                  required
+                  placeholder="Enter New Domain"
+                  type="text"
+                  className="input"
+                  value={interest}
+                  onChange={(e) => handleInterestChange(index, e.target.value)}
+                />
+                <button className="delBtn" onClick={() => deleteInterest(index)}><MdDelete size={20} color="#a10505" /></button>
+              </label>
+              
+            </div>
+          ))}
+          <button
+            type="button"
+            onClick={addInterest}
+            className="AddIntbutton"
+          >
+            + Add Interest
+          </button>
+          </div>
+          
+        </div>
+        {/* ))} */}
+      </div>
+
       <Swiper
         style={{
-          paddingTop: "20vh",
+          // paddingTop: "20vh",
           display: "flex",
           justifyContent: "center",
         }}
@@ -83,14 +146,18 @@ const FindMentorPage = () => {
           },
         }}
       >
-        {
-          mentors?.map((mentor, index) => (
-            <SwiperSlide>
-              <Card name={mentor.name} ProfessionTitle={mentor.ProfessionTitle} Bio={mentor.Bio} city={mentor.city} country={mentor.country} number={index} />
-            </SwiperSlide>
-          )
-          )
-        }
+        {mentors?.map((mentor, index) => (
+          <SwiperSlide>
+            <Card
+              name={mentor.name}
+              ProfessionTitle={mentor.ProfessionTitle}
+              Bio={mentor.Bio}
+              city={mentor.city}
+              country={mentor.country}
+              number={index}
+            />
+          </SwiperSlide>
+        ))}
 
         {/* <SwiperSlide>
           <Card />

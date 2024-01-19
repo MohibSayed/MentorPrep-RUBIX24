@@ -27,16 +27,20 @@ main {
 
 /* Sidebar */
 .sidebar {
-  background: rgb(0, 7, 61);
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   color: white;
   height: 100vh;
   overflow-y: auto;
+
 }
 
 .top_section {
   display: flex;
+  column-gap: 1.5rem;
   align-items: center;
   justify-content: space-between;
+  margin: 10px ;
   padding: 15px 10px;
 }
 .logo {
@@ -53,11 +57,13 @@ main {
 .search {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 10px 0;
   height: 30px;
   padding: 10px;
 }
 .search input {
+  padding: 0.4em 0.7em;
   border: none;
   margin-left: 10px;
   border-radius: 5px;
@@ -70,13 +76,20 @@ main {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
 }
+.bars:hover{
+  cursor: pointer;
+}
 .link {
+  width: 100%;
   display: flex;
   color: white;
+  /* justify-content: space-evenly; */
   gap: 10px;
-  padding: 5px 10px;
+  padding: 10px;
   border-right: 4px solid transparent;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
