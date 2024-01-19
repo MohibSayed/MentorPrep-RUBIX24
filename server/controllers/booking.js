@@ -4,7 +4,6 @@ import Mentor from "../models/Mentor.js"
 import { v4 as uuidv4 } from 'uuid';
 import createError from "http-errors"
 
-
 // export const createBooking = async (req, res, next) => {
 //     const reqby = req.params.ReqByEmail;
 //     const newBooking = new Booking({
