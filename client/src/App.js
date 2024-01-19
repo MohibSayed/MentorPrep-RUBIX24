@@ -18,6 +18,7 @@ import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 import EditMenteeProfile from "./Pages/EditMenteeProfile/EditMenteeProfile";
 import Resume from "./Pages/Resume/Resume";
+import TranscriptPage from "./Pages/TranscriptPage/TranscriptPage";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -179,6 +180,20 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <Resume />
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/transcript"
+        element={
+          <>
+            <SignedIn>
+              <TranscriptPage />
             </SignedIn>
 
             <SignedOut>
