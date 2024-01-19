@@ -1,9 +1,11 @@
 import express from "express";
 const router = express.Router()
-import { deleteMentor, getMentor, getMentors, updateMentor, getMentorBookings } from "../controllers/Mentor.js";
+import { deleteMentor, getMentor, getMentors, updateMentor, getMentorBookings, updateMentorAvailability } from "../controllers/Mentor.js";
 
 //update
 router.put("/:id", updateMentor)
+
+router.post("/:email",updateMentorAvailability)
 //delete
 router.delete("/:id", deleteMentor)
 //get
