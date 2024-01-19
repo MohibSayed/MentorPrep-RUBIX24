@@ -98,7 +98,7 @@ const NavBar = () => {
               {/* <li>
               <Link to="/"><a>Dashboard</a></Link>
               </li> */}
-              {isMentor && <Link to={`/dashboard/${emailid}`}><li><a>Mentor Dashboard</a></li></Link>}
+              {isMentor && <Link to={`/mentorProfile/${emailid}`}><li><a>Mentor Dashboard</a></li></Link>}
               {!isMentor && <Link to={`/menteeProfile/${emailid}`}><li><a>Mentee Dashboard</a></li></Link>}
             </ul>
             <div className="btn-container">
