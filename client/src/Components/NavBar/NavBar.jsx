@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  SignInButton,
-  SignOutButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/clerk-react";
+// import {
+//   SignInButton,
+//   SignOutButton,
+//   SignedIn,
+//   SignedOut,
+// } from "@clerk/clerk-react";
 import Logo from "../../Assets/logo.png";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
