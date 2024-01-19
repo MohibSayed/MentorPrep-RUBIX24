@@ -10,14 +10,14 @@ const Video = () => {
         const myMeeting = async () => {
             const appID = 1897934674;
             const serverSecret = "e428acd59fb530b6450af6997631931d";
-            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomId, Date.now().toString(), "Hamza");
+            const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomId, Date.now().toString(), "userName");
 
             // Create instance object from Kit Token.
             const zp = ZegoUIKitPrebuilt.create(kitToken);
             // start the call
             zp.joinRoom({
                 container: containerRef.current,
-                userName: "Hamza",
+                userName: "userName",
                 scenario: {
                     mode: ZegoUIKitPrebuilt.VideoConference,
                 },

@@ -29,17 +29,42 @@ const SingleMentorPage = () => {
   const [currency, setCurrency] = useState("USD");
   const [amount, setAmount] = useState(100);
 
+  useEffect(() => {
+    const fetchMentorData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8800/api/mentor/find/${emailid}`
+        ); // Replace with your actual backend API endpoint
+        setMentorData(response.data);
+        console.log(response.data.availability);
+        // availabilityParam = response.data.availability;
+        // setBookSlot(...bookSlot, price: response.data.price)
+        setBookSlot({ ...bookSlot, price: response.data.Price });
+
+        setaAvailabilityParam(response.data.availability);
+        console.log(availabilityParam);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+      
+    };
+
+    fetchMentorData();
+  }, []);
+
   const handleBookSlot = (date, time) => {
     setBookSlot({
+      ...bookSlot,
       reqBy: userEmail,
       reqFor: emailid,
       date: date,
       time: time,
       plan: "Once",
+      // price: "",
     });
   };
   const planUpdate = (plan) => {
-    setBookSlot({ ...bookSlot, plan: plan });
+    setBookSlot({ ...bookSlot, plan: plan,});
   };
   useEffect(() => {
     console.log(bookSlot);
@@ -58,24 +83,7 @@ const SingleMentorPage = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchMentorData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:8800/api/mentor/find/${emailid}`
-        ); // Replace with your actual backend API endpoint
-        setMentorData(response.data);
-        console.log(response.data.availability);
-        // availabilityParam = response.data.availability;
-        setaAvailabilityParam(response.data.availability);
-        console.log(availabilityParam);
-      } catch (error) {
-        console.error("Error fetching mentors:", error);
-      }
-    };
 
-    fetchMentorData();
-  }, []);
 
   const ButtonWrapper = ({ currency, showSpinner }) => {
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();

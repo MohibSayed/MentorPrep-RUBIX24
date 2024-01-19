@@ -181,7 +181,7 @@ const HomePage = () => {
                       <p>{mentor.bio}</p>
                       <div className="MentorSkills">
                         <span>{mentor.ProfessionTitle}</span>
-                        <span>DSA</span>
+                        {/* <span>DSA</span> */}
                       </div>
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const HomePage = () => {
                   <div className="bookSection">
                     <div className="priceReview">
                       <div className="priceCont">
-                        <h4>Rs. {mentor.Price}/month</h4>
+                        <h4>$ {mentor.Price}/month</h4>
                       </div>
                       <div className="reviewCont">
                         <h4>
