@@ -61,7 +61,13 @@ const RegisterPage = (props) => {
     console.log(mentor);
   };
 
-  const handleAvailabilityChange = (dayIndex, slotIndex, value1, value2, value3) => {
+  const handleAvailabilityChange = (
+    dayIndex,
+    slotIndex,
+    value1,
+    value2,
+    value3
+  ) => {
     const updatedMentor = { ...mentor };
     updatedMentor.availability[dayIndex].day = value1;
     updatedMentor.availability[dayIndex].date = value2;
@@ -86,6 +92,7 @@ const RegisterPage = (props) => {
 
       // Handle success, you can log the response or redirect the user
       console.log(response.data);
+      window.location.reload();
     } catch (error) {
       // Handle error, you can log the error or display an error message to the user
       console.error("Registration failed:", error.message);
@@ -104,6 +111,7 @@ const RegisterPage = (props) => {
 
       // Handle success, you can log the response or redirect the user
       console.log(response.data);
+      window.location.reload();
     } catch (error) {
       // Handle error, you can log the error or display an error message to the user
       console.error("Registration failed:", error.message);
@@ -115,16 +123,16 @@ const RegisterPage = (props) => {
   };
 
   return (
-    <div>
+    <div className="register-page-container">
       <div className="arementorDiv">
         <label>
-          Are you a Mentor?
           <input
             type="checkbox"
             name="mentor"
             // checked={user.subscribeNewsletter}
             onChange={handleMentorMentee}
           />
+         <span>Are you a Mentor?</span> 
         </label>
       </div>
 
@@ -132,7 +140,7 @@ const RegisterPage = (props) => {
         <form className="form" onSubmit={handleMenteeSubmit}>
           {/* ... Other form elements ... */}
           <p className="title">
-            Register yourself to match your fundamentals!{" "}
+            &nbsp;&nbsp;Register yourself to match your fundamentals!{" "}
           </p>
           <p className="message">Signup now and get full access to our app. </p>
 
@@ -225,8 +233,8 @@ const RegisterPage = (props) => {
               type="text"
               className="input"
               onChange={handleMenteeChange}
-            />
-            <span>Profession</span>
+              />
+              <span>Profession</span>
           </label>
 
           <label>
@@ -284,7 +292,7 @@ const RegisterPage = (props) => {
           <div className="InterestDivs"></div>
 
           <button className="submit" type="submit">
-            Submit
+            <span>Submit</span>
           </button>
           <p className="signin">
             This form is mandatory to recommend certain actions
@@ -295,7 +303,7 @@ const RegisterPage = (props) => {
         <form className="form" onSubmit={handleMentorSubmit}>
           {/* ... Other form elements ... */}
           <p className="title">
-            Register yourself to match your fundamentals!{" "}
+          &nbsp;&nbsp;Register yourself to match your fundamentals!{" "}
           </p>
           <p className="message">Signup now and get full access to our app. </p>
 
@@ -425,38 +433,62 @@ const RegisterPage = (props) => {
             />
             <span>Most Preferred Language</span>
           </label>
+          <div className="flex">
           <label>
             Day:
             <input
+            className="input"
               type="text"
               name="availabilityDay"
               value={mentor.availability[0].day}
-              onChange={(e) => handleAvailabilityChange(0, 0, e.target.value, "", "")}
+              onChange={(e) =>
+                handleAvailabilityChange(0, 0, e.target.value, "", "")
+              }
             />
           </label>
           <label>
             Date:
             <input
+                  className="input"
               type="text"
               name="availabilityDate"
               value={mentor.availability[0].date}
-              onChange={(e) => handleAvailabilityChange(0, 0, mentor.availability[0].day, e.target.value, "")}
+              onChange={(e) =>
+                handleAvailabilityChange(
+                  0,
+                  0,
+                  mentor.availability[0].day,
+                  e.target.value,
+                  ""
+                )
+              }
             />
           </label>
           <label>
-            Time Slot:
+            <span>Time Slot:</span>
             <input
               type="text"
+              className="input"
               name="availabilityTime"
               value={mentor.availability[0].slots[0].time}
-              onChange={(e) => handleAvailabilityChange(0, 0, mentor.availability[0].day, mentor.availability[0].date, e.target.value)}
+              onChange={(e) =>
+                handleAvailabilityChange(
+                  0,
+                  0,
+                  mentor.availability[0].day,
+                  mentor.availability[0].date,
+                  e.target.value
+                )
+              }
             />
           </label>
+          </div>
+          
 
           <div className="InterestDivs"></div>
 
           <button className="submit" type="submit">
-            Submit
+            <span>Submit</span>
           </button>
           <p className="signin">
             This form is mandatory to recommend certain actions

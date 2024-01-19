@@ -19,28 +19,24 @@ import "swiper/css";
 import "./HomePage.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import { FaStar } from "react-icons/fa";
+import { FaFolderOpen } from "react-icons/fa6";
+import { BsClipboard2DataFill } from "react-icons/bs";
+import { FaRobot } from "react-icons/fa";
 // import SearchInput from "../../Components/SearchInput";
 const HomePage = () => {
   const { isSignedIn, user, isLoaded } = useUser();
+  const [query, setQuery] = useState("");
   const [mentors, setMentors] = useState([]);
   console.log(user);
   const [isVisible, setIsVisible] = useState(true);
 
-
   const handleVisibility = async (email) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8800/api/auth/menteeLogin",
-        { email }
-      );
-      console.log(response.data);
-      if (response.status === 200) {
+    
+      if (email) {
         setIsVisible(false);
       }
-    } catch (error) {
-      console.error("Registration failed:", error.message);
-    }
-  };
+    } 
+  
   useEffect(() => {
     const email = localStorage.getItem("email");
     console.log(email);
@@ -49,7 +45,7 @@ const HomePage = () => {
     const fetchMentors = async () => {
       try {
         const response = await axios.get("http://localhost:8800/api/mentor/");
-        console.log(response)
+        console.log(response);
         setMentors(response.data);
       } catch (error) {
         console.error("Error fetching mentors:", error);
@@ -58,6 +54,10 @@ const HomePage = () => {
 
     fetchMentors();
   }, []);
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
 
   return (
     <div>
@@ -89,231 +89,134 @@ const HomePage = () => {
               </div>
             </div>
           </section>
-
-
         </SignedOut>
       ) : (
         <SignedIn>
           <NavBar />
-          <div className="signOutBtn">
-            <SignOutButton afterSignOutUrl="/" className="SignOut" />
-          </div>
+          
           <h1>Welcome to Dashbaord {user.fullName}</h1>
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
-          {!isVisible && <RegisterPage user={user} />}
+          {isVisible && <RegisterPage user={user} />}
+          <div className="topBarHome">
           <div className="searchBarDiv">
             <div class="wrapper">
-              <div class="label">Submit your search</div>
-              <div class="searchBar">
+              <div class="label">Find your best mentors and get upskilled</div>
+              <div class="input-container">
                 <input
-                  id="searchQueryInput"
+                  placeholder="Search for Mentors"
                   type="text"
-                  name="searchQueryInput"
-                  placeholder="Search"
-                  value=""
+                  id="searchQueryInput"
+                  onChange={handleInputChange}
+                  value={query}
+                  class="input"
                 />
-                <button
-                  id="searchQuerySubmit"
-                  type="submit"
-                  name="searchQuerySubmit"
-                >
-                  <svg
-                    style={{ width: "24px", height: "24px" }}
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="#666666"
-                      d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"
-                    />
-                  </svg>
-                </button>
+                {/* <span>Search</span> */}
+                <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
               </div>
-              {/* <SearchInput /> */}
             </div>
           </div>
-          <div className="gridItems">
-            {mentors.map((mentor) => (
-              <div key={mentor._id} className="mentorCard">
-                <div className="mentorInnerCard">
-                  <div className="profileContainer">
-                    <div className="profileImage">
-                      <img
-                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
-                        alt=""
-                      />
-                    </div>
-                    <div className="mentorDetails">
-                      <h3>{mentor.name}</h3>
-                      <p>Senior Software Engineering Manager</p>
-                      <h6>Walmart Global Team India</h6>
-                    </div>
-                  </div>
-
-                  <div className="MoreDetails">
-                    <span>
-                      15 yrs of Exp. at Walmart Global Team India | Cardinal
-                      Health{" "}
-                    </span>
-                    <p>{mentor.bio}</p>
-                    <div className="MentorSkills">
-                      <span>{mentor.ProfessionTitle}</span>
-                      <span>DSA</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bookSection">
-                  <div className="priceReview">
-                    <div className="priceCont">
-                      <h4>Rs. {mentor.Price}/month</h4>
-                    </div>
-                    <div className="reviewCont">
-                      <h4>
-                        4.9 <FaStar /> | 50+ mentees
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="BtnsDivs">
-                    <Link to={`/SingleMentor/${mentor.email}`}>
-                      <button className="profileBtn">View Profile</button>
-                    </Link>
-
-                    <button className="trialBtn">Book Free Trial</button>
-                  </div>
-
-                  <div className="MoreExp">
-                    <p>
-                      For: <b>Experienced Profession</b>
-                    </p>
-                    <p>
-                      Targeting: <b>Engineering Manager</b>
-                    </p>
-                  </div>
-                </div>
+          <div className="flexHomeMenus">
+            <div className="menuBox">
+              <div className="iconMenu">
+             
+<FaFolderOpen  size={20}/>
               </div>
-            ))}
-            {/* <div className="mentorCard">
-              <div className="mentorInnerCard">
-                <div className="profileContainer">
-                  <div className="profileImage">
-                    <img
-                      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
-                      alt=""
-                    />
-                  </div>
-                  <div className="mentorDetails">
-                    <h3>Vikas Bharti</h3>
-                    <p>Senior Software Engineering Manager</p>
-                    <h6>Walmart Global Team India</h6>
-                  </div>
-                </div>
-
-                <div className="MoreDetails">
-                  <span>
-                    15 yrs of Exp. at Walmart Global Team India | Cardinal
-                    Health{" "}
-                  </span>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, animi inventore ab vel molestiae nostrum expedita
-                    dolor. Animi, adipisci odio.
-                  </p>
-                  <div className="MentorSkills">
-                    <span>System Design</span>
-                    <span>DSA</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bookSection">
-                <div className="priceReview">
-                  <div className="priceCont">
-                    <h4>Rs. 10,000/month</h4>
-                  </div>
-                  <div className="reviewCont">
-                    <h4>
-                      4.9 <FaStar /> | 50+ mentees
-                    </h4>
-                  </div>
-                </div>
-
-                <div className="BtnsDivs">
-                  <button className="profileBtn">View Profile</button>
-                  <button className="trialBtn">Book Free Trial</button>
-                </div>
-
-                <div className="MoreExp">
-                  <p>
-                    For: <b>Experienced Profession</b>
-                  </p>
-                  <p>
-                    Targeting: <b>Engineering Manager</b>
-                  </p>
-                </div>
+              <div className="contentMenu">
+                <h3>Web Development</h3>
               </div>
             </div>
-            <div className="mentorCard">
-              <div className="mentorInnerCard">
-                <div className="profileContainer">
-                  <div className="profileImage">
-                    <img
-                      src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
-                      alt=""
-                    />
-                  </div>
-                  <div className="mentorDetails">
-                    <h3>Vikas Bharti</h3>
-                    <p>Senior Software Engineering Manager</p>
-                    <h6>Walmart Global Team India</h6>
-                  </div>
-                </div>
-
-                <div className="MoreDetails">
-                  <span>
-                    15 yrs of Exp. at Walmart Global Team India | Cardinal
-                    Health{" "}
-                  </span>
-                  <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Veritatis, animi inventore ab vel molestiae nostrum expedita
-                    dolor. Animi, adipisci odio.
-                  </p>
-                  <div className="MentorSkills">
-                    <span>System Design</span>
-                    <span>DSA</span>
-                  </div>
-                </div>
+            <div className="menuBox">
+              <div className="iconMenu">
+              <BsClipboard2DataFill size={20} />
               </div>
-
-              <div className="bookSection">
-                <div className="priceReview">
-                  <div className="priceCont">
-                    <h4>Rs. 10,000/month</h4>
-                  </div>
-                  <div className="reviewCont">
-                    <h4>
-                      4.9 <FaStar /> | 50+ mentees
-                    </h4>
-                  </div>
-                </div>
-
-                <div className="BtnsDivs">
-                  <button className="profileBtn">View Profile</button>
-                  <button className="trialBtn">Book Free Trial</button>
-                </div>
-
-                <div className="MoreExp">
-                  <p>
-                    For: <b>Experienced Profession</b>
-                  </p>
-                  <p>
-                    Targeting: <b>Engineering Manager</b>
-                  </p>
-                </div>
+              <div className="contentMenu">
+                <h3>Data Science</h3>
               </div>
-            </div> */}
+            </div>
+            <div className="menuBox">
+              <div className="iconMenu">
+              
+<FaRobot size={20}/>
+              </div>
+              <div className="contentMenu">
+                <h3>Machine Learning</h3>
+              </div>
+            </div>
+          </div>
+          </div>
+          
+
+          <div className="gridItems">
+            {mentors
+              .filter(
+                (mentor) =>
+                  mentor.name.toLowerCase().includes(query.toLowerCase()) ||
+                  mentor.ProfessionTitle.toLowerCase().includes(
+                    query.toLowerCase()
+                  )
+              )
+              .map((mentor) => (
+                <div key={mentor._id} className="mentorCard">
+                  <div className="mentorInnerCard">
+                    <div className="profileContainer">
+                      <div className="profileImage">
+                        <img
+                          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
+                          alt=""
+                        />
+                      </div>
+                      <div className="mentorDetails">
+                        <h3>{mentor.name}</h3>
+                        <p>Senior Software Engineering Manager</p>
+                        <h6>Walmart Global Team India</h6>
+                      </div>
+                    </div>
+
+                    <div className="MoreDetails">
+                      <span>
+                        15 yrs of Exp. at Walmart Global Team India | Cardinal
+                        Health{" "}
+                      </span>
+                      <p>{mentor.bio}</p>
+                      <div className="MentorSkills">
+                        <span>{mentor.ProfessionTitle}</span>
+                        <span>DSA</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bookSection">
+                    <div className="priceReview">
+                      <div className="priceCont">
+                        <h4>Rs. {mentor.Price}/month</h4>
+                      </div>
+                      <div className="reviewCont">
+                        <h4>
+                          4.9 <FaStar /> | 50+ mentees
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="BtnsDivs">
+                      <Link to={`/SingleMentor/${mentor.email}`}>
+                        <button className="profileBtn">View Profile</button>
+                      </Link>
+
+                      <button className="trialBtn">Book Free Trial</button>
+                    </div>
+
+                    <div className="MoreExp">
+                      <p>
+                        For: <b>Experienced Profession</b>
+                      </p>
+                      <p>
+                        Targeting: <b>Engineering Manager</b>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
 
           {/* <UserButton /> */}
