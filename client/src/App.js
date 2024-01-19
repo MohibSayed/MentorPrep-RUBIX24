@@ -6,6 +6,12 @@ import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import Video from './Pages/Video/Video'
 import SideBar from "./Components/SideBar/SideBar";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 import MenteeDashboardPage from "./Pages/MenteeDashboardPage/MenteeDashboardPage";
 import OnGoingSession from "./Pages/Sessions/OnGoingSession";
 import RequestedSession from "./Pages/Sessions/RequestedSession";
@@ -48,9 +54,9 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <SideBar>
-                <MentorProfile/>
+                <MentorProfile />
               </SideBar>
-              
+
             </SignedIn>
 
             <SignedOut>
@@ -64,11 +70,11 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBar>
-            <MentorProfile/>
+              <SideBar>
+                <MentorProfile />
               </SideBar>
-              
-              
+
+
             </SignedIn>
 
             <SignedOut>

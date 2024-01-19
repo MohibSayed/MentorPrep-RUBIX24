@@ -11,6 +11,10 @@ import { ImLinkedin } from "react-icons/im";
 import DateCalendarServerRequest from "../../Components/DateCalendarServerRequest";
 import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
+import TimeSlotSVG from "../../Components/SVG/TimeSlotSVG";
+import ReviewSVG from "../../Components/SVG/ReviewSVG";
+import ClockSVG from "../../Components/SVG/ClockSVG";
+import MenteeSVG from "../../Components/SVG/MenteeSVG";
 const SingleMentorPage = () => {
   const { email } = useParams();
   const [mentorData, setMentorData] = useState({});
@@ -18,28 +22,27 @@ const SingleMentorPage = () => {
   const [availabilityParam, setaAvailabilityParam] = useState([]);
   const emailid = email;
   const userEmail = localStorage.getItem("email");
-  const handleBookSlot = (date, time) =>{
-    
+  const handleBookSlot = (date, time) => {
     console.log(date);
     console.log(time);
-    setBookSlot({reqBy: userEmail, reqFor:emailid, date: date, time: time});
-    
-  }
+    setBookSlot({ reqBy: userEmail, reqFor: emailid, date: date, time: time });
+  };
   useEffect(() => {
     console.log(bookSlot);
   }, [bookSlot]);
 
-
   const handleSubmit = async () => {
     console.log("Hi");
     try {
-        const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching mentors:", error);
-      }
-  }
-
+      const response = await axios.post(
+        `http://localhost:8800/api/bookings/${userEmail}`,
+        bookSlot
+      ); // Replace with your actual backend API endpoint
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching mentors:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchMentorData = async () => {
@@ -70,7 +73,7 @@ const SingleMentorPage = () => {
         <div className="leftSingleMentor">
           <div className="heroProfile">
             <div className="coverimageDiv">
-              <img src={ProfileHeader} alt="" />
+              {/* <img src={ProfileHeader} alt="" /> */}
             </div>
             <div className="askQuestionDiv">
               <button className="askaQsBtn">Ask a Question?</button>
@@ -87,17 +90,20 @@ const SingleMentorPage = () => {
                 <div className="statsProfile">
                   <div className="reviewCount">
                     <p>
-                      <FaStar size={15} /> 4.4 Reviews
+                      <ReviewSVG className="profile-icons" />
+                      <span>4.4 Reviews</span>
                     </p>
                   </div>
                   <div className="mentoringMins">
                     <p>
-                      <FaClock size={15} /> 1200+ Mentoring Mins
+                      <ClockSVG className="profile-icons" />
+                      <span>1200+ Mentoring Mins</span>
                     </p>
                   </div>
                   <div className="noOfMentees">
                     <p>
-                      <GrGroup size={20} /> 53+ Mentees
+                      <MenteeSVG className="profile-icons" />
+                      <span>53+ Mentees</span>
                     </p>
                   </div>
                 </div>
@@ -172,54 +178,44 @@ const SingleMentorPage = () => {
               </div>
             </div>
           </div>
-          <div className="careerProfile"></div>
-          <div className="reviewsProfile"></div>
+          <div className="blog-section"></div>
         </div>
         <div className="rightSingleMentor">
           <div className="headerRight">
-            <h2>BOOK YOUR TRIAL 1:1 NOW</h2>
+            <div className="slot-heading">
+              <TimeSlotSVG className="time-icon" />
+              <h2>Book your free trial 1:1 </h2>
+            </div>
+            <p>
+              Book your complimentary one-on-one trial session with a mentor
+              today to experience personalized guidance and support tailored to
+              your needs.{" "}
+            </p>
           </div>
           <div className="dateChart">
-            <h3 style={{ textAlign: "left" }}>Available Dates</h3>
+            <h3>Available Dates</h3>
 
             {/* <DateCalendarServerRequest onHandleClick={handleClick}  /> */}
 
             <div className="gridSlots">
-            
-              {availabilityParam.map((slot) => (
-                
-                  slot.slots.map((bot) => (
-                    <div className="gridDivSlot" onClick={ () => handleBookSlot(slot.date, bot.time)}>
+              {availabilityParam.map((slot) =>
+                slot.slots.map((bot) => (
+                  <div
+                    className="gridDivSlot"
+                    onClick={() => handleBookSlot(slot.date, bot.time)}
+                  >
                     <p>{slot.day}</p>
-                  <h4>{slot.date}</h4>
-                  <p>{bot.time}</p>
-                    </div>
-                  ))
-                
-              ))}
+                    <h4>{slot.date}</h4>
+                    <p>{bot.time}</p>
+                  </div>
+                ))
+              )}
             </div>
-          </div>
-          <div className="slotChart">
-            <h3 style={{ textAlign: "left" }}>Time Slots</h3>
-            <ul className="slotTimes">
-              <li>9.30</li>
-              <li>10.30</li>
-              <li>11.30</li>
-              <li>9.30</li>
-              <li>10.30</li>
-              <li>11.30</li>
-              <li>9.30</li>
-              <li>10.30</li>
-              <li>11.30</li>
-              {/* <li>9.30</li>
-            <li>10.30</li>
-            <li>11.30</li> */}
-            </ul>
           </div>
           <div className="buttonBook">
             <button class="btn-17" onClick={handleSubmit}>
               <span class="text-container">
-                <span class="text" >Book Your Slot Now! </span>
+                <span class="text">Book Your Slot Now! </span>
               </span>
             </button>
           </div>

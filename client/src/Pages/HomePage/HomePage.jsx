@@ -95,9 +95,7 @@ const HomePage = () => {
       ) : (
         <SignedIn>
           <NavBar />
-          <div className="signOutBtn">
-            <SignOutButton afterSignOutUrl="/" className="SignOut" />
-          </div>
+          
           <h1>Welcome to Dashbaord {user.fullName}</h1>
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
@@ -180,7 +178,7 @@ const HomePage = () => {
                       <button className="profileBtn">View Profile</button>
                     </Link>
 
-                    <button className="trialBtn">Book Free Trial</button>
+                    <button className="trialBtn"><span>Book Free Trial</span></button>
                   </div>
 
                   <div className="MoreExp">
