@@ -28,6 +28,7 @@ const SingleMentorPage = () => {
   const [open4, setOpen4] = useState(false);
   const [currency, setCurrency] = useState("USD");
   const [amount, setAmount] = useState(100);
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     const fetchMentorData = async () => {
@@ -53,6 +54,7 @@ const SingleMentorPage = () => {
   }, []);
 
   const handleBookSlot = (date, time) => {
+
     setBookSlot({
       ...bookSlot,
       reqBy: userEmail,
@@ -402,7 +404,9 @@ const SingleMentorPage = () => {
                     // Check if the slot is not filled to capacity
 
                     <div
+                    
                       className="gridDivSlot"
+                      style={{backgroundColor: click ? "#dadada" : ""  }}
                       onClick={() => handleBookSlot(slot.date, bot.time)}
                     >
                       <p>{slot.day}</p>

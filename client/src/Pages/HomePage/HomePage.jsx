@@ -203,7 +203,7 @@ const HomePage = () => {
                         <button className="profileBtn">View Profile</button>
                       </Link>
 
-                      <button className="trialBtn">Book Free Trial</button>
+                      <button className="trialBtn"><span>Book Free Trial</span></button>
                     </div>
 
                     <div className="MoreExp">
