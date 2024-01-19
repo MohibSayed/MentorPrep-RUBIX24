@@ -1,0 +1,76 @@
+.media_card {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    background-color: rgba(17, 24, 39, 1);
+    padding: 1.5rem;
+  }
+  
+  .media_header {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .media_title {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: #fff
+  }
+  
+  .media_price {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #fff
+  }
+  
+  .media_desc {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.625;
+    color: rgba(156, 163, 175, 1);
+  }
+  
+  .media_lists {
+    margin-bottom: 1.5rem;
+    flex: 1 1 0%;
+    color: rgba(156, 163, 175, 1);
+  }
+  
+  .media_lists .media_list {
+    margin-bottom: 0.5rem;
+    display: flex;
+    margin-left: 0.5rem
+  }
+  
+  .media_lists .media_list svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+    color: rgba(167, 139, 250, 1);
+  }
+  
+  .media_action {
+    border: none;
+    outline: none;
+    display: inline-block;
+    border-radius: 0.25rem;
+    background-color: rgba(167, 139, 250, 1);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(17, 24, 39, 1);
+  }

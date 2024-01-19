@@ -18,12 +18,12 @@ const routes = [
     icon: <FaHome />,
   },
   {
-    path: `/mentorProfile/${mentorEmail}`,
+    path: `/menteeProfile/${mentorEmail}`,
     name: "Meetings",
     icon: <FaUser />,
   },
   {
-    path: `/media/${mentorEmail}`,
+    path: `/menteeProfile/media/${mentorEmail}`,
     name: "Media",
     icon: <MdMessage />,
   },
@@ -77,7 +77,7 @@ const routes = [
  
 ];
 
-const SideBar = ({ children }) => {
+const SideBarMentee = ({ children }) => {
   
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -212,4 +212,4 @@ const SideBar = ({ children }) => {
   );
 };
 
-export default SideBar;
+export default SideBarMentee;

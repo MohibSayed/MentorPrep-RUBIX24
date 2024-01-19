@@ -96,8 +96,8 @@ export const createBooking = async (req, res, next) => {
     try {
         if (reqby == req.body.reqBy) {
             const savedBooking = await newBooking.save()
-            const mentor = await Mentor.findOne({ mentorEmail });
-            mentor.totalEarning += price;
+            const mentor = await Mentor.findOne({ email: mentorEmail });
+            mentor.totalEarning += price;   
             const availabilityToUpdate = mentor.availability.find(avail => avail.date === date);
 
             if (availabilityToUpdate) {

@@ -27,6 +27,15 @@ const BookingsSchema = new mongoose.Schema({
         enum: ["Once", "Weekly", "Monthly", "Quarterly"],
         default: "Once",
     },
+    recording:{
+        type: Boolean,
+        default:false
+    },
+    transcription:{
+        type: Object,
+    }
+
+
 },
     { timestamps: true }
 );

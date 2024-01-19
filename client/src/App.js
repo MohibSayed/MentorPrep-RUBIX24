@@ -2,6 +2,8 @@ import * as React from "react";
 
 import HomePage from "./Pages/HomePage/HomePage";
 import SingleMentorPage from "./Pages/SingleMentorPage/SingleMentorPage";
+import SideBarMentee from "./Components/SideBar/SideBarMentee";
+import Media from "./Pages/Media/Media"
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import {
   createBrowserRouter,
@@ -14,6 +16,7 @@ import SideBar from "./Components/SideBar/SideBar";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
+import ScreenRecorder from "./Pages/Video/temp";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -47,6 +50,20 @@ const router = createBrowserRouter(
         }
       />
       <Route
+        path="/temp"
+        element={
+          <>
+            <SignedIn>
+              <ScreenRecorder />
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      {/* <Route
         path="/dashboard/:email"
         element={
           <>
@@ -62,15 +79,28 @@ const router = createBrowserRouter(
             </SignedOut>
           </>
         }
+      /> */}
+      <Route
+        path="/menteeProfile/media/:email"
+        element={
+          <>
+            <SignedIn>
+              <SideBarMentee>
+                <Media/>
+              </SideBarMentee>           
+            </SignedIn>
+
+          </>
+        }
       />
       <Route
         path="/menteeProfile/:email"
         element={
           <>
             <SignedIn>
-              <SideBar>
+              <SideBarMentee>
                 <MenteeProfile/>
-              </SideBar>
+              </SideBarMentee>
               
             </SignedIn>
 
@@ -81,7 +111,7 @@ const router = createBrowserRouter(
         }
       />
       <Route
-        path="/mentorProfile"
+        path="/mentorProfile/:email"
         element={
           <>
             <SignedIn>

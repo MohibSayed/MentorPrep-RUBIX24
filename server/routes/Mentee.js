@@ -23,7 +23,7 @@ router.get("/:id", getMentee);
 router.get("/", getMentees);
 
 //GET BOOKING OF A Mentee
-router.get("/bookingsmade/:username/:status", getMenteeBookings);
+router.get("/bookingsmade/:email", getMenteeBookings);
 
 //GET TOP MENTORS FOR INTERESTS
 router.get("/topmentors/:username", findTopMentorsForInterests);

@@ -38,14 +38,14 @@ export const getMentees = async (req, res, next) => {
         next(err);
     }
 }
-export const getMenteeBookings = async (req, res) => {
+export const getMenteeBookings = async (req, res, next) => {
     try {
-        const status = req.params.status;
-        const Mentee = await Mentee.findOne({ username: req.params.username });
-        const bookings = await Bookings.find({ reqBy: Mentee._id, status: status });
+        // const status = req.params.status;
+        const myMentee = await Mentee.findOne({ email: req.params.email });
+        const bookings = await Bookings.find({ reqBy: myMentee.email, recording: true });
         res.status(200).json(bookings);
     } catch (err) {
-        res.status(500).json(err);
+        next(err);
     }
 };
 export const findTopMentorsForInterests = async (req, res) => {

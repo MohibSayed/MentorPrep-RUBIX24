@@ -94,7 +94,7 @@ const HomePage = () => {
         <SignedIn>
           <NavBar />
           
-          <h1>Welcome to Dashbaord {user.fullName}</h1>
+          <h1>Welcome to Dashboard {user.fullName}</h1>
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
           {isVisible && <RegisterPage user={user} />}
