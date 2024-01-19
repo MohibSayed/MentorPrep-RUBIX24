@@ -1,10 +1,14 @@
 
 import Booking from "../models/Bookings.js"
+import Mentor from "../models/Mentor.js";
 import { v4 as uuidv4 } from 'uuid';
 import createError from "http-errors"
+import { getMentors } from "./Mentor.js";
 
 export const createBooking = async (req, res, next) => {
     const reqby = req.params.ReqByEmail;
+    const {reqFor,time,date,price} = req.body;
+    const mentorEmail = reqFor;
     const newBooking = new Booking({
         ...req.body,
         meetingLink: uuidv4(),
@@ -12,6 +16,19 @@ export const createBooking = async (req, res, next) => {
     try {
         if (reqby == req.body.reqBy) {
             const savedBooking = await newBooking.save()
+            const mentor = await Mentor.findOne({ mentorEmail });
+            mentor.totalEarning += price; 
+            const availabilityToUpdate = mentor.availability.find(avail => avail.date === date);
+
+            if (availabilityToUpdate) {
+                const slotToUpdate = availabilityToUpdate.slots.find(slot => slot.time === time);
+
+                if (slotToUpdate) {
+                    // Increase the filled attribute by 1
+                    slotToUpdate.filled += 1;
+                }
+            }
+            await mentor.save();
             res.status(201).json(savedBooking)
         } else {
             next(createError(403, "You are not authorized!"))
@@ -67,3 +84,8 @@ export const getMenteeBookings = async (req, res, next) => {
         next(err);
     }
 };
+
+// export const increaseSlotCap = async (req,res) => {
+//     const {email,newSlot} = req.body;
+
+// }

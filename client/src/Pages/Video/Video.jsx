@@ -5,6 +5,7 @@ import './Video.css';
 const Video = () => {
     const { roomId } = useParams();
     const containerRef = useRef(null);
+    const email = localStorage.getItem("email");
 
     useEffect(() => {
         const myMeeting = async () => {
@@ -17,7 +18,7 @@ const Video = () => {
             // start the call
             zp.joinRoom({
                 container: containerRef.current,
-                userName: "Hamza",
+                userName: {email},
                 scenario: {
                     mode: ZegoUIKitPrebuilt.VideoConference,
                 },

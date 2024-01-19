@@ -51,6 +51,14 @@ const mentorSchema = new mongoose.Schema(
                     slots: [
                         {
                             time: String, // Time slot, e.g., "9:00 AM - 11:00 AM"
+                            capacity:{
+                                type:Number,
+                                default:1
+                            },
+                            filled:{
+                                type:Number,
+                                default:0
+                            }
                         },
                     ],
                 },
@@ -75,6 +83,10 @@ const mentorSchema = new mongoose.Schema(
                 },
             ],
         },
+        totalEarning:{
+            type:Number,
+            default:0
+        }
     },
     { timestamps: true }
 );
