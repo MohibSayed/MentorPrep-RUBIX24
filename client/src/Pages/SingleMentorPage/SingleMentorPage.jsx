@@ -17,6 +17,7 @@ import {
 import Popup from "../../Components/Popup/Popup";
 const SingleMentorPage = () => {
   const { email } = useParams();
+  const [isPopupOpen, setPopupOpen] = useState(false);
   const [mentorData, setMentorData] = useState({});
   const [bookSlot, setBookSlot] = useState({});
   const [availabilityParam, setaAvailabilityParam] = useState([]);
@@ -96,6 +97,9 @@ const SingleMentorPage = () => {
         bookSlot
       ); // Replace with your actual backend API endpoint
       console.log(response.data);
+      if(response.status == 201) {
+        setPopupOpen(true);
+      }
     } catch (error) {
       console.error("Error fetching mentors:", error);
     }
@@ -145,7 +149,7 @@ const SingleMentorPage = () => {
       </>
     );
   };
-  const [isPopupOpen, setPopupOpen] = useState(false);
+
 
   const handleOpenPopup = () => {
     setPopupOpen(true);
@@ -168,10 +172,10 @@ const SingleMentorPage = () => {
             <div className="askQuestionDiv">
               <button className="askaQsBtn">${mentorData.Price} / session</button>
               {/* <button onClick={handleOpenPopup}>Open Popup</button> */}
-              {/* 
+              
       {isPopupOpen && (
-        <Popup text="Hello, this is your popup!" onClose={handleClosePopup} />
-      )} */}
+        <Popup text="Your Slot has been booked successfully!" onClose={handleClosePopup} />
+      )}
             </div>
             <div className="infoProfile">
               <div className="leftInfo">
