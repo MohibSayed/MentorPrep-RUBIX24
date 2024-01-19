@@ -575,7 +575,7 @@ img {
 .input {
   display: block;
   width: 100%;
-  padding: 8px 16px;
+  padding: 0.6em 16px;
   line-height: 25px;
   font-size: 14px;
   font-weight: 500;

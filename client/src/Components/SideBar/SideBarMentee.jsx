@@ -10,7 +10,7 @@ import { useState } from "react";
 import SidebarMenu from "./SidebarMenu";
 import './SideBar.css';
 import { useParams } from "react-router-dom";
-const mentorEmail = localStorage.getItem("email");
+const menteeEmail = localStorage.getItem("email");
 const routes = [
   {
     path: `/`,
@@ -18,12 +18,12 @@ const routes = [
     icon: <FaHome />,
   },
   {
-    path: `/menteeProfile/${mentorEmail}`,
+    path: `/menteeProfile/${menteeEmail}`,
     name: "Meetings",
     icon: <FaUser />,
   },
   {
-    path: `/menteeProfile/media/${mentorEmail}`,
+    path: `/menteeProfile/media/${menteeEmail}`,
     name: "Media",
     icon: <MdMessage />,
   },
@@ -33,26 +33,10 @@ const routes = [
     icon: <BiAnalyse />,
   },
   {
-    path: "/file-manager",
-    name: "File Manager",
+    path: `/menteeProfile/edit/${menteeEmail}`,
+    name: "Edit Profile",
     icon: <AiTwotoneFileExclamation />,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Edit Profile ",
-        icon: <FaUser />,
-      },
-      // {
-      //   path: "/settings/2fa",
-      //   name: "2FA",
-      //   icon: <FaLock />,
-      // },
-      {
-        path: "/settings/billing",
-        name: "Past Transactions",
-        icon: <FaMoneyBill />,
-      },
-    ],
+    
   },
  
   {
@@ -60,19 +44,7 @@ const routes = [
     name: "Settings",
     icon: <BiCog />,
     exact: true,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Dark Mode ",
-        icon: <FaUser />,
-      },
-      
-      {
-        path: "/settings/billing",
-        name: "Change Password",
-        icon: <FaMoneyBill />,
-      },
-    ],
+    
   },
  
 ];
@@ -149,12 +121,12 @@ const SideBarMentee = ({ children }) => {
               <FaBars onClick={toggle} />
             </div>
           </div>
-          <div className="search">
-            <div className="search_icon">
+          {/* <div className="search"> */}
+            {/* <div className="search_icon">
               <BiSearch />
-            </div>
+            </div> */}
             {/* <AnimatePresence> */}
-              {isOpen && (
+              {/* {isOpen && (
                 <input
                   initial="hidden"
                   animate="show"
@@ -163,9 +135,9 @@ const SideBarMentee = ({ children }) => {
                   type="text"
                   placeholder="Search"
                 />
-              )}
+              )} */}
             {/* </AnimatePresence> */}
-          </div>
+          {/* </div> */}
           <section className="routes">
             {routes.map((route, index) => {
               if (route.subRoutes) {

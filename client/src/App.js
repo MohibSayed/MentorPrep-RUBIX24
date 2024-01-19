@@ -13,10 +13,13 @@ import {
 } from 'react-router-dom';
 import Video from './Pages/Video/Video'
 import SideBar from "./Components/SideBar/SideBar";
+
+import SideBarMentee from "./Components/SideBar/SideBarMentee";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 import ScreenRecorder from "./Pages/Video/temp";
+import EditMenteeProfile from "./Pages/EditMenteeProfile/EditMenteeProfile";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -98,6 +101,7 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
+            {/* For Mentee -> SideBarMentee  */}
               <SideBarMentee>
                 <MenteeProfile/>
               </SideBarMentee>
@@ -111,7 +115,43 @@ const router = createBrowserRouter(
         }
       />
       <Route
+        path="/menteeProfile/edit/:email"
+        element={
+          <>
+            <SignedIn>
+            <SideBarMentee>
+            <EditMenteeProfile/>
+              </SideBarMentee>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
         path="/mentorProfile/:email"
+        element={
+          <>
+            <SignedIn>
+            <SideBar>
+            <MentorProfile/>
+              </SideBar>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/mentorProfile/edit/:email"
         element={
           <>
             <SignedIn>
