@@ -74,27 +74,27 @@ const NavBar = () => {
             />
             <ul className="navList">
               <li>
-              <Link to="/"><a>Home</a></Link>
-                
+                <Link to="/"><a>Home</a></Link>
+
               </li>
-              
+
               <li>
-              <Link to="/"><a>Live Events</a></Link>
+                <Link to="/"><a>Live Events</a></Link>
               </li>
               <li>
-              <a
+                <a
                   href="http://localhost:3001/"
                   style={{ textDecoration: "none" }}
                 >
                   Community
                 </a>
-                
+
               </li>
-            
-              {/* <li>
-              <Link to="/"><a>Ask Mentors</a></Link>
-              </li> */}
-              
+
+              <li>
+                <Link to="/Resume"><a>Resume</a></Link>
+              </li>
+
               {/* <li>
               <Link to="/"><a>Dashboard</a></Link>
               </li> */}
@@ -102,11 +102,11 @@ const NavBar = () => {
               {!isMentor && <Link to={`/menteeProfile/${emailid}`}><li><a>Mentee Dashboard</a></li></Link>}
             </ul>
             <div className="btn-container">
-              
-            {!isMentor && <Link to="/matchMentor">
-              <button className="blueBtn">
-                <span>Match Mentor</span>
-              </button>
+
+              {!isMentor && <Link to="/matchMentor">
+                <button className="blueBtn">
+                  <span>Match Mentor</span>
+                </button>
               </Link>}
 
               {/* <Link to="/matchMentor">
@@ -120,7 +120,7 @@ const NavBar = () => {
             </div>
           </div>
         </nav>
-        
+
       </header>
     </div>
   );

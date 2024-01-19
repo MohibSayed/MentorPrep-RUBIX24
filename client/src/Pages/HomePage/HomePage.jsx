@@ -31,12 +31,12 @@ const HomePage = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   const handleVisibility = async (email) => {
-    
-      if (email) {
-        setIsVisible(false);
-      }
-    } 
-  
+
+    if (email) {
+      setIsVisible(false);
+    }
+  }
+
   useEffect(() => {
     const email = localStorage.getItem("email");
     console.log(email);
@@ -93,59 +93,59 @@ const HomePage = () => {
       ) : (
         <SignedIn>
           <NavBar />
-          
+
           <h1>Welcome to Dashbaord {user.fullName}</h1>
 
           {/* {isRegistrationDone && <RegisterPage user={user} />} */}
           {isVisible && <RegisterPage user={user} />}
           <div className="topBarHome">
-          <div className="searchBarDiv">
-            <div class="wrapper">
-              <div class="label">Find your best mentors and get upskilled</div>
-              <div class="input-container">
-                <input
-                  placeholder="Search for Mentors"
-                  type="text"
-                  id="searchQueryInput"
-                  onChange={handleInputChange}
-                  value={query}
-                  class="input"
-                />
-                {/* <span>Search</span> */}
-                <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+            <div className="searchBarDiv">
+              <div class="wrapper">
+                <div class="label">Find your best mentors and get upskilled</div>
+                <div class="input-container">
+                  <input
+                    placeholder="Search for Mentors"
+                    type="text"
+                    id="searchQueryInput"
+                    onChange={handleInputChange}
+                    value={query}
+                    class="input"
+                  />
+                  {/* <span>Search</span> */}
+                  <svg viewBox="0 0 1024 1024"><path class="path1" d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"></path></svg>
+                </div>
+              </div>
+            </div>
+            <div className="flexHomeMenus">
+              <div className="menuBox">
+                <div className="iconMenu">
+
+                  <FaFolderOpen size={20} />
+                </div>
+                <div className="contentMenu">
+                  <h3>Web Development</h3>
+                </div>
+              </div>
+              <div className="menuBox">
+                <div className="iconMenu">
+                  <BsClipboard2DataFill size={20} />
+                </div>
+                <div className="contentMenu">
+                  <h3>Data Science</h3>
+                </div>
+              </div>
+              <div className="menuBox">
+                <div className="iconMenu">
+
+                  <FaRobot size={20} />
+                </div>
+                <div className="contentMenu">
+                  <h3>Machine Learning</h3>
+                </div>
               </div>
             </div>
           </div>
-          <div className="flexHomeMenus">
-            <div className="menuBox">
-              <div className="iconMenu">
-             
-<FaFolderOpen  size={20}/>
-              </div>
-              <div className="contentMenu">
-                <h3>Web Development</h3>
-              </div>
-            </div>
-            <div className="menuBox">
-              <div className="iconMenu">
-              <BsClipboard2DataFill size={20} />
-              </div>
-              <div className="contentMenu">
-                <h3>Data Science</h3>
-              </div>
-            </div>
-            <div className="menuBox">
-              <div className="iconMenu">
-              
-<FaRobot size={20}/>
-              </div>
-              <div className="contentMenu">
-                <h3>Machine Learning</h3>
-              </div>
-            </div>
-          </div>
-          </div>
-          
+
 
           <div className="gridItems">
             {mentors

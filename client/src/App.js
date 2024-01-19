@@ -15,6 +15,7 @@ import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 import EditMenteeProfile from "./Pages/EditMenteeProfile/EditMenteeProfile";
+import Resume from "./Pages/Resume/Resume";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -53,9 +54,9 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <SideBar>
-                <MentorProfile/>
+                <MentorProfile />
               </SideBar>
-              
+
             </SignedIn>
 
             <SignedOut>
@@ -70,9 +71,9 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <SideBar>
-                <MenteeProfile/>
+                <MenteeProfile />
               </SideBar>
-              
+
             </SignedIn>
 
             <SignedOut>
@@ -86,11 +87,11 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBar>
-            <EditMenteeProfile/>
+              <SideBar>
+                <EditMenteeProfile />
               </SideBar>
-              
-              
+
+
             </SignedIn>
 
             <SignedOut>
@@ -104,11 +105,11 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBar>
-            <MentorProfile/>
+              <SideBar>
+                <MentorProfile />
               </SideBar>
-              
-              
+
+
             </SignedIn>
 
             <SignedOut>
@@ -122,9 +123,23 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-              <FindMentorPage/>
-              
-              
+              <FindMentorPage />
+
+
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/Resume"
+        element={
+          <>
+            <SignedIn>
+              <Resume />
             </SignedIn>
 
             <SignedOut>
