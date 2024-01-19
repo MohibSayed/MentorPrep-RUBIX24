@@ -7,14 +7,15 @@ import "swiper/css";
 import Card from "../../Components/Card";
 import NavBar from "../../Components/NavBar/NavBar";
 import './FindMentorPage.css';
+
 const FindMentorPage = () => {
-  const [mentors,setMentors] = useState([]);
-  async function getTopMentors(){
+  const [mentors, setMentors] = useState([]);
+  async function getTopMentors() {
     const email = localStorage.getItem("email");
-    const resp = await fetch(`http://localhost:8800/api/mentee/topmentors/${email}`,{
-      mwthod:"POST",
-      headers:{
-        "Content-Type":"application/json"
+    const resp = await fetch(`http://localhost:8800/api/mentee/topmentors/${email}`, {
+      mwthod: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
     })
     const data = await resp.json();
@@ -22,12 +23,12 @@ const FindMentorPage = () => {
     console.log(data)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getTopMentors();
-  },[])
-  useEffect(()=>{
+  }, [])
+  useEffect(() => {
     console.log(mentors)
-  },[mentors])
+  }, [mentors])
   return (
     <>
       <NavBar />
@@ -80,15 +81,15 @@ const FindMentorPage = () => {
           },
         }}
       >
-      {
-        mentors.map((mentor,index) => (
-          <SwiperSlide>
-          <Card name={mentor.name} ProfessionTitle={mentor.ProfessionTitle} Bio={mentor.Bio} city={mentor.city} country={mentor.country} number={index}/>
-        </SwiperSlide>
-        )
-        )
-      }
-        
+        {
+          mentors?.map((mentor, index) => (
+            <SwiperSlide>
+              <Card name={mentor.name} ProfessionTitle={mentor.ProfessionTitle} Bio={mentor.Bio} city={mentor.city} country={mentor.country} number={index} />
+            </SwiperSlide>
+          )
+          )
+        }
+
         {/* <SwiperSlide>
           <Card />
         </SwiperSlide>{" "}

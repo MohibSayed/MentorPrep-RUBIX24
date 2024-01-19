@@ -1,5 +1,6 @@
 
 import Booking from "../models/Bookings.js"
+import Mentor from "../models/Mentor.js"
 import { v4 as uuidv4 } from 'uuid';
 import createError from "http-errors"
 
@@ -22,7 +23,7 @@ import createError from "http-errors"
 // }
 export const createBooking = async (req, res, next) => {
     const reqby = req.params.ReqByEmail;
-    const {reqFor,time,date} = req.body;
+    const { reqFor, time, date } = req.body;
     const mentorEmail = reqFor;
     const newBooking = new Booking({
         ...req.body,
@@ -82,7 +83,7 @@ export const getBooking = async (req, res, next) => {
     }
 };
 export const getBookings = async (req, res, next) => {
-    const  reqForEmail  = req.params.emailid;
+    const reqForEmail = req.params.emailid;
     try {
         const allBookings = await Booking.find({ reqFor: reqForEmail })
         res.status(200).json(allBookings)
@@ -91,7 +92,7 @@ export const getBookings = async (req, res, next) => {
     }
 };
 export const getMenteeBookings = async (req, res, next) => {
-    const  reqByEmail  = req.params.emailid;
+    const reqByEmail = req.params.emailid;
     try {
         const allBookings = await Booking.find({ reqBy: reqByEmail })
         res.status(200).json(allBookings)
