@@ -62,11 +62,17 @@ const RegisterPage = (props) => {
   };
 
   const handleAvailabilityChange = (
+    
     dayIndex,
+   
     slotIndex,
+   
     value1,
+   
     value2,
+   
     value3
+  
   ) => {
     const updatedMentor = { ...mentor };
     updatedMentor.availability[dayIndex].day = value1;
@@ -92,6 +98,7 @@ const RegisterPage = (props) => {
 
       // Handle success, you can log the response or redirect the user
       console.log(response.data);
+      window.location.reload();
     } catch (error) {
       // Handle error, you can log the error or display an error message to the user
       console.error("Registration failed:", error.message);
@@ -110,6 +117,7 @@ const RegisterPage = (props) => {
 
       // Handle success, you can log the response or redirect the user
       console.log(response.data);
+      window.location.reload();
     } catch (error) {
       // Handle error, you can log the error or display an error message to the user
       console.error("Registration failed:", error.message);
@@ -431,20 +439,23 @@ const RegisterPage = (props) => {
             />
             <span>Most Preferred Language</span>
           </label>
+          <div className="flex">
           <label>
             Day:
             <input
+            className="input"
               type="text"
               name="availabilityDay"
               value={mentor.availability[0].day}
               onChange={(e) =>
                 handleAvailabilityChange(0, 0, e.target.value, "", "")
               }
-            />  
+            />
           </label>
           <label>
             Date:
             <input
+                  className="input"
               type="text"
               name="availabilityDate"
               value={mentor.availability[0].date}
@@ -460,9 +471,10 @@ const RegisterPage = (props) => {
             />
           </label>
           <label>
-            Time Slot:
+            <span>Time Slot:</span>
             <input
               type="text"
+              className="input"
               name="availabilityTime"
               value={mentor.availability[0].slots[0].time}
               onChange={(e) =>
@@ -476,6 +488,8 @@ const RegisterPage = (props) => {
               }
             />
           </label>
+          </div>
+          
 
           <div className="InterestDivs"></div>
 

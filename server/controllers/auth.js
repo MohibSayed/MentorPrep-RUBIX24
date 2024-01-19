@@ -62,3 +62,14 @@ export const menteeLogin = async (req, res, next) => {
         next(err)
     }
 }
+
+
+export const userType = async (req,res,next) => {
+    const {email} = req.body;
+    const user = await Mentee.findOne({email:email});
+    if(!user){
+        return res.status(200).json({Type:"Mentor"})
+    }
+    return res.status(200).json({Type:"Mentee"});
+
+}

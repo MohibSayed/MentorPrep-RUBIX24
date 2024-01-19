@@ -18,6 +18,8 @@ import RequestedSession from "./Pages/Sessions/RequestedSession";
 import PastSessions from "./Pages/Sessions/PastSessions";
 import EditProfilePage from "./Pages/EditProfilePage/EditProfilePage";
 
+import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
+import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -42,6 +44,7 @@ const router = createBrowserRouter(
             <SignedIn>
               <Video />
             </SignedIn>
+
             <SignedOut>
               <RedirectToSignIn />
             </SignedOut>
@@ -54,9 +57,26 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <SideBar>
-                <MentorProfile />
+                <MentorProfile/>
               </SideBar>
+              
+            </SignedIn>
 
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/menteeProfile/:email"
+        element={
+          <>
+            <SignedIn>
+              <SideBar>
+                <MenteeProfile/>
+              </SideBar>
+              
             </SignedIn>
 
             <SignedOut>
@@ -73,8 +93,24 @@ const router = createBrowserRouter(
               <SideBar>
                 <MentorProfile />
               </SideBar>
+              
+              
+            </SignedIn>
 
-
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/matchMentor"
+        element={
+          <>
+            <SignedIn>
+              <FindMentorPage/>
+              
+              
             </SignedIn>
 
             <SignedOut>

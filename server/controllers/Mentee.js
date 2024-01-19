@@ -50,8 +50,8 @@ export const getMenteeBookings = async (req, res) => {
 };
 export const findTopMentorsForInterests = async (req, res) => {
     try {
-        const username = req.params.username;
-        const mentee = await Mentee.findOne({ username });
+        const email = req.params.username;
+        const mentee = await Mentee.findOne({ email });
         if (!mentee) return res.status(404).json({ error: 'Mentee not found' });
         const menteeInterests = mentee.interests;
         if (!menteeInterests || menteeInterests.length === 0)

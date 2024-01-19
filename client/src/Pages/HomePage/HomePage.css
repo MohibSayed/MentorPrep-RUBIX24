@@ -135,21 +135,54 @@ img {
   padding-right: 7px;
   margin-top: -3px;
 }
-
+.topBarHome{
+  margin-top: 8vh;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  column-gap: 10rem;
+}
+.flexHomeMenus{
+  display: flex;
+  justify-content:space-between;
+  /* z-index: 999999; */
+  align-items: center;
+}
+.menuBox{
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  justify-content:center;
+  padding: 16px 20px;
+  background: #f0f0f0;
+  margin: 10px;
+  border-radius: 8px;
+}
 .carousel {
   margin: 40px 40px;
   padding: 15px;
 }
-
-.gridItems {
-  grid-template-columns: 1fr 1fr 1fr;
+.searchBarDiv svg {
+  color: #7d7d7d;
+  fill: currentColor;
+  width:50px;
+  height: 50px;
+  padding: 10px;
+  /* left: -10%; */
+}
+.gridItems{
   display: grid;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
+  /* flex-wrap: wrap;  */
   justify-content: center;
+  justify-items: center; 
+  align-items: center;
+  column-gap: 20px;
+  margin: 0 60px;
 }
 
 .card {
-  width: 250px;
+  width: 180px;
   background: rgb(230, 230, 230);
   padding: 0.4em;
   border-radius: 6px;
@@ -170,7 +203,7 @@ img {
 .wrapper {
   width: 100%;
   max-width: 31.25rem;
-  margin: 3rem 2rem 2rem 2rem;
+  margin: 2rem 2rem 2rem 0rem;
 }
 
 .label {
@@ -186,6 +219,10 @@ img {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.searchBarDiv{
+  margin-left: 2vw;
+  /* margin-top: 8vh; */
 }
 
 #searchQueryInput {
@@ -249,85 +286,87 @@ img {
   cursor: pointer;
 }
 
+/* .signOutBtn {
+  position: fixed;
+  z-index: 99999999999;
+  right: 15px;
+  top: 15px;
+} */
 
+/* .SignOut {
+  padding: 10px 15px;
+  background-color: rgb(143, 0, 0);
+  font-size: 1.2rem;
+  color: #fefefe;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+} */
 
 /* CARD  */
 .mentorCard {
-  margin: 20px 80px;
-  width: 23em;
+  margin: 20px 10px;
+  width: 28em;
   height: auto;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 1px solid #c6c6c8;
   border-radius: 0.5em;
 }
-
 .mentorInnerCard {
   padding: 20px;
 }
-
 .profileContainer {
   display: flex;
   align-items: center;
   column-gap: 1em;
 }
-
 .profileImage img {
   border-radius: 50%;
   width: 5em;
 }
-
 .mentorDetails h3 {
   font-weight: bold;
   padding-bottom: 0.2em;
 }
-
 .mentorDetails p {
   color: #808084;
   font-size: 0.8em;
   padding-bottom: 0.2em;
 }
-
 .mentorDetails h6 {
   font-size: 1em;
   font-weight: 400;
 }
-
 .MoreDetails {
   padding-top: 1em;
 }
-
 .MoreDetails span {
   font-size: 1em;
   color: #000;
 }
-
 .MoreDetails p {
   margin-top: 0.5em;
   color: #808084;
   padding-bottom: 1em;
 }
-
 .MentorSkills {
   display: flex;
   align-items: center;
   column-gap: 1em;
 }
-
 .MentorSkills span {
   font-size: 1em;
   font-weight: 300;
   border-bottom: 1px dotted #000;
 }
-
 .bookSection {
   background-color: #f9f9f9;
   padding: 15px 20px;
 }
-
 .priceReview {
   display: flex;
   justify-content: space-between;
 }
-
 .BtnsDivs {
   margin-top: 1em;
   display: flex;
@@ -394,4 +433,86 @@ img {
 .MoreExp p {
   padding-bottom: 0.5em;
   font-size: 0.8em;
+}
+
+
+.input-container {
+  position: relative;
+  display: flex;
+  width: 40vw;
+}
+.input-container input{
+  padding: 30px;
+}
+.input-container > span,
+.input-container .input {
+  white-space: nowrap;
+  display: block;
+}
+
+.input-container > span,
+.input-container .input:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.input-container > span,
+.input-container .input {
+  border-radius: 0 6px 6px 0;
+}
+
+.input-container > span,
+.input-container .input {
+  margin-left: -1px;
+}
+
+.input-container .input {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  width: 1%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.input-container span {
+  text-align: center;
+  padding: 15px 12px;
+  font-size: 14px;
+  line-height: 25px;
+  color: #6b7385;
+  background: #89c2ff;
+  border: 1px solid #CDD9ED;
+  font-weight: bold;
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+
+.input-container:focus-within > span {
+  color: #fff;
+  background-color: #007aff;
+  border-color: #007aff;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  color: #99A3BA;
+  border: 1px solid  #CDD9ED;
+  background: #fff;
+  transition: border 0.3s ease;
+}
+
+.input::placeholder {
+  color: #CBD1DC;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #148cd1;
 }
