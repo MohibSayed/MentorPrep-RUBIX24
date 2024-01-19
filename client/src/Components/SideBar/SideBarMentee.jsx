@@ -10,7 +10,7 @@ import { useState } from "react";
 import SidebarMenu from "./SidebarMenu";
 import './SideBar.css';
 import { useParams } from "react-router-dom";
-const mentorEmail = localStorage.getItem("email");
+const menteeEmail = localStorage.getItem("email");
 const routes = [
   {
     path: `/`,
@@ -18,7 +18,7 @@ const routes = [
     icon: <FaHome />,
   },
   {
-    path: `/mentorProfile/${mentorEmail}`,
+    path: `/menteeProfile/${menteeEmail}`,
     name: "Meetings",
     icon: <FaUser />,
   },
@@ -33,7 +33,7 @@ const routes = [
     icon: <BiAnalyse />,
   },
   {
-    path: `/mentorProfile/edit/${mentorEmail}`,
+    path: `/menteeProfile/edit/${menteeEmail}`,
     name: "Edit Profile",
     icon: <AiTwotoneFileExclamation />,
     
@@ -49,7 +49,7 @@ const routes = [
  
 ];
 
-const SideBar = ({ children }) => {
+const SideBarMentee = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const inputAnimation = {
@@ -183,4 +183,4 @@ const SideBar = ({ children }) => {
   );
 };
 
-export default SideBar;
+export default SideBarMentee;
