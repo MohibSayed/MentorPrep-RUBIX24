@@ -87,14 +87,38 @@ const MentorProfile = () => {
 
     fetchMentors();
   }, []);
-  const [ slot, setSlot] = useState({});
+  const [slot, setSlot] = useState({});
+
   const handleInput = (name, value) => {
-    setSlot((prevSlot) => ({
+    // const { date, time } = data;
+    if(name == "date"){
+      setSlot((prevSlot) => ({
       ...prevSlot,
-      [name]: value,
+      date: value,
     }));
+    }
+    else{
+      setSlot((prevSlot) => ({
+      ...prevSlot,
+      // date: date,
+      newSlot: { time: value },
+    }));
+    }
+    
   };
   console.log(slot);
+
+  const handleAddSlot = async () => {
+    try {
+        const response = await axios.post(
+          `http://localhost:8800/api/mentor/${emailid}`, slot
+        );
+        console.log(response.data);
+        // setBookingsData(response.data);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+  }
 
   return (
     <div>
@@ -144,9 +168,9 @@ const MentorProfile = () => {
         </tbody>
       </table>
       <div className="addSlot">
-      <form className="form">
-      <div className="flex">
-      <label>
+        <form className="form">
+          <div className="flex">
+            {/* <label>
         Day:
         <input
           className="input"
@@ -154,27 +178,30 @@ const MentorProfile = () => {
           name="availabilityDay"
           onChange={(e) => handleInput(e.target.name, e.target.value)}
         />
-      </label>
-      <label>
-        Date:
-        <input
-          className="input"
-          type="text"
-          name="availabilityDate"
-          onChange={(e) => handleInput(e.target.name, e.target.value)}
-        />
-      </label>
-      <label>
-        <span>Time Slot:</span>
-        <input
-          type="text"
-          className="input"
-          name="availabilityTime"
-          onChange={(e) => handleInput(e.target.name, e.target.value)}
-        />
-      </label>
+      </label> */}
+            <label>
+              Date:
+              <input
+                className="input"
+                type="text"
+                name="date"
+                placeholder="Enter Slot date (YYYY-MM-DD)"
+                onChange={(e) => handleInput(e.target.name, e.target.value)}
+              />
+            </label>
+            <label>
+              <span>Time Slot:</span>
+              <input
+                type="text"
+                className="input"
+                name="time"
+                placeholder="Enter Slot Time (e.g 09:00am - 02:00pm)"
+                onChange={(e) => handleInput(e.target.name, e.target.value)}
+              />
+            </label>
           </div>
-      </form>
+          <button className="addSlotbutton" onClick={handleAddSlot}>Add Slot</button>
+        </form>
       </div>
     </div>
   );

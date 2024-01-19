@@ -9,7 +9,11 @@ import { GrGroup } from "react-icons/gr";
 import { FaLocationDot } from "react-icons/fa6";
 import NavBar from "../../Components/NavBar/NavBar";
 import axios from "axios";
-import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import {
+  PayPalScriptProvider,
+  PayPalButtons,
+  usePayPalScriptReducer,
+} from "@paypal/react-paypal-js";
 import Popup from "../../Components/Popup/Popup";
 const SingleMentorPage = () => {
   const { email } = useParams();
@@ -23,26 +27,33 @@ const SingleMentorPage = () => {
   const [amount, setAmount] = useState(100);
 
   const handleBookSlot = (date, time) => {
-    setBookSlot({ reqBy: userEmail, reqFor: emailid, date: date, time: time, plan: "Once" });
-  }
+    setBookSlot({
+      reqBy: userEmail,
+      reqFor: emailid,
+      date: date,
+      time: time,
+      plan: "Once",
+    });
+  };
   const planUpdate = (plan) => {
     setBookSlot({ ...bookSlot, plan: plan });
-  }
+  };
   useEffect(() => {
     console.log(bookSlot);
   }, [bookSlot]);
 
-
   const handleSubmit = async () => {
     console.log("Hi");
     try {
-      const response = await axios.post(`http://localhost:8800/api/bookings/${userEmail}`, bookSlot); // Replace with your actual backend API endpoint
+      const response = await axios.post(
+        `http://localhost:8800/api/bookings/${userEmail}`,
+        bookSlot
+      ); // Replace with your actual backend API endpoint
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching mentors:", error);
     }
-  }
-
+  };
 
   useEffect(() => {
     const fetchMentorData = async () => {
@@ -115,7 +126,6 @@ const SingleMentorPage = () => {
     setPopupOpen(false);
   };
 
-
   return (
     <div>
       <NavBar />
@@ -129,15 +139,18 @@ const SingleMentorPage = () => {
             <div className="askQuestionDiv">
               <button className="askaQsBtn">Ask a Question?</button>
               {/* <button onClick={handleOpenPopup}>Open Popup</button> */}
-{/* 
+              {/* 
       {isPopupOpen && (
         <Popup text="Hello, this is your popup!" onClose={handleClosePopup} />
       )} */}
-
             </div>
             <div className="infoProfile">
               <div className="leftInfo">
-              <img className="mentorPhoto" src="https://imgs.search.brave.com/EB4dBcW7zNuoPP_2pPKEZz9ZDJp7OqE_lCfEzOy-5Sw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzg4LzUzLzg5/LzM2MF9GXzg4NTM4/OTg2XzVCaTRlSjY2/N3BvY3NPM0JJbGJO/NGZIS3o4eVVGU3VB/LmpwZw" alt="" />
+                <img
+                  className="mentorPhoto"
+                  src="https://imgs.search.brave.com/EB4dBcW7zNuoPP_2pPKEZz9ZDJp7OqE_lCfEzOy-5Sw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAwLzg4LzUzLzg5/LzM2MF9GXzg4NTM4/OTg2XzVCaTRlSjY2/N3BvY3NPM0JJbGJO/NGZIS3o4eVVGU3VB/LmpwZw"
+                  alt=""
+                />
                 <div className="headingName">
                   <h1>{mentorData.name}</h1>
                   <p>Senior Analyst at Microsoft</p>
@@ -205,7 +218,9 @@ const SingleMentorPage = () => {
                 <h1>Basic</h1>
               </div>
               <div className="card-body">
-                <p><h2>$5 / Week</h2></p>
+                <p>
+                  <h2>$5 / Week</h2>
+                </p>
                 <div className="card-element-hidden-basic">
                   <ul className="card-element-container">
                     <li className="card-element">1-1 session</li>
@@ -223,11 +238,23 @@ const SingleMentorPage = () => {
                           "disable-funding": "credit,card,p24",
                         }}
                       >
-                        <ButtonWrapper currency={currency} showSpinner={false} />
+                        <ButtonWrapper
+                          currency={currency}
+                          showSpinner={false}
+                        />
                       </PayPalScriptProvider>
                     </div>
                   ) : (
-                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(5); planUpdate('Weekly') }}>Order now</button>
+                    <button
+                      className="btn btn-basic"
+                      onClick={() => {
+                        setOpen(true);
+                        setAmount(5);
+                        planUpdate("Weekly");
+                      }}
+                    >
+                      Order now
+                    </button>
                   )}
                 </div>
               </div>
@@ -238,7 +265,9 @@ const SingleMentorPage = () => {
                 <h1>Standard</h1>
               </div>
               <div className="card-body">
-                <p><h2>$10 / Mo</h2></p>
+                <p>
+                  <h2>$10 / Mo</h2>
+                </p>
                 <div className="card-element-hidden-standard">
                   <ul className="card-element-container">
                     <li className="card-element">1-1 session</li>
@@ -256,11 +285,23 @@ const SingleMentorPage = () => {
                           "disable-funding": "credit,card,p24",
                         }}
                       >
-                        <ButtonWrapper currency={currency} showSpinner={false} />
+                        <ButtonWrapper
+                          currency={currency}
+                          showSpinner={false}
+                        />
                       </PayPalScriptProvider>
                     </div>
                   ) : (
-                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(10); planUpdate('Monthly') }}>Order now</button>
+                    <button
+                      className="btn btn-basic"
+                      onClick={() => {
+                        setOpen(true);
+                        setAmount(10);
+                        planUpdate("Monthly");
+                      }}
+                    >
+                      Order now
+                    </button>
                   )}
                 </div>
               </div>
@@ -270,7 +311,9 @@ const SingleMentorPage = () => {
                 <h1>Premium</h1>
               </div>
               <div className="card-body">
-                <p><h2>$20 / Q</h2></p>
+                <p>
+                  <h2>$20 / Q</h2>
+                </p>
                 <div className="card-element-hidden-premium">
                   <ul className="card-element-container">
                     <li className="card-element">1-1 session</li>
@@ -288,11 +331,23 @@ const SingleMentorPage = () => {
                           "disable-funding": "credit,card,p24",
                         }}
                       >
-                        <ButtonWrapper currency={currency} showSpinner={false} />
+                        <ButtonWrapper
+                          currency={currency}
+                          showSpinner={false}
+                        />
                       </PayPalScriptProvider>
                     </div>
                   ) : (
-                    <button className="btn btn-basic" onClick={() => { setOpen(true); setAmount(20); planUpdate('Quarterly') }}>Order now</button>
+                    <button
+                      className="btn btn-basic"
+                      onClick={() => {
+                        setOpen(true);
+                        setAmount(20);
+                        planUpdate("Quarterly");
+                      }}
+                    >
+                      Order now
+                    </button>
                   )}
                 </div>
               </div>
@@ -345,8 +400,7 @@ const SingleMentorPage = () => {
             {/* <DateCalendarServerRequest onHandleClick={handleClick}  /> */}
 
             <div className="gridSlots">
-
-              {availabilityParam.map((slot) => (
+              {/* {availabilityParam.map((slot) => (
 
                 slot.slots.map((bot) => (
                   <div className="gridDivSlot" onClick={() => handleBookSlot(slot.date, bot.time)}>
@@ -356,7 +410,40 @@ const SingleMentorPage = () => {
                   </div>
                 ))
 
-              ))}
+              ))} */}
+              {availabilityParam.map((slot) =>
+                slot.slots
+                  .filter((bot) => bot.filled < bot.capacity)
+                  .map((bot) => (
+                    // Check if the slot is not filled to capacity
+
+                    <div
+                      className="gridDivSlot"
+                      onClick={() => handleBookSlot(slot.date, bot.time)}
+                    >
+                      <p>{slot.day}</p>
+                      <h4>{slot.date}</h4>
+                      <p>{bot.time}</p>
+                    </div>
+                  ))
+              )}
+              {availabilityParam.map((slot) =>
+                slot.slots
+                  .filter((bot) => bot.filled >= bot.capacity)
+                  .map((bot) => (
+                    // Check if the slot is not filled to capacity
+
+                    <div
+                      className="gridDivSlot"
+                      // onClick={() => handleBookSlot(slot.date, bot.time)}
+                    >
+                    <p>Booked</p>
+                      <p>{slot.day}</p>
+                      <h4>{slot.date}</h4>
+                      <p>{bot.time}</p>
+                    </div>
+                  ))
+              )}
             </div>
           </div>
 
@@ -376,9 +463,15 @@ const SingleMentorPage = () => {
             </div>
           ) : (
             <div className="buttonBook">
-              <button className="btn-17" onClick={() => { setOpen(true); setAmount(mentorData.Price) }}>
+              <button
+                className="btn-17"
+                onClick={() => {
+                  setOpen(true);
+                  setAmount(mentorData.Price);
+                }}
+              >
                 <span className="text-container">
-                  <span className="text" >Book Your Slot Now! </span>
+                  <span className="text">Book Your Slot Now! </span>
                 </span>
               </button>
             </div>
