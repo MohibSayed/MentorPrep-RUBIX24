@@ -21,7 +21,7 @@ function Resume() {
               size={"2.5rem"}
               className="resume-icon"
             />
-            <span>Your Resume</span>
+            <span>Your Resume is your foundation to grow</span>
           </h1>
           <div className="recommended-courses-section">
             <div className="recommended-heading">
