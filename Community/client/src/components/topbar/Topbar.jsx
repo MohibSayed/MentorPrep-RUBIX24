@@ -14,6 +14,14 @@ export default function Topbar() {
           <span className="logo">Mentor Prep</span>
         </Link>
       </div>
+      <div className="welcome">
+        <span>Welcome to Our Community</span>
+      </div>
+      <div className="welcome">
+      <a href="http://localhost:3000" style={{ textDecoration: "none" }}>
+        <span className="bluebtn">Back to Home</span>
+        </a>
+      </div>
 
       <div className="topbarRight">
         <div className="topbarIconItem">

@@ -6,6 +6,29 @@
   position: sticky;
   top: 0;
   z-index: 999;
+
+    padding: .2em 0;
+    /* width: 100%; */
+    /* z-index: 1000; */
+    font-size: 1.2rem;
+    color: #000;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    background-color: white !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* align-items: center; */
+/* } */
+}
+.bluebtn{
+  background: linear-gradient(320deg, #2a7fb1e1 0%, #01a0fb 100%);
+  color: white !important;
+  text-decoration: none !important;
+  padding: 10px 13px;
+  border-radius: 6px;
+
+}
+.welcome{
+  padding: 0 25px;
 }
 
 .topbarLeft {
