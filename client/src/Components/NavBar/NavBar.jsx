@@ -90,10 +90,10 @@ const NavBar = () => {
                 </a>
 
               </li>
-
-              <li>
+              {!isMentor && <li>
                 <Link to="/Resume"><a>Resume</a></Link>
-              </li>
+              </li>}
+              
 
               {/* <li>
               <Link to="/"><a>Dashboard</a></Link>
