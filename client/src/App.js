@@ -22,7 +22,7 @@ import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 import ScreenRecorder from "./Pages/Video/temp";
 import EditMenteeProfile from "./Pages/EditMenteeProfile/EditMenteeProfile";
 import Resume from "./Pages/Resume/Resume";
-import TranscriptPage from "./Pages/TranscriptPage/TranscriptPage";
+// import TranscriptPage from "./Pages/TranscriptPage/TranscriptPage";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>

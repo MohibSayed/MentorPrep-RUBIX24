@@ -10,87 +10,18 @@ import { dirname } from 'path';
 import fs from 'fs';
 import { promisify } from 'util';
 
-// export const createBooking = async (req, res, next) => {
-//     const reqby = req.params.ReqByEmail;
-//     const newBooking = new Booking({
-//         ...req.body,
-//         meetingLink: uuidv4(),
-//     });
-//     try {
-//         if (reqby == req.body.reqBy) {
-//             const savedBooking = await newBooking.save()
-//             res.status(201).json(savedBooking)
-//         } else {
-//             next(createError(403, "You are not authorized!"))
-//         }
-//     } catch (error) {
-//         next(error)
-//     }
-// }
-// export const createBooking = async (req, res, next) => {
-//     const reqby = req.params.ReqByEmail;
-//     const {reqFor,time,date} = req.body;
-//     const mentorEmail = reqFor;
-//     const newBooking = new Booking({
-//         ...req.body,
-//         meetingLink: uuidv4(),
-//     });
-//     try {
-//         if (reqby == req.body.reqBy) {
-//             const savedBooking = await newBooking.save()
-//             const mentor = await Mentor.findOne({ mentorEmail });
-
-//             const availabilityToUpdate = mentor.availability.find(avail => avail.date === date);
-
-//             if (availabilityToUpdate) {
-//                 const slotToUpdate = availabilityToUpdate.slots.find(slot => slot.time === time);
-
-//                 if (slotToUpdate) {
-//                     // Increase the filled attribute by 1
-//                     slotToUpdate.filled += 1;
-//                 }
-//             }
-//             await mentor.save();
-//             res.status(201).json(savedBooking)
-//         } else {
-//             next(createError(403, "You are not authorized!"))
-//         }
-//     } catch (error) {
-//         next(error)
-//     }
-// }
-// export const createBooking = async (req, res, next) => {
-//     const reqby = req.params.ReqByEmail;
-//     const {reqFor,time,date,price} = req.body;
-//     const mentorEmail = reqFor;
-//     const newBooking = new Booking({
-//         ...req.body,
-//         meetingLink: uuidv4(),
-//     });
-//     try {
-//         if (reqby == req.body.reqBy) {
-//             const savedBooking = await newBooking.save()
-//             const mentor = await Mentor.findOne({ mentorEmail });
-//             mentor.totalEarning += price; 
-//             const availabilityToUpdate = mentor.availability.find(avail => avail.date === date);
-
-//             if (availabilityToUpdate) {
-//                 const slotToUpdate = availabilityToUpdate.slots.find(slot => slot.time === time);
-
-//                 if (slotToUpdate) {
-//                     // Increase the filled attribute by 1
-//                     slotToUpdate.filled += 1;
-//                 }
-//             }
-//             await mentor.save();
-//             res.status(201).json(savedBooking)
-//         } else {
-//             next(createError(403, "You are not authorized!"))
-//         }
-//     } catch (error) {
-//         next(error)
-//     }
-// }
+export const updateRecording = async (req,res,next) => {
+    const {bookingId} = req.body;
+    // const reqByEmail = req.params.emailid;
+    try {
+        const booking = await Booking.findById(bookingId)
+        booking.recording = true;
+        await booking.save()
+        res.status(200).json(booking)
+    } catch (err) {
+        next(err);
+    }
+}
 export const createBooking = async (req, res, next) => {
     const reqby = req.params.ReqByEmail;
     const { reqFor, time, date, price } = req.body;
@@ -170,6 +101,7 @@ export const getMenteeBookings = async (req, res, next) => {
         next(err);
     }
 };
+
 
 export const uploadAudio = async (req,res,next) => {
     try{

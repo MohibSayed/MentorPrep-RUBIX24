@@ -1,5 +1,5 @@
 import express from "express"; updateBooking
-import { createBooking, deleteBooking, getBooking, getBookings, updateBooking, getMenteeBookings,uploadAudio } from "../controllers/booking.js";
+import { createBooking, deleteBooking, getBooking, updateRecording,getBookings, updateBooking, getMenteeBookings,uploadAudio } from "../controllers/booking.js";
 const router = express.Router()
 import multer from "multer"
 import { fileURLToPath } from 'url';
@@ -26,6 +26,7 @@ const storage = multer.diskStorage({
 
 // // Serve static files from the 'uploads' directory
 // app.use('/uploads', express.static(uploadsDirectory));
+router.post("/updateRecording",updateRecording)
 router.post("/uploadAudio",upload.single('audio'),uploadAudio);
 //create
 router.post("/:ReqByEmail", createBooking)

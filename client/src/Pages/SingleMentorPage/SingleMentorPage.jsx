@@ -79,6 +79,7 @@ const SingleMentorPage = () => {
       date: date,
       time: time,
       plan: "Once",
+      recording:false
       // price: "",
     });
   };
