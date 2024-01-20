@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./RegisterPage.css";
+import resumeData from "../../data/resume_data.json";
 
 const RegisterPage = (props) => {
   const [isMentor, setIsMentor] = useState(false);
@@ -121,6 +122,15 @@ const RegisterPage = (props) => {
   const handleMentorMentee = () => {
     setIsMentor(!isMentor);
   };
+  const fillFromJson = () => {
+    setUser({
+      ...user,
+      name: resumeData.resume_data.name,
+      phone: resumeData.resume_data.mobile_number,
+      interests: resumeData.resume_data.skills,
+    });
+    console.log(user);
+  };
 
   return (
     <div className="register-page-container">
@@ -132,7 +142,7 @@ const RegisterPage = (props) => {
             // checked={user.subscribeNewsletter}
             onChange={handleMentorMentee}
           />
-         <span>Are you a Mentor?</span> 
+          <span>Are you a Mentor?</span>
         </label>
       </div>
 
@@ -149,7 +159,6 @@ const RegisterPage = (props) => {
               name="email"
               required
               contentEditable={false}
-              placeholder=""
               type="email"
               className="input"
               value={props.user.emailAddresses[0].emailAddress}
@@ -161,8 +170,8 @@ const RegisterPage = (props) => {
             <input
               name="name"
               required
-              placeholder=""
               type="text"
+              value={user.name}
               className="input"
               onChange={handleMenteeChange}
             />
@@ -183,7 +192,7 @@ const RegisterPage = (props) => {
             <input
               name="phone"
               required
-              placeholder=""
+              value={user.phone}
               type="text"
               className="input"
               onChange={handleMenteeChange}
@@ -213,6 +222,14 @@ const RegisterPage = (props) => {
               />
               <span>City</span>
             </label>
+            <label>
+              <input
+                type="file"
+                className="input"
+                onChange={fillFromJson}
+              />
+              <span>City</span>
+            </label>
           </div>
           {/* <label>
             I am a Mentee
@@ -233,8 +250,8 @@ const RegisterPage = (props) => {
               type="text"
               className="input"
               onChange={handleMenteeChange}
-              />
-              <span>Profession</span>
+            />
+            <span>Profession</span>
           </label>
 
           <label>
@@ -303,7 +320,7 @@ const RegisterPage = (props) => {
         <form className="form" onSubmit={handleMentorSubmit}>
           {/* ... Other form elements ... */}
           <p className="title">
-          &nbsp;&nbsp;Register yourself to share your fundamentals!{" "}
+            &nbsp;&nbsp;Register yourself to share your fundamentals!{" "}
           </p>
           <p className="message">Signup now and get full access to our webapp. </p>
 
@@ -434,56 +451,56 @@ const RegisterPage = (props) => {
             <span>Most Preferred Language</span>
           </label>
           <div className="flex">
-          <label>
-            Day:
-            <input
-            className="input"
-              type="text"
-              name="availabilityDay"
-              value={mentor.availability[0].day}
-              onChange={(e) =>
-                handleAvailabilityChange(0, 0, e.target.value, "", "")
-              }
-            />
-          </label>
-          <label>
-            Date:
-            <input
-                  className="input"
-              type="text"
-              name="availabilityDate"
-              value={mentor.availability[0].date}
-              onChange={(e) =>
-                handleAvailabilityChange(
-                  0,
-                  0,
-                  mentor.availability[0].day,
-                  e.target.value,
-                  ""
-                )
-              }
-            />
-          </label>
-          <label>
-            <span>Time Slot:</span>
-            <input
-              type="text"
-              className="input"
-              name="availabilityTime"
-              value={mentor.availability[0].slots[0].time}
-              onChange={(e) =>
-                handleAvailabilityChange(
-                  0,
-                  0,
-                  mentor.availability[0].day,
-                  mentor.availability[0].date,
-                  e.target.value
-                )
-              }
-            />
-          </label>
+            <label>
+              Day:
+              <input
+                className="input"
+                type="text"
+                name="availabilityDay"
+                value={mentor.availability[0].day}
+                onChange={(e) =>
+                  handleAvailabilityChange(0, 0, e.target.value, "", "")
+                }
+              />
+            </label>
+            <label>
+              Date:
+              <input
+                className="input"
+                type="text"
+                name="availabilityDate"
+                value={mentor.availability[0].date}
+                onChange={(e) =>
+                  handleAvailabilityChange(
+                    0,
+                    0,
+                    mentor.availability[0].day,
+                    e.target.value,
+                    ""
+                  )
+                }
+              />
+            </label>
+            <label>
+              <span>Time Slot:</span>
+              <input
+                type="text"
+                className="input"
+                name="availabilityTime"
+                value={mentor.availability[0].slots[0].time}
+                onChange={(e) =>
+                  handleAvailabilityChange(
+                    0,
+                    0,
+                    mentor.availability[0].day,
+                    mentor.availability[0].date,
+                    e.target.value
+                  )
+                }
+              />
+            </label>
           </div>
-          
+
 
           <div className="InterestDivs"></div>
 

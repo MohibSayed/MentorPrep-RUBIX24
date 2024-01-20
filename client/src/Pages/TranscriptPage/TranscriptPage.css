@@ -1,0 +1,62 @@
+.transcript-wrapper {
+    width: 100%;
+    height: 100vh;
+    padding: 7em 2em;
+    font-family: 'poppins';
+    color: rgb(49, 49, 49);
+    background-color: rgba(128, 128, 128, 0.059);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.transcript-container {
+    margin-top: 3.5em;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    background-color: white;
+    border-radius: 5px;
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 2em;
+    width: 100%;
+}
+
+.transcript-card-container {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    gap: 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.265);
+
+}
+
+.transcript-card-container .transcript-card {
+    padding: 1em 2em;
+    border-radius: 5px;
+    border: 1px solid rgba(1, 159, 251, 0.388);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.transcript-card-container .transcript-card h5 {
+    font-size: 1.1rem;
+}
+
+.transcript-card-container .transcript-card p {
+    color: gray;
+    font-weight: bold;
+    padding-top: .2em;
+}
+
+.transcript{
+    margin-top: 1.5em;
+}
+
+.transcript h3{
+    padding-bottom: .3em;
+    font-size: 1.5rem;
+}
+
+.transcript p{
+    color: gray;
+}

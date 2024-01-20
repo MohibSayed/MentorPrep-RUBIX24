@@ -21,6 +21,8 @@ import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
 import ScreenRecorder from "./Pages/Video/temp";
 import EditMenteeProfile from "./Pages/EditMenteeProfile/EditMenteeProfile";
+import Resume from "./Pages/Resume/Resume";
+import TranscriptPage from "./Pages/TranscriptPage/TranscriptPage";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -73,9 +75,9 @@ const router = createBrowserRouter(
           <>
             <SignedIn>
               <SideBar>
-                <MentorProfile/>
+                <MentorProfile />
               </SideBar>
-              
+
             </SignedIn>
 
             <SignedOut>
@@ -102,11 +104,11 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            {/* For Mentee -> SideBarMentee  */}
+              {/* For Mentee -> SideBarMentee  */}
               <SideBarMentee>
-                <MenteeProfile/>
+                <MenteeProfile />
               </SideBarMentee>
-              
+
             </SignedIn>
 
             <SignedOut>
@@ -120,11 +122,11 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBarMentee>
-            <EditMenteeProfile/>
+              <SideBarMentee>
+                <EditMenteeProfile />
               </SideBarMentee>
-              
-              
+
+
             </SignedIn>
 
             <SignedOut>
@@ -138,11 +140,11 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBar>
-            <MentorProfile/>
+              <SideBar>
+                <MentorProfile />
               </SideBar>
-              
-              
+
+
             </SignedIn>
 
             <SignedOut>
@@ -156,11 +158,29 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-            <SideBar>
-            <MentorProfile/>
+              <SideBar>
+                <MentorProfile />
               </SideBar>
-              
-              
+
+
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/mentorProfile/edit/:email"
+        element={
+          <>
+            <SignedIn>
+              <SideBar>
+                <MentorProfile />
+              </SideBar>
+
+
             </SignedIn>
 
             <SignedOut>
@@ -192,9 +212,37 @@ const router = createBrowserRouter(
         element={
           <>
             <SignedIn>
-              <FindMentorPage/>
-              
-              
+              <FindMentorPage />
+
+
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/Resume"
+        element={
+          <>
+            <SignedIn>
+              <Resume />
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/transcript"
+        element={
+          <>
+            <SignedIn>
+              <TranscriptPage />
             </SignedIn>
 
             <SignedOut>
