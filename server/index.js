@@ -7,6 +7,7 @@ import mentorsRoute from "./routes/Mentor.js"
 import bookingRoute from "./routes/booking.js"
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import multer from "multer"
 const Port = 8800
 
 const app = express();
@@ -35,6 +36,8 @@ app.use("/api/mentee", menteesRoute)
 app.use("/api/mentor", mentorsRoute)
 app.use("/api/bookings", bookingRoute)
 
+const upload = multer();
+
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500;
     const errorMessage = err.message || "Something went wrong!";
@@ -45,6 +48,14 @@ app.use((err, req, res, next) => {
         stack: err.stack,
     });
 });
+
+
+const uploadsDirectory = "C:/Users/thosp/OneDrive/Documents/GitHub/MentorPrep-RUBIX24/server/controllers/uploads"
+console.log(uploadsDirectory)
+
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(uploadsDirectory));
+
 
 app.listen(Port, () => {
     connect()

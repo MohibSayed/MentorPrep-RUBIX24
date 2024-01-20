@@ -28,7 +28,7 @@ const routes = [
     icon: <MdMessage />,
   },
   {
-    path: "/analytics",
+    path: `/mentorProfile/analytics/${mentorEmail}`,
     name: "Analytics",
     icon: <BiAnalyse />,
   },

@@ -2,7 +2,13 @@
 import Booking from "../models/Bookings.js"
 import Mentor from "../models/Mentor.js"
 import { v4 as uuidv4 } from 'uuid';
+import path from "path"
+import multer from "multer"
 import createError from "http-errors"
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import fs from 'fs';
+import { promisify } from 'util';
 
 // export const createBooking = async (req, res, next) => {
 //     const reqby = req.params.ReqByEmail;
@@ -164,3 +170,22 @@ export const getMenteeBookings = async (req, res, next) => {
         next(err);
     }
 };
+
+export const uploadAudio = async (req,res,next) => {
+    try{
+        const uniqueFilename = uuidv4(); // Implement your own logic for generating a unique filename
+        const __filename = fileURLToPath(import.meta.url);
+    // Get the directory path
+    const __dirname = dirname(__filename);
+        const filePath = path.join(__dirname, 'uploads', req.file.filename);
+        const fileUrl = `http://localhost:8800/uploads/${uniqueFilename}`
+
+        const moveFile = promisify(fs.rename);
+        await moveFile(req.file.path, filePath);
+
+        res.status(200).json({ url: fileUrl });
+    }
+    catch(err){
+        next(err);
+    }
+}

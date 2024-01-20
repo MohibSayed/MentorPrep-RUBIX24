@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Media.css'
 import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import MediaCard from "../../Components/MediaCard"
 
 export default function Media() {
@@ -18,7 +19,8 @@ export default function Media() {
   return (
     <div>
     <div className="booked">
-    {bookings.map((booking)=><MediaCard mentorEmail={booking.reqFor} plan={booking.plan} recording={booking.recording} date={booking.date}/>)}
+    {bookings.map((booking)=>
+    <Link to="/MeetingAnalysis/m0hibsayed@gmail.com/meeranwebarchitects@gmail.com" ><MediaCard mentorEmail={booking.reqFor} plan={booking.plan} recording={booking.recording} date={booking.date}/></Link>)}
     {/* <MediaCard  />
     <MediaCard />
     <MediaCard />

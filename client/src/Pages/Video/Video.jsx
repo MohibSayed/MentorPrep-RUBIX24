@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import RecordRTC from "recordrtc";
 import { useParams } from "react-router-dom";
+import  encodeWAV  from 'audiobuffer-to-wav';
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import "./Video.css";
 const Video = () => {
@@ -93,7 +94,7 @@ const Video = () => {
 
       const recorder = RecordRTC(audioStream, {
         type: "audio",
-        mimeType: "audio/wav",
+        mimeType: "audio/wave",
       });
 
       recorder.startRecording();
@@ -110,15 +111,27 @@ const Video = () => {
       recordRTCAudioRef.current.stopRecording(async () => {
         const blob = recordRTCAudioRef.current.getBlob();
 
-        // Create a download link for the audio
+        const audioBlob = new Blob([blob], { type: 'audio/wave' })
+        // const blob = recordRTCAudioRef.current.getBlob();
+        
         const audioDownloadLink = document.createElement("a");
-        audioDownloadLink.href = URL.createObjectURL(blob);
-        audioDownloadLink.download = "audio-recording.wav";
+        audioDownloadLink.href = URL.createObjectURL(audioBlob);
+        // window.location.href(audioDownloadLink)
+        // audioDownloadLink.download = "audio-recording.wave";
         document.body.appendChild(audioDownloadLink);
         audioDownloadLink.click();
         document.body.removeChild(audioDownloadLink);
         console.log(audioDownloadLink.href);
         setRecordingAudio(false);
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'audio-recording.wav');
+
+        const response = await fetch('http://localhost:8800/api/bookings/uploadAudio', {
+          method: 'POST',
+          body: formData,
+        });
+        const result = response.json();
+        console.log(result)
 
         const resp = await fetch("https://api.symbl.ai/oauth2/token:generate", {
           method: "POST",
@@ -133,22 +146,22 @@ const Video = () => {
               "513268714b416573326350765453426631395a387769427a363277634974765f46434b726c387a32626c6f6a733470586756444769784c444d585f352d615844",
           }),
         });
-        const data = resp.json();
-        console.log(data)
+        const data = await resp.json();
+        console.log(data.accessToken);
+        // const formData = new FormData();
+        // formData.append('audio', blob, 'audio-recording.wav');
+        // console.log(formData)
         const accessToken = data.accessToken;
-        const resp2 = await fetch("https://api.symbl.ai/oauth2/token:generate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            type: "application",
-            appId:
-              "3879654f366d3270675371516136655541636f4a587931465749745346676233",
-            appSecret:
-              "513268714b416573326350765453426631395a387769427a363277634974765f46434b726c387a32626c6f6a733470586756444769784c444d585f352d615844",
-          }),
-        });
+        // const symblResp = await fetch("https://api.symbl.ai/v1/process/audio?name=$NAME&languageCode=en-US&confidenceThreshold=0.5&detectPhrases=true&enableSpeakerDiarization=true&diarizationSpeakerCount=1", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "audio/wav",
+        //     "Authorization": `Bearer ${accessToken}`,
+        //   },
+        //   body: audioBlob,
+        // });
+        // const symblData = await symblResp.json();
+        // console.log(symblData);
       });
     }
   };

@@ -5,6 +5,7 @@ import SingleMentorPage from "./Pages/SingleMentorPage/SingleMentorPage";
 import SideBarMentee from "./Components/SideBar/SideBarMentee";
 import Media from "./Pages/Media/Media"
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
+import TranscriptPage from "./Components/TranscriptPage";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,8 +14,8 @@ import {
 } from 'react-router-dom';
 import Video from './Pages/Video/Video'
 import SideBar from "./Components/SideBar/SideBar";
-
-import SideBarMentee from "./Components/SideBar/SideBarMentee";
+import AnalyseMentorProfile from "./Pages/AnalyseMentorProfile/AnalyseMentorProfile";
+// import SideBarMentee from "./Components/SideBar/SideBarMentee";
 import MentorProfile from "./Pages/MentorProfile/MentorProfile";
 import MenteeProfile from "./Pages/MenteeProfile/MenteeProfile";
 import FindMentorPage from "./Pages/FindMentorPage/FindMentorPage";
@@ -168,12 +169,46 @@ const router = createBrowserRouter(
           </>
         }
       />
+       <Route
+        path="/mentorProfile/analytics/:email"
+        element={
+          <>
+            <SignedIn>
+            <SideBar>
+            <AnalyseMentorProfile/>
+              </SideBar>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
       <Route
         path="/matchMentor"
         element={
           <>
             <SignedIn>
               <FindMentorPage/>
+              
+              
+            </SignedIn>
+
+            <SignedOut>
+              <RedirectToSignIn />
+            </SignedOut>
+          </>
+        }
+      />
+      <Route
+        path="/MeetingAnalysis/:menteeEmail/:mentorEmail"
+        element={
+          <>
+            <SignedIn>
+              <TranscriptPage/>
               
               
             </SignedIn>
