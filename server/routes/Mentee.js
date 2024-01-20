@@ -17,7 +17,7 @@ router.put("/:id", updateMentee);
 router.delete("/:id", deleteMentee);
 
 //GET
-router.get("/:id", getMentee);
+router.get("/:emailid", getMentee);
 
 //GET ALL
 router.get("/", getMentees);

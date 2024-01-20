@@ -24,8 +24,9 @@ export const deleteMentee = async (req, res, next) => {
 }
 export const getMentee = async (req, res, next) => {
     try {
-        const Mentee = await Mentee.findById(req.params.id);
-        res.status(200).json(Mentee);
+        const email = req.params.emailid;
+        const myMentee = await Mentee.findOne({ email: email });
+        res.status(200).json(myMentee);
     } catch (err) {
         next(err);
     }

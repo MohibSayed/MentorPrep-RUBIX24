@@ -3,6 +3,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 import resumeData from "../../data/resume_data.json";
 import "./Resume.css";
 import { IoIosDocument } from "react-icons/io";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Resume() {
   const recommended_courses = resumeData.recommended_courses;
@@ -10,6 +12,26 @@ function Resume() {
   const resume_data = resumeData.resume_data;
   const skills = resumeData.resume_data.skills;
   console.log(skills);
+
+  const [mentorProfile, setMentorProfile] = useState({});
+  
+  const emailid = localStorage.getItem('email');
+  console.log(emailid);
+  useEffect(() => {
+    const fetchMentorProfile = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8800/api/mentee/${emailid}`
+        );
+        console.log(response.data);
+        setMentorProfile(response.data);
+      } catch (error) {
+        console.error("Error fetching mentors:", error);
+      }
+    };
+    fetchMentorProfile();
+  }, []);
+
   return (
     <div>
       <NavBar />
@@ -80,7 +102,7 @@ function Resume() {
               </p>
             </div>
             <ul>
-              {skills?.map((data) => (
+              {mentorProfile.interests?.map((data) => (
                 <li>{data}</li>
               ))}
             </ul>
